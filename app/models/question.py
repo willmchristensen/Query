@@ -11,8 +11,8 @@ class Question(db.Model):
     details = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     space_id = db.Column(db.Integer, db.ForeignKey("spaces.id"))
-    created_at = db.Column(db.Date, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime)
 
     space = db.relationship("Space", back_populates="questions")
     answers = db.relationship("Answer", back_populates="question")

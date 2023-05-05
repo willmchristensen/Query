@@ -11,8 +11,8 @@ class Space(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
     owner_id = db.Column(db.String, db.ForeignKey("users.id"), nullable=False)
-    created_at = db.Column(db.Date, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime)
 
     questions = db.relationship("Question", back_populates="space")
     owner = db.relationship("User", back_populates="spaces")

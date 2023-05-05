@@ -12,8 +12,8 @@ class Answer(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
     details = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.Date, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    updated_at = db.Column(db.DateTime)
 
     question = db.relationship("Question", back_populates="answers")
     replies = db.relationship("Reply", back_populates="answer")
