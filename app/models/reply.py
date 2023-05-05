@@ -12,7 +12,7 @@ class Reply(db.Model):
     details = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.String, db.ForeignKey("users.id"), nullable=False)
     answer_id = db.Column(db.String, db.ForeignKey("answers.id"), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime)
 
     owner = db.relationship("User", back_populates="replies")
