@@ -1,8 +1,8 @@
 """created models and relationships
 
-Revision ID: ea70b9f3efdc
+Revision ID: 378d34863a1b
 Revises: 
-Create Date: 2023-05-06 10:48:49.221812
+Create Date: 2023-05-06 10:59:42.100302
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ea70b9f3efdc'
+revision = '378d34863a1b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,7 +30,7 @@ def upgrade():
     op.create_table('spaces',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
-    sa.Column('owner_id', sa.String(), nullable=False),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -63,8 +63,8 @@ def upgrade():
     op.create_table('replies',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('details', sa.String(), nullable=False),
-    sa.Column('owner_id', sa.String(), nullable=False),
-    sa.Column('answer_id', sa.String(), nullable=False),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('answer_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['answer_id'], ['answers.id'], ),
