@@ -9,8 +9,8 @@ class Question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     details = db.Column(db.String, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    space_id = db.Column(db.Integer, db.ForeignKey("spaces.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    space_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("spaces.id")))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime)
 
