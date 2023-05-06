@@ -17,7 +17,7 @@ class Answer(db.Model):
 
     question = db.relationship("Question", back_populates="answers")
     replies = db.relationship("Reply", back_populates="answer")
-
+    owner = db.relationship("User", back_populates="answers")
 
     def to_dict(self):
         return {
@@ -27,6 +27,6 @@ class Answer(db.Model):
             "details": self.details,
             "createdAt": str(self.created_at),
             "updatedAt": str(self.updated_at),
-            "question": self.question.to_dict(),
-            "replies": [reply.to_dict() for reply in self.replies]
+            # "question": self.question.to_dict(),
+            # "replies": [reply.to_dict() for reply in self.replies]
         }

@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
 
     spaces = db.relationship("Space", back_populates="owner")
     replies = db.relationship("Reply", back_populates="owner")
+    answers = db.relationship("Answer", back_populates="owner")
+    questions = db.relationship("Question", back_populates="owner")
 
     @property
     def password(self):
@@ -32,5 +34,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            # TODO:list comp?
+            'spaces': [space.to_dict() for space in self.spaces]
         }

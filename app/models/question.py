@@ -16,7 +16,7 @@ class Question(db.Model):
 
     space = db.relationship("Space", back_populates="questions")
     answers = db.relationship("Answer", back_populates="question")
-
+    owner = db.relationship("User", back_populates="questions")
 
     def to_dict(self):
         return {
