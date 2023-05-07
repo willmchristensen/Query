@@ -2,13 +2,13 @@ import './ContentCard.css'
 import ProfileCard from '../ProfileCard'
 import ImageCard from '../ImageCard'
 
-const ContentCard = ({seed}) => {
-
+const ContentCard = ({question}) => {
+    console.log(question)
     return(
         <div className="content">
             <div className="content-container">
                 <ProfileCard 
-                    profile={seed.profile}
+                    profile={question.userId}
                 >
                 </ProfileCard>
             </div> 
@@ -16,20 +16,20 @@ const ContentCard = ({seed}) => {
                 <h1
                     className='primary-text'
                 >
-                    {seed.question.question}
+                    {question.details}
                 </h1>
-                <p
+                {/* <p
                     className='support-text'
                 >
                      {seed.question.details}
-                </p>
+                </p> */}
             </div>
-            <div className="content-container">
+            {/* <div className="content-container">
                 <ImageCard 
                     image={seed.question.image_url}
                 >
                 </ImageCard>
-            </div>  
+            </div>   */}
         </div>   
     )
 

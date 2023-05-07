@@ -19,7 +19,7 @@ let icons = [
 ]
 const NavBar = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
-
+    
     let index = 0;
 
     return(
