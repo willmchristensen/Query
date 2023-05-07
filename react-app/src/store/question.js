@@ -18,6 +18,7 @@ export const retreiveAllQuestions = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(getAllQuestions(data))
+        return response
     } else {
         return [
             "An error occurred. Please try again."
@@ -55,17 +56,18 @@ export const createQuestion = (details) => async (dispatch) => {
 const initialState = { questions: {} };
 
 export default function questionReducer(state = initialState, action) {
+    // console.log('action.type: ', action.type)
 	switch (action.type) {
 		case POST_QUESTION:
             const post_newState = { ...state };
             post_newState.questions[action.details.id] = action.details;
             return post_newState;
         case GET_ALL_QUESTIONS:
+            console.log('reducer')
             const get_all_newState = { ...state };
-            get_all_newState.questions = action.question
+            get_all_newState.questions = action.questions
             return get_all_newState
 		default:
 			return state;
 	}
 }
-
