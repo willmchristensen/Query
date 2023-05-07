@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, db
 from flask_login import login_required,current_user
 from app.forms import QuestionForm
@@ -29,25 +29,31 @@ def get_one_question(id):
     print("question", response)
     return {'question': response}
 
-@question_routes.route('/new')
-@login_required
+@question_routes.route('/new', methods=["POST"])
+# @login_required
 def create_one_question():
     """
     Create a question     
     """
     form = QuestionForm()
-
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('form.data',form.data)
+    data = request.data
+    print(type(data))
+    # form.data['details'] = request.data
+    print('form.data',form.data)
     if form.validate_on_submit():
+        # print('form inside of questions_route', form.data,form.details)
         data = form.data
         new_question = Question(
-            details = data['details'],
+            details = data['question'],
             user_id = current_user.id,
         )
-    
+        print('new_question',new_question)
         db.session.add(new_question)
         db.session.commit()
         return {
-            "question": new_question
+            "question": new_question.to_dict()
         }
 
     return {
