@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Question, Answer, db
-from flask_login import login_required,current_user
+from app.models import Question, Answer, db, User
+from flask_login import login_required
 from app.forms import QuestionForm
 
 question_routes = Blueprint("questions", __name__)
@@ -37,24 +37,22 @@ def create_one_question():
     """
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data',form.data)
-    data = request.data
-    print(type(data))
-    # form.data['details'] = request.data
-    print('form.data',form.data)
+    print('----------------',form.data)
+    print(request.data)
     if form.validate_on_submit():
-        # print('form inside of questions_route', form.data,form.details)
+        print('WE MADE IT')
         data = form.data
         new_question = Question(
-            details = data['question'],
-            user_id = current_user.id,
+            details = data['details'],
+            user_id = data['user_id'],
         )
-        print('new_question',new_question)
-        db.session.add(new_question)
-        db.session.commit()
-        return {
-            "question": new_question.to_dict()
-        }
+        print('NEW QUESTION', new_question)
+        # ------------------------------
+        # db.session.add(new_question)
+        # db.session.commit()
+        # return {
+        #     "question": new_question.to_dict()
+        # }
 
     return {
         "errors": form.errors

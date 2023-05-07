@@ -1,20 +1,22 @@
 const POST_QUESTION = "questions/new";
 
-const postQuestion = (question) => ({
+const postQuestion = (details) => ({
     type: POST_QUESTION,
-    question
+    details
 });
 
 
-export const createQuestion = (question) => async (dispatch) => {
+export const createQuestion = (details) => async (dispatch) => {
+    console.log('details in THUNK',details)
     const response = await fetch("/api/questions/new", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            question
-        }),
+        body: details
+        // body: JSON.stringify({
+        //     details
+        // }), 
     });
     if (response.ok) {
         const data = await response.json();
@@ -25,17 +27,19 @@ export const createQuestion = (question) => async (dispatch) => {
             return data.errors;
         }
     } else {
-        return ["An error occurred. Please try again."];
+        return [
+            "An error occurred. Please try again."
+        ];
     }
 }
 
-const initialState = { questions: null };
+const initialState = { questions: {} };
 
 export default function questionReducer(state = initialState, action) {
 	switch (action.type) {
 		case POST_QUESTION:
             const newState = { ...state };
-            newState.questions[action.question.id] = action.question;
+            newState.questions[action.details.id] = action.details;
             return newState;
 		default:
 			return state;

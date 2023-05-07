@@ -8,20 +8,21 @@ function CreateQuestionModal() {
 	const dispatch = useDispatch();
 	const [question, setQuestion] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
-	console.log('CURRENTUSER', currentUser)
-	// const [userId, setUserId] = useState()
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// ---------- FORM DATA	-----------------
 		const formData = new FormData();
 		formData.append('details', question)
 		formData.append('user_id', currentUser.id)
 		console.log('formData::::::::::',formData)
+		// ------------------------------------------
+		
 		if (question.length >= 10) {
-			// details
-			const data = await dispatch(createQuestion(question));
+			const data = await dispatch(createQuestion(formData));
 			if (data) {
 				setErrors(data);
 			} else {
