@@ -1,5 +1,5 @@
 const POST_QUESTION = "questions/new";
-const GET_ALL_QUESTIONS = "questions";
+const GET_ALL_QUESTIONS = "questions/";
 
 const getAllQuestions = (questions) => ({
     type: GET_ALL_QUESTIONS,
@@ -56,14 +56,15 @@ export const createQuestion = (details) => async (dispatch) => {
 const initialState = { questions: {} };
 
 export default function questionReducer(state = initialState, action) {
-    // console.log('action.type: ', action.type)
+    console.log('action.type: ', action)
+    // console.log('hello')
 	switch (action.type) {
 		case POST_QUESTION:
             const post_newState = { ...state };
             post_newState.questions[action.details.id] = action.details;
             return post_newState;
         case GET_ALL_QUESTIONS:
-            console.log('reducer')
+            console.log('get all questions reducer')
             const get_all_newState = { ...state };
             get_all_newState.questions = action.questions
             return get_all_newState
