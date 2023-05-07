@@ -1,9 +1,9 @@
 const POST_QUESTION = "questions/new";
-const GET_ALL_QUESTIONS = "questions";
+const LOAD = "questions/load";
 
-const getAllQuestions = (questions) => ({
-    type: GET_ALL_QUESTIONS,
-    questions
+const load = (data) => ({
+  type: LOAD,
+  payload: data,
 });
 
 const postQuestion = (details) => ({
@@ -11,13 +11,21 @@ const postQuestion = (details) => ({
     details
 });
 
+const normalize = (data) => {
+    let newObj = {}
+    data.forEach(item => {
+        newObj[item.id] = item
+    })
+    return newObj
+}
 
 export const retreiveAllQuestions = () => async (dispatch) => {
     console.log('All Question THUNK')
     const response = await fetch("/api/questions")
     if (response.ok) {
         const data = await response.json();
-        dispatch(getAllQuestions(data))
+        const allQuestions = normalize(data.questions);
+        dispatch(load(allQuestions))
         return response
     } else {
         return [
@@ -55,19 +63,19 @@ export const createQuestion = (details) => async (dispatch) => {
 
 const initialState = { questions: {} };
 
-export default function questionReducer(state = initialState, action) {
-    // console.log('action.type: ', action.type)
-	switch (action.type) {
-		case POST_QUESTION:
-            const post_newState = { ...state };
-            post_newState.questions[action.details.id] = action.details;
-            return post_newState;
-        case GET_ALL_QUESTIONS:
-            console.log('reducer')
-            const get_all_newState = { ...state };
-            get_all_newState.questions = action.questions
-            return get_all_newState
-		default:
-			return state;
-	}
-}
+const questionReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case LOAD:
+        const newState = { ...state };
+        newState.questions = {...action.payload};
+        return newState;
+      case POST_QUESTION:
+        const post_newState = { ...state };
+        post_newState.questions[action.details.id] = action.details;
+        return post_newState;
+      default:
+        return state;
+    }
+};
+
+export default questionReducer;
