@@ -5,7 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import MainContent from "./components/MainContent";
-// import Navigation from "./components/Navigation";
+import SingleQuestion from "./components/SingleQuestion";
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -20,14 +20,17 @@ function App() {
       <NavBar isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/">
-            <MainContent />
+          <Route path="/questions/:questionId">
+            <SingleQuestion />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/">
+            <MainContent />
           </Route>
         </Switch>
       )}

@@ -1,6 +1,7 @@
 import './ContentCard.css'
 import ProfileCard from '../ProfileCard'
 import ImageCard from '../ImageCard'
+import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 
 const ContentCard = ({question}) => {
     console.log(question)
@@ -13,11 +14,15 @@ const ContentCard = ({question}) => {
                 </ProfileCard>
             </div> 
             <div className="content-container text">
-                <h1
-                    className='primary-text'
+                <NavLink
+                    to={`/questions/${question.id}`}
                 >
-                    {question.details}
-                </h1>
+                    <h1
+                        className='primary-text'
+                    >
+                        {question.details}
+                    </h1>
+                </NavLink>
                 {/* <p
                     className='support-text'
                 >

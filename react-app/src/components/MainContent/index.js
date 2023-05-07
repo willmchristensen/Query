@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MainContent.css'
 import ContentCard from './CardComponents/ContentCard'
 import SpaceCardArea from '../SpaceCardArea/'
-import { retreiveAllQuestions } from '../../store/question';
+import { getAllQuestions } from '../../store/question';
   
 // import {getUsers} from '../../store/users'
 // import { useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ const MainContent = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(retreiveAllQuestions())
+        dispatch(getAllQuestions())
     },[])
     
     if(!questionsArray.length) return null
