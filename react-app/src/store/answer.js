@@ -13,10 +13,10 @@ export const getAllAnswers = (userId) => async (dispatch) => {
     const response = await fetch(`/api/answers/${userId}`)
     if (response.ok) {
         const data = await response.json();
-        const allQuestions = normalize(data.questions);
-        dispatch(load(allQuestions))
+        const allAnswers = normalize(data.answers);
+        dispatch(load(allAnswers))
         return response
-    } else { }
+    }
 }
 
 
@@ -25,12 +25,11 @@ const initialState = {
 };
 
 const answerReducer = (state = initialState, action) => {
-    let newState = {...state}
     switch (action.type) {
-        // case LOAD:
-        //     const newState = { ...state };
-        //     newState.questions = { ...action.payload };
-        //     return newState;
+        case LOAD:
+            const newState = { ...state };
+            newState.answers = { ...action.payload };
+            return newState;
         // case LOAD_ONE:
         //     const single_newState = { ...state };
         //     single_newState.singleQuestion = {...action.payload};

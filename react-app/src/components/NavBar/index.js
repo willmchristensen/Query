@@ -19,7 +19,7 @@ let icons = [
 ]
 const NavBar = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
-    
+
     let index = 0;
 
     return(
@@ -37,7 +37,7 @@ const NavBar = ({ isLoaded }) => {
                         items.map(item => {
                             return (
                                 index += 1,
-                                <NavItem
+                                <NavItem key={item.id}
                                     icon={icons[index]}
                                     item={item}
                                     url={item.url}
@@ -56,7 +56,7 @@ const NavBar = ({ isLoaded }) => {
                         <ProfileButton user={sessionUser} />
                     )}
                     {
-                        sessionUser ? 
+                        sessionUser ?
                         <OpenModalButton
                             buttonText="Add question"
                             modalComponent={<CreateQuestionModal />}
@@ -64,7 +64,7 @@ const NavBar = ({ isLoaded }) => {
                         <></>
                     }
                 </div>
-            </nav>   
+            </nav>
         </div>
     )
 
