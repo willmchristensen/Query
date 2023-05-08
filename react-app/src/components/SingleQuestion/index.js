@@ -6,6 +6,7 @@ import { getOneQuestion } from '../../store/question';
 import OpenModalButton from '../OpenModalButton';
 import CreateAnswerModal from '../CreateAnswerModal';
 import DeleteAnswerModal from '../DeleteAnswerModal';
+import EditAnswerModal from '../EditAnswerModal';
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
@@ -39,6 +40,10 @@ const SingleQuestion = () => {
                                     <OpenModalButton
                                         buttonText="Delete Answer"
                                         modalComponent={<DeleteAnswerModal answerId={answer.id} />}
+                                    />
+                                     <OpenModalButton
+                                        buttonText="Edit Answer"
+                                        modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
                                 </>
                             )

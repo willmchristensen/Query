@@ -62,3 +62,23 @@ def delete_one_answer(id):
     answer = Answer.query.get(id)
     db.session.delete(answer)
     db.session.commit()
+
+
+@answer_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def edit_one_answer(id):
+    """
+    Edit an Answer
+    """
+    print("ANSWER EDIT ROUTE HIT!----------------")
+    answer = Answer.query.get(id)
+    form = AnswerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        answer["details"] = form.data["details"]
+        db.session.commit()
+        print('answer', answer, answer.to_dict())
+        return answer.to_dict()
+    else:
+        print(form.errors)
+        return {"errors": form.errors}

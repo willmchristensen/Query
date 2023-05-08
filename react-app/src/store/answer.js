@@ -3,6 +3,12 @@ import normalize from './normalizer'
 const POST_ANSWER = "answers/new";
 const LOAD = "answers/load"
 const DELETE_ANSWER = "answers/delete"
+const EDIT_ANSWER = "answers/edit"
+
+const editLoad = (answer) => ({
+    type: EDIT_ANSWER,
+    answer
+})
 
 const load = (data) => ({
     type: LOAD,
@@ -19,8 +25,33 @@ const deleteAnswerAction = (answerId) => ({
     answerId
 });
 
+//Edit answer Thunk
+export const editAnswer = (data) => async (dispatch) => {
+    let { answerId, item } = data
+    const response = await fetch(`api/answers/${answerId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item.details)
+    })
+    if (response.ok) {
+        const editedAnswer = await response.json()
+        dispatch(editLoad(editedAnswer))
+    } else if (response.status < 500) {
+        const editedAnswer = await response.json();
+        if (editedAnswer.errors) {
+            return editedAnswer.errors;
+        }
+    } else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
+//This is the get all answers Thunk
 export const getAllAnswers = (userId) => async (dispatch) => {
-    //This is the get all answers Thunk
     console.log("inside gett all answers thunk")
     const response = await fetch(`/api/answers/${userId}`)
     if (response.ok) {
@@ -31,6 +62,7 @@ export const getAllAnswers = (userId) => async (dispatch) => {
     }
 }
 
+//Create an answer Thunk
 export const createAnswer = (details) => async (dispatch) => {
     //This is the create an answer Thunk
     console.log('details in create answer THUNK', details)
@@ -60,6 +92,7 @@ export const createAnswer = (details) => async (dispatch) => {
     }
 }
 
+//Delete an answer Thunk
 export const deleteAnswer = (answerId) => async (dispatch) => {
     // This deletes an answer by id
     const response = await fetch(`/api/answers/${answerId}`, {
@@ -94,13 +127,17 @@ const answerReducer = (state = initialState, action) => {
         //     single_newState.singleQuestion = {...action.payload};
         //     return single_newState;
         case POST_ANSWER:
-            const post_newState = { ...state };
-            post_newState.answers[action.details.answer.id] = action.details.answer;
-            return post_newState;
+            const postNewState = { ...state };
+            postNewState.answers[action.details.answer.id] = action.details.answer;
+            return postNewState;
         case DELETE_ANSWER:
-            const delete_newState = {...state}
-            delete delete_newState[action.answerId]
-            return delete_newState
+            const deleteNewState = {...state}
+            delete deleteNewState[action.answerId]
+            return deleteNewState
+        case EDIT_ANSWER:
+            const newEditState = { ...state };
+            newState.answers[action.details.id] = action.details
+            return newEditState
         default:
             return state;
     }
