@@ -1,16 +1,17 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-// import { createQuestion } from "../../store/question";
+import { createAnswer } from "../../store/answer";
 import './CreateAnswerModal.css'
 
-function CreateAnswerModal() {
+
+function CreateAnswerModal({questionId}) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-
+	const qId = parseInt(questionId)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -25,9 +26,11 @@ function CreateAnswerModal() {
 		if (details.length >= 2) {
 			const item = {
 				'details': details,
-				'user_id': currentUser.id
+				'ownerId': currentUser.id,
+				'questionId': qId
 			}
-			const data = await dispatch(createQuestion(item));
+			console.log("item in handle submit for create answer modal", item);
+			const data = await dispatch(createAnswer(item));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -42,7 +45,7 @@ function CreateAnswerModal() {
 
 	return (
 		<div className="create-answer-container">
-			<h1>Add Question</h1>
+			<h1>Add Answer</h1>
 			<form
 				 onSubmit={(e) => handleSubmit(e)}
 				 encType="multipart/form-data"

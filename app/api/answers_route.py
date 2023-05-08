@@ -24,15 +24,18 @@ def get_answer_routes(user_id):
 # ADD AN ANSWER TO A QUESTION BY ID
 @answer_routes.route('/new', methods=["POST"])
 @login_required
-def create_a_question(question_id):
+def create_a_question():
     """
     Create an answer by question id
     """
      # ------------------------------------------------------------
+    print("------------------------------------------------------------------------------------------------")
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("this is form!!!", form.data)
     if form.validate_on_submit():
         data = form.data
+        print("this is data", data)
         new_answer = Answer(
             details = data['details'],
             owner_id = data['owner_id'],

@@ -44,7 +44,7 @@ const SingleQuestion = () => {
             <div>
                 <OpenModalButton
                     buttonText="Add Answer"
-                    modalComponent={<CreateAnswerModal />}
+                    modalComponent={<CreateAnswerModal questionId={questionId}/>}
                 />
             </div>
         </>
