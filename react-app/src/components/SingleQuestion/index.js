@@ -37,6 +37,7 @@ const SingleQuestion = () => {
                                 <>
                                     <hr />
                                     {answer.details}
+
                                     <OpenModalButton
                                         buttonText="Delete Answer"
                                         modalComponent={<DeleteAnswerModal answerId={answer.id} />}
