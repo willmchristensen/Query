@@ -11,7 +11,7 @@ function CreateAnswerModal({questionId}) {
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-	const qId = parseInt(questionId)
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -28,7 +28,7 @@ function CreateAnswerModal({questionId}) {
 			const item = {
 				'details': details,
 				'owner_id': currentUser.id,
-				'question_id': qId
+				'question_id': questionId
 			}
 			console.log("item in handle submit for create answer modal", item);
 			const data = await dispatch(createAnswer(item));
