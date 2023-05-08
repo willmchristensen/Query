@@ -1,13 +1,13 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, db, User
 from flask_login import login_required
-# from app.forms import QuestionForm
+from app.forms import AnswerForm
 
 answer_routes = Blueprint("answers", __name__)
 
 # ALL ANSWERS BY USER ID
-@login_required
 @answer_routes.route('/<int:user_id>')
+@login_required
 def get_answer_routes(user_id):
     """
     Query for all answers by user id and returns them in a list of dictionaries
@@ -22,10 +22,30 @@ def get_answer_routes(user_id):
 
 
 # ADD AN ANSWER TO A QUESTION BY ID
-@login_required
 @answer_routes.route('/new', methods=["POST"])
+@login_required
 def create_a_question(question_id):
     """
     Create an answer by question id
     """
-    
+     # ------------------------------------------------------------
+    form = AnswerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_answer = Answer(
+            details = data['details'],
+            owner_id = data['owner_id'],
+            question_id = data['question_id']
+        )
+        # ------------------------------
+        db.session.add(new_answer)
+        db.session.commit()
+        return {
+            "answer": new_answer.to_dict()
+        }
+        # ------------------------------------------
+
+    return {
+        "errors": form.errors
+    }
