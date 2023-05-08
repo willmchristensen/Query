@@ -35,16 +35,21 @@ def create_one_question():
     """
     Create a question
     """
+    # ------------------------------------------------------------
+    # data = request.get_json();
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    # print(data)
+    print('form.data in create route',form.data)
     if form.validate_on_submit():
         print('WE MADE IT')
         data = form.data
+        print('data',data)
         new_question = Question(
             details = data['details'],
             user_id = data['user_id'],
         )
+        print('NEW QUESTION', new_question.to_dict())
         # ------------------------------
         db.session.add(new_question)
         db.session.commit()
@@ -55,7 +60,7 @@ def create_one_question():
     return {
         "errors": form.errors
     }
-
+    # ------------------------------------------
 
 @question_routes.route('/<int:id>', methods=["DELETE"])
 @login_required

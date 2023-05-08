@@ -7,6 +7,6 @@ from app.models import Question
 class QuestionForm(FlaskForm):
     details = StringField(
         'details', validators=[DataRequired(),Length(min=10, message="Question must be at least 10 characters.")])
-    userId = IntegerField(
-        'userId', validators=[DataRequired()]
+    user_id = IntegerField(
+        'user_id', validators=[DataRequired()]
     )

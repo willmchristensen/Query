@@ -25,7 +25,7 @@ function CreateQuestionModal() {
 		if (details.length >= 10) {
 			const item = {
 				'details': details,
-				'userId': currentUser.id
+				'user_id': currentUser.id
 			}
 			const data = await dispatch(createQuestion(item));
 			if (data) {

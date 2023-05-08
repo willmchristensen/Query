@@ -62,9 +62,9 @@ export const createQuestion = (details) => async (dispatch) => {
             "Content-Type": "application/json",
         },
         // body: details
-        body: JSON.stringify({
+        body: JSON.stringify(
             details
-        }),
+        ),
     });
     if (response.ok) {
         const data = await response.json();
