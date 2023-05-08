@@ -5,9 +5,9 @@ const ProfileCard = ({profile}) => {
     return(
         <div className="profile-container">
             <div className="profile-img-container">
-                <img 
-                    src={profile.image_url} 
-                    alt="blue-eyes-white-dragon" 
+                <img
+                    src={profile.image_url}
+                    alt="blue-eyes-white-dragon"
                     className='profile-img'
                 />
             </div>
@@ -30,14 +30,14 @@ const ProfileCard = ({profile}) => {
                         {profile.title}
                     </h3>
                     <div className="profile-divider">
-                        <i class="fas fa-circle" id="dot"></i>
+                        <i className="fas fa-circle" id="dot"></i>
                     </div>
                     <button className='age-button'>
                         3y
                     </button>
                 </div>
             </div>
-        </div> 
+        </div>
     )
 
 }

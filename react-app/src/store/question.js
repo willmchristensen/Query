@@ -1,3 +1,5 @@
+import normalize from './normalizer'
+
 const POST_QUESTION = "questions/new";
 const LOAD = "questions/load";
 const LOAD_ONE = "questions/load_one";
@@ -17,13 +19,6 @@ const postQuestion = (details) => ({
     details
 });
 
-const normalize = (data) => {
-    let newObj = {}
-    data.forEach(item => {
-        newObj[item.id] = item
-    })
-    return newObj
-}
 
 export const getAllQuestions = () => async (dispatch) => {
     console.log('All Question THUNK')
