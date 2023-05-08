@@ -55,10 +55,14 @@ const NavBar = ({ isLoaded }) => {
                     {isLoaded && (
                         <ProfileButton user={sessionUser} />
                     )}
-                    <OpenModalButton
-                        buttonText="Add question"
-                        modalComponent={<CreateQuestionModal />}
-                    />
+                    {
+                        sessionUser ? 
+                        <OpenModalButton
+                            buttonText="Add question"
+                            modalComponent={<CreateQuestionModal />}
+                        /> :
+                        <></>
+                    }
                 </div>
             </nav>   
         </div>
