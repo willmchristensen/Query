@@ -37,8 +37,7 @@ def create_one_question():
     """
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('----------------',form.data)
-    print(request.data)
+
     if form.validate_on_submit():
         print('WE MADE IT')
         data = form.data
@@ -46,13 +45,12 @@ def create_one_question():
             details = data['details'],
             user_id = data['user_id'],
         )
-        print('NEW QUESTION', new_question)
         # ------------------------------
-        # db.session.add(new_question)
-        # db.session.commit()
-        # return {
-        #     "question": new_question.to_dict()
-        # }
+        db.session.add(new_question)
+        db.session.commit()
+        return {
+            "question": new_question.to_dict()
+        }
 
     return {
         "errors": form.errors

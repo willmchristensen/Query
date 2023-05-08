@@ -15,6 +15,9 @@ const SingleQuestion = () => {
     }, [dispatch])
 
 
+    if(!question) return null;
+
+
     return(
         <div className="content">
             <h1>youve reached question number {question.id}</h1>

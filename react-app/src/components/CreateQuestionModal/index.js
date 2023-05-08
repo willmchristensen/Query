@@ -6,7 +6,7 @@ import './CreateQuestionModal.css'
 
 function CreateQuestionModal() {
 	const dispatch = useDispatch();
-	const [question, setQuestion] = useState("");
+	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
@@ -15,14 +15,19 @@ function CreateQuestionModal() {
 		e.preventDefault();
 
 		// ---------- FORM DATA	-----------------
-		const formData = new FormData();
-		formData.append('details', question)
-		formData.append('user_id', currentUser.id)
-		console.log('formData::::::::::',formData)
+		// const formData = new FormData();
+		// formData.append('details', details)
+		// formData.append('user_id', currentUser.id)
+		// console.log('formData::::::::::',formData)
+		// console.log([...formData.entries()])
 		// ------------------------------------------
 		
-		if (question.length >= 10) {
-			const data = await dispatch(createQuestion(formData));
+		if (details.length >= 10) {
+			const item = {
+				'details': details,
+				'userId': currentUser.id
+			}
+			const data = await dispatch(createQuestion(item));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -49,8 +54,8 @@ function CreateQuestionModal() {
 				</ul>
 				<input 
 					type="text" 
-					value={question}
-					onChange={(e) => setQuestion(e.target.value)}
+					value={details}
+					onChange={(e) => setDetails(e.target.value)}
 					placeholder={`Start your question with "What", "How","Why", etc.`}  
 				/>
 				<button onClick={closeModal}>Cancel</button>

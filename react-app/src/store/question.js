@@ -61,10 +61,10 @@ export const createQuestion = (details) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: details
-        // body: JSON.stringify({
-        //     details
-        // }),
+        // body: details
+        body: JSON.stringify({
+            details
+        }),
     });
     if (response.ok) {
         const data = await response.json();
@@ -98,7 +98,7 @@ const questionReducer = (state = initialState, action) => {
             return single_newState;
         case POST_QUESTION:
             const post_newState = { ...state };
-            post_newState.questions[action.details.id] = action.details;
+            post_newState.questions[action.details.question.id] = action.details.question;
             return post_newState;
         default:
             return state;
