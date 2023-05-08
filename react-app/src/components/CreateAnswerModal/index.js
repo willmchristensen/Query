@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createQuestion } from "../../store/question";
-import './CreateQuestionModal.css'
+// import { createQuestion } from "../../store/question";
+import './CreateAnswerModal.css'
 
-function CreateQuestionModal() {
+function CreateAnswerModal() {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
@@ -21,8 +21,8 @@ function CreateQuestionModal() {
 		// console.log('formData::::::::::',formData)
 		// console.log([...formData.entries()])
 		// ------------------------------------------
-		
-		if (details.length >= 10) {
+
+		if (details.length >= 2) {
 			const item = {
 				'details': details,
 				'user_id': currentUser.id
@@ -35,15 +35,15 @@ function CreateQuestionModal() {
 			}
 		} else {
 			setErrors([
-				"Question must be at least 10 characters.",
+				"Answer must be at least 2 characters.",
 			]);
 		}
 	};
 
 	return (
-		<div className="create-question-container">
+		<div className="create-answer-container">
 			<h1>Add Question</h1>
-			<form 
+			<form
 				 onSubmit={(e) => handleSubmit(e)}
 				 encType="multipart/form-data"
 			>
@@ -52,18 +52,18 @@ function CreateQuestionModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<input 
-					type="text" 
+				<input
+					type="text"
 					value={details}
 					onChange={(e) => setDetails(e.target.value)}
-					placeholder={`Start your question with "What", "How","Why", etc.`}  
+					placeholder={`Start your answer.`}
 				/>
 				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Question</button>
+				<button type="submit">Add Answer</button>
 			</form>
 		</div>
 	)
 
 }
 
-export default CreateQuestionModal;
+export default CreateAnswerModal;
