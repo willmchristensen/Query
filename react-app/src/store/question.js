@@ -56,7 +56,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
 }
 
 export const createQuestion = (details) => async (dispatch) => {
-    console.log('details in THUNK', details)
+    // console.log('details in THUNK', details)
     const response = await fetch("/api/questions/new", {
         method: "POST",
         headers: {
@@ -82,16 +82,15 @@ export const createQuestion = (details) => async (dispatch) => {
     }
 }
 
-export const editOneQuestion = (details) => async (dispatch) => {
-    console.log('details in THUNK', details)
-    const response = await fetch(`api/question/${details.id}`, {
+export const editOneQuestion = (question) => async (dispatch) => {
+    console.log('details in Edit Thunk', question.question.id)
+    const response = await fetch(`/api/questions/${question.question.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        // body: details
         body: JSON.stringify(
-            details
+            question.question
         ),
     });
     if (response.ok) {
