@@ -6,8 +6,8 @@ from flask_login import login_required
 answer_routes = Blueprint("answers", __name__)
 
 # ALL ANSWERS BY USER ID
-@answer_routes.route('')
-def get_answer_routes(userId):
+@answer_routes.route('/<int:user_id>')
+def get_answer_routes(user_id):
     """
     Query for all answers by user id and returns them in a list of dictionaries
     """
@@ -15,6 +15,6 @@ def get_answer_routes(userId):
     # response = [question.to_dict() for question in all_questions]
     # # print('get_all_questions response: ', response)
     # return {'questions': response}
-    all_answers = Answer.query.filter(Answer.owner_id == userId).all()
+    all_answers = Answer.query.filter(Answer.owner_id == user_id).all()
     response = [answer.to_dict() for answer in all_answers]
     return {"answers": response}
