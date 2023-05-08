@@ -54,6 +54,7 @@ def create_a_question():
         "errors": form.errors
     }
 
+# Delete an answer by id
 @answer_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_one_answer(id):

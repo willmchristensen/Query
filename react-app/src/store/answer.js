@@ -2,6 +2,7 @@ import normalize from './normalizer'
 
 const POST_ANSWER = "answers/new";
 const LOAD = "answers/load"
+const DELETE_ANSWER = "answers/delete"
 
 const load = (data) => ({
     type: LOAD,
@@ -11,6 +12,11 @@ const load = (data) => ({
 const postAnswer = (details) => ({
     type: POST_ANSWER,
     details
+});
+
+const deleteAnswerAction = (answerId) => ({
+    type: DELETE_ANSWER,
+    answerId
 });
 
 export const getAllAnswers = (userId) => async (dispatch) => {
@@ -54,6 +60,24 @@ export const createAnswer = (details) => async (dispatch) => {
     }
 }
 
+export const deleteAnswer = (answerId) => async (dispatch) => {
+    // This deletes an answer by id
+    const response = await fetch(`/api/answers/${answerId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (response.ok) {
+        dispatch(deleteAnswerAction(answerId));
+    }
+    else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
 
 const initialState = {
     answers: {},
@@ -73,6 +97,10 @@ const answerReducer = (state = initialState, action) => {
             const post_newState = { ...state };
             post_newState.answers[action.details.answer.id] = action.details.answer;
             return post_newState;
+        case DELETE_ANSWER:
+            const delete_newState = {...state}
+            delete delete_newState[action.answerId]
+            return delete_newState
         default:
             return state;
     }
