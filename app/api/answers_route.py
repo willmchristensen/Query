@@ -19,3 +19,13 @@ def get_answer_routes(user_id):
     all_answers = Answer.query.filter(Answer.owner_id == user_id).all()
     response = [answer.to_dict() for answer in all_answers]
     return {"answers": response}
+
+
+# ADD AN ANSWER TO A QUESTION BY ID
+@login_required
+@answer_routes.route('/new', methods=["POST"])
+def create_a_question(question_id):
+    """
+    Create an answer by question id
+    """
+    
