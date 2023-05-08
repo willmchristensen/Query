@@ -4,12 +4,15 @@ import { useModal } from "../../context/Modal";
 import { createQuestion } from "../../store/question";
 import './CreateQuestionModal.css'
 
-function CreateQuestionModal() {
+function CreateQuestionModal({question}) {
 	const dispatch = useDispatch();
-	const [details, setDetails] = useState("");
+	const qdetails = question.details ? question.details : ''
+	const [details, setDetails] = useState(qdetails);
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+
+	console.log("question threading", question.details)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -21,7 +24,7 @@ function CreateQuestionModal() {
 		// console.log('formData::::::::::',formData)
 		// console.log([...formData.entries()])
 		// ------------------------------------------
-		
+
 		if (details.length >= 10) {
 			const item = {
 				'details': details,
@@ -43,7 +46,7 @@ function CreateQuestionModal() {
 	return (
 		<div className="create-question-container">
 			<h1>Add Question</h1>
-			<form 
+			<form
 				 onSubmit={(e) => handleSubmit(e)}
 				 encType="multipart/form-data"
 			>
@@ -52,11 +55,11 @@ function CreateQuestionModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<input 
-					type="text" 
+				<input
+					type="text"
 					value={details}
 					onChange={(e) => setDetails(e.target.value)}
-					placeholder={`Start your question with "What", "How","Why", etc.`}  
+					placeholder={`Start your question with "What", "How","Why", etc.`}
 				/>
 				<button onClick={closeModal}>Cancel</button>
 				<button type="submit">Add Question</button>

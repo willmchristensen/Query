@@ -5,14 +5,13 @@ import { useParams } from 'react-router-dom';
 import { getOneQuestion } from '../../store/question';
 
 const SingleQuestion = () => {
-
     const { questionId } = useParams();
     const dispatch = useDispatch();
     const {question} = useSelector(state => state.question.singleQuestion)
 
     useEffect(() => {
         dispatch(getOneQuestion(questionId))
-    }, [dispatch])
+    }, [dispatch, questionId])
 
 
     if(!question) return null;
@@ -36,8 +35,8 @@ const SingleQuestion = () => {
                     )
                 })
             }
-         </div>  
-     </div>      
+         </div>
+     </div>
     )
 
 }

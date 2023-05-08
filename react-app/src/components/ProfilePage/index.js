@@ -2,7 +2,7 @@ import './ProfilePage.css'
 import { useSelector,useDispatch } from 'react-redux'
 import { useEffect} from 'react';
 import { getAllQuestions } from '../../store/question';
-import QuestionCard from '../QuestionCard';
+import ProfileQuestionCard from '../ProfileQuestionCard';
 
 
 function ProfilePage() {
@@ -16,7 +16,7 @@ function ProfilePage() {
     useEffect(()=> {
         dispatch(getAllQuestions())
     }, [dispatch, sessionUser])
-    
+
     if(!questions) return null
 
     return (
@@ -25,10 +25,10 @@ function ProfilePage() {
             {
                 userQuestions.map(question => {
                     return (
-                        <QuestionCard 
-                            key={question.id} 
+                        <ProfileQuestionCard
+                            key={question.id}
                             question={question}
-                            user={sessionUser} 
+                            user={sessionUser}
                         />
                     )
                 })
