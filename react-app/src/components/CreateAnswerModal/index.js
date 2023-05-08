@@ -12,6 +12,7 @@ function CreateAnswerModal({questionId}) {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 	const qId = parseInt(questionId)
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -26,8 +27,8 @@ function CreateAnswerModal({questionId}) {
 		if (details.length >= 2) {
 			const item = {
 				'details': details,
-				'ownerId': currentUser.id,
-				'questionId': qId
+				'owner_id': currentUser.id,
+				'question_id': qId
 			}
 			console.log("item in handle submit for create answer modal", item);
 			const data = await dispatch(createAnswer(item));

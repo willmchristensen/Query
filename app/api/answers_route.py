@@ -33,6 +33,7 @@ def create_a_question():
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print("this is form!!!", form.data)
+    print("gotten data", request.get_json())
     if form.validate_on_submit():
         data = form.data
         print("this is data", data)

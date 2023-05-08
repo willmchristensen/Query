@@ -41,7 +41,7 @@ export const createAnswer = (details) => async (dispatch) => {
     console.log("create answer thunk response", response);
     if (response.ok) {
         const data = await response.json();
-        // dispatch(postAnswer(data));
+        dispatch(postAnswer(data));
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
