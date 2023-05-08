@@ -40,8 +40,9 @@ function EditAnswerModal({answerId, questionId}) {
 		<div className="create-answer-container">
 			<h1>Edit Answer</h1>
 			<form
-				 onSubmit={(e) => handleSubmit(e)}
-				 encType="multipart/form-data"
+				//  onSubmit={() => handleSubmit()}
+				onSubmit={handleSubmit}
+				//  encType="multipart/form-data"
 			>
 				<ul>
 					{errors.map((error, idx) => (

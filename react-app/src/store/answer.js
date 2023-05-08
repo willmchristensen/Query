@@ -28,22 +28,36 @@ const deleteAnswerAction = (answerId) => ({
 //Edit answer Thunk
 export const editAnswer = (data) => async (dispatch) => {
     let { answerId, item } = data
+    console.log('EDIT AN ANSWER THUNK')
+    console.log('answerId:', answerId)
+    console.log('item: ', item)
+    console.log('data: ', data)
+
     const response = await fetch(`api/answers/${answerId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(item.details)
+        // body: JSON.stringify(item)
+
     })
+    console.log('response: ', response)
     if (response.ok) {
+        console.log('Answer Thunk if statement')
         const editedAnswer = await response.json()
+        console.log('editedAnswer: ', editedAnswer)
         dispatch(editLoad(editedAnswer))
     } else if (response.status < 500) {
+        console.log('Answer Thunk else if statement')
         const editedAnswer = await response.json();
+        console.log('After editedAnswer else if')
+        console.log('editedAnswer - else if: ', editedAnswer)
         if (editedAnswer.errors) {
             return editedAnswer.errors;
         }
     } else {
+        console.log('Answer Thunk else statement')
         return [
             "An error occurred. Please try again."
         ];

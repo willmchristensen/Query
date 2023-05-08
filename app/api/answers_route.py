@@ -63,7 +63,7 @@ def delete_one_answer(id):
     db.session.delete(answer)
     db.session.commit()
 
-
+# Edit an answer by id
 @answer_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_one_answer(id):
