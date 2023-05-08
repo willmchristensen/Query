@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import MainContent from "./components/MainContent";
 import SingleQuestion from "./components/SingleQuestion";
 import NavBar from "./components/NavBar";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
         <Switch>
           <Route path="/questions/:questionId">
             <SingleQuestion />
+          </Route>
+          <Route path="/users/:userId">
+            <ProfilePage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
