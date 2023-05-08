@@ -6,6 +6,7 @@ from flask_login import login_required
 answer_routes = Blueprint("answers", __name__)
 
 # ALL ANSWERS BY USER ID
+@login_required
 @answer_routes.route('/<int:user_id>')
 def get_answer_routes(user_id):
     """
