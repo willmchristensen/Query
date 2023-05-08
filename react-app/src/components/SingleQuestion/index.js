@@ -11,11 +11,12 @@ const SingleQuestion = () => {
 
     const { questionId } = useParams();
     const dispatch = useDispatch();
-    const { question } = useSelector(state => state.question.singleQuestion)
+    const { question } = useSelector((state) => state.question.singleQuestion)
+    const answer = useSelector((state) => state.answers)
 
     useEffect(() => {
         dispatch(getOneQuestion(questionId))
-    }, [dispatch])
+    }, [dispatch, answer])
 
 
     if (!question) return null;
