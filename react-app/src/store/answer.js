@@ -70,7 +70,6 @@ const answerReducer = (state = initialState, action) => {
         //     single_newState.singleQuestion = {...action.payload};
         //     return single_newState;
         case POST_ANSWER:
-            // NOT DONE OR TESTED!
             const post_newState = { ...state };
             post_newState.answers[action.details.answer.id] = action.details.answer;
             return post_newState;

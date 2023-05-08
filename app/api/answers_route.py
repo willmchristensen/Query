@@ -53,3 +53,11 @@ def create_a_question():
     return {
         "errors": form.errors
     }
+
+@answer_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_one_answer(id):
+    """This is the delete an answer route"""
+    answer = Answer.query.get(id)
+    db.session.delete(answer)
+    db.session.commit()

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getOneQuestion } from '../../store/question';
 import OpenModalButton from '../OpenModalButton';
 import CreateAnswerModal from '../CreateAnswerModal';
+import DeleteAnswerModal from '../CreateAnswerModal';
 
 const SingleQuestion = () => {
 
@@ -35,6 +36,10 @@ const SingleQuestion = () => {
                                 <>
                                     <hr />
                                     {answer.details}
+                                    <OpenModalButton
+                                        buttonText="Delete Answer"
+                                        modalComponent={<DeleteAnswerModal questionId={questionId} />}
+                                    />
                                 </>
                             )
                         })
@@ -44,7 +49,7 @@ const SingleQuestion = () => {
             <div>
                 <OpenModalButton
                     buttonText="Add Answer"
-                    modalComponent={<CreateAnswerModal questionId={questionId}/>}
+                    modalComponent={<CreateAnswerModal questionId={questionId} />}
                 />
             </div>
         </>
