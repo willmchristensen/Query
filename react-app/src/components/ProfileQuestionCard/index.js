@@ -3,7 +3,7 @@ import { getAllAnswers } from '../../store/answer';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
 import OpenModalButton from '../OpenModalButton';
-import CreateQuestionModal from '../CreateQuestionModal';
+import EditQuestionModal from '../EditQuestionModal';
 
 const ProfileQuestionCard = ({ question, user }) => {
     const dispatch = useDispatch();
@@ -56,7 +56,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                     <div className={editQuestionTool}>
                         <OpenModalButton
                             buttonText="Edit question"
-                            modalComponent={<CreateQuestionModal question={question}/>}
+                            modalComponent={<EditQuestionModal question={question}/>}
                         />
                         <button>Delete question</button>
                     </div>

@@ -1,33 +1,24 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createQuestion } from "../../store/question";
-import './CreateQuestionModal.css'
+import { editOneQuestion } from "../../store/question";
+import "./EditQuestionModal.css"
 
-function CreateQuestionModal({question}) {
+function EditQuestionModal({question}) {
 	const dispatch = useDispatch()
-	const [details, setDetails] = useState("");
-	const currentUser = useSelector((state) => state.session.user)
+    // const qdetails = question.details ? question.details : ''
+	const [details, setDetails] = useState(question.details);
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// ---------- FORM DATA	-----------------
-		// const formData = new FormData();
-		// formData.append('details', details)
-		// formData.append('user_id', currentUser.id)
-		// console.log('formData::::::::::',formData)
-		// console.log([...formData.entries()])
-		// ------------------------------------------
-
 		if (details.length >= 10) {
 			const item = {
-				'details': details,
-				'user_id': currentUser.id
+				'details': details
 			}
-			const data = await dispatch(createQuestion(item));
+			const data = await dispatch(editOneQuestion(item));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -59,11 +50,11 @@ function CreateQuestionModal({question}) {
 					placeholder={`Start your question with "What", "How","Why", etc.`}
 				/>
 				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Question</button>
+				<button type="submit">Save</button>
 			</form>
 		</div>
 	)
 
 }
 
-export default CreateQuestionModal;
+export default EditQuestionModal;

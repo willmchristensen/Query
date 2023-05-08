@@ -26,8 +26,9 @@ def get_one_question(id):
     answers = Answer.query.filter(Answer.question_id == id).all()
     response = question.to_dict()
     response["answers"] = [answer.to_dict() for answer in answers]
-    print("question", response)
+    # print("question", response)
     return {'question': response}
+
 
 @question_routes.route('/new', methods=["POST"])
 # @login_required
@@ -42,14 +43,14 @@ def create_one_question():
     # print(data)
     print('form.data in create route',form.data)
     if form.validate_on_submit():
-        print('WE MADE IT')
+        # print('WE MADE IT')
         data = form.data
-        print('data',data)
+        # print('data',data)
         new_question = Question(
             details = data['details'],
             user_id = data['user_id'],
         )
-        print('NEW QUESTION', new_question.to_dict())
+        # print('NEW QUESTION', new_question.to_dict())
         # ------------------------------
         db.session.add(new_question)
         db.session.commit()
@@ -69,3 +70,14 @@ def delete_one_question(id):
     question = Question.query.get(id)
     db.session.delete(question)
     db.session.commit()
+
+
+@question_routes.route("/<int:id>", methods=["GET","PUT"])
+@login_required
+def edit_one_question(id):
+    """
+    Edit a question
+    """
+    question = Question.query.get(id)
+    form = QuestionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
