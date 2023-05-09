@@ -1,18 +1,17 @@
 import './ContentCard.css'
 import ProfileCard from '../ProfileCard'
-import ImageCard from '../ImageCard'
+// import ImageCard from '../ImageCard'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 
 const ContentCard = ({question}) => {
-    console.log(question)
     return(
         <div className="content">
             <div className="content-container">
-                <ProfileCard 
+                <ProfileCard
                     profile={question.userId}
                 >
                 </ProfileCard>
-            </div> 
+            </div>
             <div className="content-container text">
                 <NavLink
                     to={`/questions/${question.id}`}
@@ -30,12 +29,12 @@ const ContentCard = ({question}) => {
                 </p> */}
             </div>
             {/* <div className="content-container">
-                <ImageCard 
+                <ImageCard
                     image={seed.question.image_url}
                 >
                 </ImageCard>
             </div>   */}
-        </div>   
+        </div>
     )
 
 }

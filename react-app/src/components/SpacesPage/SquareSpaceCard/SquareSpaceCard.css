@@ -6,6 +6,7 @@
 }
 .space:hover{
     box-shadow: 3px 3px 3px 3px rgba(117, 117, 117, 0.281) ;
+    cursor:pointer;
 }
 .space-card-img{
     width:100%;

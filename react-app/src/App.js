@@ -8,10 +8,14 @@ import MainContent from "./components/MainContent";
 import SingleQuestion from "./components/SingleQuestion";
 import NavBar from "./components/NavBar";
 import ProfilePage from "./components/ProfilePage";
+import SpacesPage from "./components/SpacesPage";
+import SingleSpace from "./components/SingleSpace";
+
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -27,11 +31,17 @@ function App() {
           <Route path="/users/:userId">
             <ProfilePage />
           </Route>
+          <Route path="/spaces/:spaceId">
+            <SingleSpace />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/spaces">
+            <SpacesPage />
           </Route>
           <Route path="/">
             <MainContent />

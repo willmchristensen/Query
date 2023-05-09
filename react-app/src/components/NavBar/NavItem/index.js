@@ -22,8 +22,9 @@ const NavItem = ({item, icon,url}) => {
     let handleMouseEnter = () => {
         setIsHidden(false)
     }
+
     let tooltip = isHidden ? 'hidden' : 'tooltip';
-    
+
     return(
         <div className="nav-item-container">
             <NavLink
@@ -32,7 +33,7 @@ const NavItem = ({item, icon,url}) => {
                 // onMouseOver={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
                 className="nav-item"
-                to={url} 
+                to={url}
             >
                 {icon}
             </NavLink>
@@ -45,7 +46,7 @@ const NavItem = ({item, icon,url}) => {
                     {item.text}
                 </div>
             </div>
-        </div>  
+        </div>
     )
 
 }

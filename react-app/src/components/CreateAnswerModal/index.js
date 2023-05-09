@@ -1,15 +1,17 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createQuestion } from "../../store/question";
-import './CreateQuestionModal.css'
+import { createAnswer } from "../../store/answer";
+import './CreateAnswerModal.css'
 
-function CreateQuestionModal({question}) {
-	const dispatch = useDispatch()
+
+function CreateAnswerModal({questionId}) {
+	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -22,12 +24,14 @@ function CreateQuestionModal({question}) {
 		// console.log([...formData.entries()])
 		// ------------------------------------------
 
-		if (details.length >= 10) {
+		if (details.length >= 2) {
 			const item = {
 				'details': details,
-				'user_id': currentUser.id
+				'owner_id': currentUser.id,
+				'question_id': questionId
 			}
-			const data = await dispatch(createQuestion(item));
+			console.log("item in handle submit for create answer modal", item);
+			const data = await dispatch(createAnswer(item));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -35,14 +39,14 @@ function CreateQuestionModal({question}) {
 			}
 		} else {
 			setErrors([
-				"Question must be at least 10 characters.",
+				"Answer must be at least 2 characters.",
 			]);
 		}
 	};
 
 	return (
-		<div className="create-question-container">
-			<h1>Add Question</h1>
+		<div className="create-answer-container">
+			<h1>Add Answer</h1>
 			<form
 				 onSubmit={(e) => handleSubmit(e)}
 				 encType="multipart/form-data"
@@ -56,14 +60,14 @@ function CreateQuestionModal({question}) {
 					type="text"
 					value={details}
 					onChange={(e) => setDetails(e.target.value)}
-					placeholder={`Start your question with "What", "How","Why", etc.`}
+					placeholder={`Start your answer.`}
 				/>
 				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Question</button>
+				<button type="submit">Add Answer</button>
 			</form>
 		</div>
 	)
 
 }
 
-export default CreateQuestionModal;
+export default CreateAnswerModal;

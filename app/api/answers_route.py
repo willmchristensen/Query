@@ -6,6 +6,7 @@ from app.forms import AnswerForm
 answer_routes = Blueprint("answers", __name__)
 
 # ALL ANSWERS BY USER ID
+# Includes replies
 @answer_routes.route('/<int:user_id>')
 @login_required
 def get_answer_routes(user_id):
@@ -20,19 +21,31 @@ def get_answer_routes(user_id):
     response = [answer.to_dict() for answer in all_answers]
     return {"answers": response}
 
+@answer_routes.route('')
+def get_all_answers():
+    """
+    Query for all answers and returns them in a list of dictionaries
+    """
+    all_answers = Answer.query.all()
+    response = [answer.to_dict() for answer in all_answers]
+    # print('get_all_questions response: ', response)
+    return {'answers': response}
+
 
 # ADD AN ANSWER TO A QUESTION BY ID
 @answer_routes.route('/new', methods=["POST"])
 @login_required
-def create_a_question(question_id):
+def create_a_question():
     """
     Create an answer by question id
     """
-     # ------------------------------------------------------------
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("this is form!!!", form.data)
+    print("gotten data", request.get_json())
     if form.validate_on_submit():
         data = form.data
+        print("this is data", data)
         new_answer = Answer(
             details = data['details'],
             owner_id = data['owner_id'],
@@ -49,3 +62,34 @@ def create_a_question(question_id):
     return {
         "errors": form.errors
     }
+
+# Delete an answer by id
+@answer_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_one_answer(id):
+    """This is the delete an answer route"""
+    answer = Answer.query.get(id)
+    db.session.delete(answer)
+    db.session.commit()
+
+# Edit an answer by id
+@answer_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def edit_one_answer(id):
+    """
+    Edit an Answer
+    """
+    answer = Answer.query.get(id)
+    form = AnswerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # answer.details = form.details.data
+        answer.details = form.data["details"]
+        # details = request.get_json()["details"]
+        # answer.details = details
+        db.session.commit()
+        print('answer', answer, answer.to_dict())
+        return answer.to_dict()
+    else:
+        print(form.errors)
+        return {"errors": form.errors}
