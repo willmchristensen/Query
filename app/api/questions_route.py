@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, Reply, db, User
 from flask_login import login_required
 from app.forms import QuestionForm
+from datetime import datetime
 
 question_routes = Blueprint("questions", __name__)
 
@@ -55,7 +56,7 @@ def create_one_question():
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # print(data)
-    print('form.data in create route',form.data)
+    # print('form.data in create route',form.data)
     if form.validate_on_submit():
         # print('WE MADE IT')
         data = form.data
@@ -92,6 +93,23 @@ def edit_one_question(id):
     """
     Edit a question
     """
-    question = Question.query.get(id)
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('---------------',id)
+    print(form.data,form,form.validate_on_submit)
+    if form.validate_on_submit():
+        data = form.data
+
+        question = Question.query.get(id) 
+        question.details = data['details']
+        question.user_id = request.json.get('user_id')
+
+        db.session.commit()
+
+        return {
+            "question": question.to_dict()
+        }
+
+    return {
+        "errors": form.errors
+    }

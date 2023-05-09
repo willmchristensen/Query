@@ -63,7 +63,20 @@ export const editAnswer = (data) => async (dispatch) => {
 }
 
 //This is the get all answers Thunk
-export const getAllAnswers = (userId) => async (dispatch) => {
+export const getAllAnswers = () => async (dispatch) => {
+    //This is the get all answers Thunk
+    console.log("inside gett all answers thunk")
+    const response = await fetch('/api/answers')
+    if (response.ok) {
+        const data = await response.json();
+        const allAnswers = normalize(data.answers);
+        dispatch(load(allAnswers))
+        return response
+    }
+}
+
+export const getUserAnswers = (userId) => async (dispatch) => {
+    //This is the get all answers Thunk
     console.log("inside gett all answers thunk")
     const response = await fetch(`/api/answers/${userId}`)
     if (response.ok) {
@@ -74,7 +87,7 @@ export const getAllAnswers = (userId) => async (dispatch) => {
     }
 }
 
-//Create an answer Thunk
+
 export const createAnswer = (details) => async (dispatch) => {
     //This is the create an answer Thunk
     console.log('details in create answer THUNK', details)

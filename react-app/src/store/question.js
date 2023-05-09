@@ -4,6 +4,7 @@ const LOAD = "questions/load";
 const LOAD_ONE = "questions/load_one";
 const POST_QUESTION = "questions/new";
 const EDIT_QUESTION = "questions/edit"
+const DELETE_QUESTION = "questions/delete"
 
 const load = (data) => ({
     type: LOAD,
@@ -25,6 +26,10 @@ const editQuestion = (details) => ({
     details
 })
 
+const deleteQuestionAction = (questionId) => ({
+    type: DELETE_QUESTION,
+    questionId
+});
 
 export const getAllQuestions = () => async (dispatch) => {
     // console.log('All Question THUNK')
@@ -45,7 +50,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
     const response = await fetch(`/api/questions/${id}`)
     if (response.ok) {
         const data = await response.json();
-        console.log('data received in getOneQuestion', data)
+        // console.log('data received in getOneQuestion', data)
         dispatch(loadOne(data))
         return data
     } else {
@@ -56,7 +61,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
 }
 
 export const createQuestion = (details) => async (dispatch) => {
-    console.log('details in THUNK', details)
+    // console.log('details in THUNK', details)
     const response = await fetch("/api/questions/new", {
         method: "POST",
         headers: {
@@ -82,16 +87,16 @@ export const createQuestion = (details) => async (dispatch) => {
     }
 }
 
-export const editOneQuestion = (details) => async (dispatch) => {
-    console.log('details in THUNK', details)
-    const response = await fetch(`api/question/${details.id}`, {
+export const editOneQuestion = (res) => async (dispatch) => {
+    console.log('details in Edit Thunk', res);
+    const { item, question } =  res;
+    const response = await fetch(`/api/questions/${question.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        // body: details
         body: JSON.stringify(
-            details
+            item
         ),
     });
     if (response.ok) {
@@ -102,6 +107,23 @@ export const editOneQuestion = (details) => async (dispatch) => {
         if (data.errors) {
             return data.errors;
         }
+    } else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
+export const deleteQuestion = (questionId) => async (dispatch) => {
+    // This deletes an answer by id
+    const response = await fetch(`/api/questions/${questionId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (response.ok) {
+        dispatch(deleteQuestionAction(questionId));
     } else {
         return [
             "An error occurred. Please try again."
@@ -136,6 +158,11 @@ const questionReducer = (state = initialState, action) => {
         case EDIT_QUESTION: {
             const newState = { ...state };
             newState.questions[action.details.id] = action.details
+            return newState
+        }
+        case DELETE_QUESTION: {
+            const newState = {...state}
+            delete newState[action.questionId]
             return newState
         }
         default:

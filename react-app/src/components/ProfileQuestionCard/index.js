@@ -1,19 +1,22 @@
 import './QuestionCard.css'
-import { getAllAnswers } from '../../store/answer';
+import { getUserAnswers } from '../../store/answer';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
 import OpenModalButton from '../OpenModalButton';
 import EditQuestionModal from '../EditQuestionModal';
+import { getAllAnswers } from '../../store/answer';
+import DeleteQuestionModal from '../DeleteQuestionModal';
 
 const ProfileQuestionCard = ({ question, user }) => {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true)
     const answers = useSelector((state) => state.answer.answers);
     const answersArray = Object.values(answers);
+    const questionAnswers = answersArray.filter(a => a.questionId === question.id);
 
     useEffect(() => {
-        dispatch(getAllAnswers(user.id))
-    }, [dispatch, user.id])
+        dispatch(getAllAnswers())
+    }, [dispatch])
 
     const handleClick = () => {
         setIsHidden(!isHidden)
@@ -29,14 +32,14 @@ const ProfileQuestionCard = ({ question, user }) => {
                 </div>
             </div>
             <div className="question-answers">
-                {answersArray.length ?
-                    (answersArray.length === 1 ?
+                {questionAnswers.length ?
+                    (questionAnswers.length === 1 ?
                         (
-                            <span>{answersArray.length} answer</span>
+                            <span>{questionAnswers.length} answer</span>
                         )
                         :
                         (
-                            <span>{answersArray.length} answers</span>
+                            <span>{questionAnswers.length} answers</span>
                         )
                     )
                     :
@@ -56,9 +59,20 @@ const ProfileQuestionCard = ({ question, user }) => {
                     <div className={editQuestionTool}>
                         <OpenModalButton
                             buttonText="Edit question"
-                            modalComponent={<EditQuestionModal question={question}/>}
+                            modalComponent={
+                                <EditQuestionModal 
+                                    question={question}
+                                />
+                            }
                         />
-                        <button>Delete question</button>
+                        <OpenModalButton
+                            buttonText="Delete question"
+                            modalComponent={
+                                <DeleteQuestionModal 
+                                    questionId={question.id}
+                                />
+                            }
+                        />
                     </div>
                 </div>
             </div>

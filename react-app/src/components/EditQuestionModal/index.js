@@ -6,7 +6,6 @@ import "./EditQuestionModal.css"
 
 function EditQuestionModal({question}) {
 	const dispatch = useDispatch()
-    // const qdetails = question.details ? question.details : ''
 	const [details, setDetails] = useState(question.details);
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
@@ -15,10 +14,17 @@ function EditQuestionModal({question}) {
 		e.preventDefault();
 
 		if (details.length >= 10) {
+			// const item = {
+			// 	"details": details,
+            //     "user_id": question.user_id
+			// }
 			const item = {
-				'details': details
+				// question,
+				'details': details,
+				'user_id': question.userId,
 			}
-			const data = await dispatch(editOneQuestion(item));
+			const res = { item, question }
+			const data = await dispatch(editOneQuestion(res));
 			if (data) {
 				setErrors(data);
 			} else {
