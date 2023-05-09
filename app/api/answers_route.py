@@ -6,6 +6,7 @@ from app.forms import AnswerForm
 answer_routes = Blueprint("answers", __name__)
 
 # ALL ANSWERS BY USER ID
+# Includes replies
 @answer_routes.route('/<int:user_id>')
 @login_required
 def get_answer_routes(user_id):

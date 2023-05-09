@@ -16,7 +16,7 @@ def get_all_questions():
     # print('get_all_questions response: ', response)
     return {'questions': response}
 
-
+# Get a question by id
 @question_routes.route('/<int:id>')
 def get_one_question(id):
     """
