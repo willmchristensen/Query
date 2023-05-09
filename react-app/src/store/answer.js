@@ -38,9 +38,7 @@ export const editAnswer = (data) => async (dispatch) => {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(item.details)
-        // body: JSON.stringify(item)
-
+        body: JSON.stringify(item)
     })
     console.log('response: ', response)
     if (response.ok) {
@@ -150,7 +148,7 @@ const answerReducer = (state = initialState, action) => {
             return deleteNewState
         case EDIT_ANSWER:
             const newEditState = { ...state };
-            newState.answers[action.details.id] = action.details
+            newEditState.answers[action.details.id] = action.details
             return newEditState
         default:
             return state;

@@ -75,7 +75,10 @@ def edit_one_answer(id):
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        answer["details"] = form.data["details"]
+        # answer.details = form.details.data
+        answer.details = form.data["details"]
+        # details = request.get_json()["details"]
+        # answer.details = details
         db.session.commit()
         print('answer', answer, answer.to_dict())
         return answer.to_dict()
