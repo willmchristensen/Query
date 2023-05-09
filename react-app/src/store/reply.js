@@ -1,17 +1,17 @@
 import { getOneQuestion } from "./question";
 
 const POST_REPLY = "replies/new"
-const DELETE_REPLY = "replies/delete"
+// const DELETE_REPLY = "replies/delete"
 
 const postReply = (details) => ({
     type: POST_REPLY,
     details
 })
 
-const deleteReplyAction = (replyId) => ({
-    type: DELETE_REPLY,
-    replyId
-});
+// const deleteReplyAction = (replyId) => ({
+//     type: DELETE_REPLY,
+//     replyId
+// });
 
 
 export const createReply = (details) => async (dispatch) => {
@@ -79,13 +79,13 @@ const ReplyReducer = (state = initialState, action) => {
             newState.replies[action.details.reply.id] = action.details.reply;
             return newState;
         }
-        case DELETE_REPLY: {
-            const newState = {...state}
-            delete newState[action.replyId]
-            console.log("newState", newState)
-            return {...newState}
+        // case DELETE_REPLY: {
+        //     const newState = {...state}
+        //     delete newState[action.replyId]
+        //     console.log("newState", newState)
+        //     return {...newState}
             // return newState
-        }
+        // }
         default:
             return state;
     }

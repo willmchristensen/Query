@@ -1,4 +1,5 @@
 import normalize from './normalizer'
+import { getOneQuestion } from './question';
 
 const POST_ANSWER = "answers/new";
 const LOAD = "answers/load"
@@ -20,10 +21,10 @@ const postAnswer = (details) => ({
     details
 });
 
-const deleteAnswerAction = (answerId) => ({
-    type: DELETE_ANSWER,
-    answerId
-});
+// const deleteAnswerAction = (answerId) => ({
+//     type: DELETE_ANSWER,
+//     answerId
+// });
 
 //Edit answer Thunk
 export const editAnswer = (data) => async (dispatch) => {
@@ -116,7 +117,8 @@ export const createAnswer = (details) => async (dispatch) => {
 }
 
 //Delete an answer Thunk
-export const deleteAnswer = (answerId) => async (dispatch) => {
+export const deleteAnswer = (ids) => async (dispatch) => {
+    const {answerId, questionId} = ids
     // This deletes an answer by id
     const response = await fetch(`/api/answers/${answerId}`, {
         method: "DELETE",
@@ -125,7 +127,7 @@ export const deleteAnswer = (answerId) => async (dispatch) => {
         }
     })
     if (response.ok) {
-        dispatch(deleteAnswerAction(answerId));
+        dispatch(getOneQuestion(questionId));
     }
     else {
         return [
@@ -149,10 +151,10 @@ const answerReducer = (state = initialState, action) => {
             const postNewState = { ...state };
             postNewState.answers[action.details.answer.id] = action.details.answer;
             return postNewState;
-        case DELETE_ANSWER:
-            const deleteNewState = {...state}
-            delete deleteNewState[action.answerId]
-            return deleteNewState
+        // case DELETE_ANSWER:
+        //     const deleteNewState = {...state}
+        //     delete deleteNewState[action.answerId]
+        //     return deleteNewState
         case EDIT_ANSWER:
             const newEditState = { ...state };
             newEditState.answers[action.details.id] = action.details
