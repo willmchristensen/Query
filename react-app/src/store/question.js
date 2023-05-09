@@ -4,7 +4,7 @@ const LOAD = "questions/load";
 const LOAD_ONE = "questions/load_one";
 const POST_QUESTION = "questions/new";
 const EDIT_QUESTION = "questions/edit"
-const DELETE_QUESTION = "questions/delete"
+// const DELETE_QUESTION = "questions/delete"
 
 const load = (data) => ({
     type: LOAD,
@@ -26,10 +26,10 @@ const editQuestion = (details) => ({
     details
 })
 
-const deleteQuestionAction = (questionId) => ({
-    type: DELETE_QUESTION,
-    questionId
-});
+// const deleteQuestionAction = (questionId) => ({
+//     type: DELETE_QUESTION,
+//     questionId
+// });
 
 export const getAllQuestions = () => async (dispatch) => {
     // console.log('All Question THUNK')
@@ -123,7 +123,8 @@ export const deleteQuestion = (questionId) => async (dispatch) => {
         }
     })
     if (response.ok) {
-        dispatch(deleteQuestionAction(questionId));
+        // dispatch(deleteQuestionAction(questionId));
+        dispatch(getAllQuestions())
     } else {
         return [
             "An error occurred. Please try again."
@@ -160,11 +161,11 @@ const questionReducer = (state = initialState, action) => {
             newState.questions[action.details.id] = action.details
             return newState
         }
-        case DELETE_QUESTION: {
-            const newState = {...state}
-            delete newState[action.questionId]
-            return newState
-        }
+        // case DELETE_QUESTION: {
+        //     const newState = {...state}
+        //     delete newState[action.questionId]
+        //     return newState
+        // }
         default:
             return state;
     }

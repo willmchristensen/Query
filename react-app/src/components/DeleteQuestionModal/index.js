@@ -20,7 +20,7 @@ function DeleteQuestionModal({questionId}) {
 	return (
 		<div className="delete-question-container">
 			<h1>Delete Question</h1>
-            <button>
+            <button onClick={closeModal}>
                 Cancel
             </button>
             <button
