@@ -1,20 +1,20 @@
-"""create tables and relationships
+"""empty message
 
-Revision ID: 3f1e81971382
+Revision ID: 32d7d08a800e
 Revises:
-Create Date: 2023-05-06 13:22:40.966916
+Create Date: 2023-05-09 15:22:45.073740
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
+
+
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = '3f1e81971382'
+revision = '32d7d08a800e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -75,13 +75,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE spaces SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE questions SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE answers SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE replies SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
