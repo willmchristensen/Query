@@ -33,7 +33,7 @@ export const editAnswer = (data) => async (dispatch) => {
     console.log('item: ', item)
     console.log('data: ', data)
 
-    const response = await fetch(`api/answers/${answerId}`, {
+    const response = await fetch(`/api/answers/${answerId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
