@@ -25,6 +25,7 @@ def get_reply_routes(answer_id):
 #     response = [reply.to_dict() for reply in all_replies]
 #     return {"reply": response}
 
+# Post a new reply
 @reply_routes.route("/new", methods=["POST"])
 @login_required
 def create_a_reply():
@@ -52,3 +53,13 @@ def create_a_reply():
     return {
         "errors": form.errors
     }
+
+# Delete a reply
+# Delete a reply by id
+@reply_routes.route('/<int:reply_id>', methods=["DELETE"])
+@login_required
+def delete_one_reply(reply_id):
+    """This is the delete a reply route"""
+    reply = Reply.query.get(reply_id)
+    db.session.delete(reply)
+    db.session.commit()
