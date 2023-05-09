@@ -4,7 +4,6 @@ import ProfileCard from '../ProfileCard'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 
 const ContentCard = ({question}) => {
-    console.log(question)
     return(
         <div className="content">
             <div className="content-container">

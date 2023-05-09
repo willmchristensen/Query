@@ -81,16 +81,14 @@ def edit_one_question(id):
     """
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print('---------------',id)
+    print(form.data,form,form.validate_on_submit)
     if form.validate_on_submit():
-        question = Question.query.get(id)
         data = form.data
 
-        question['details'] = data['details']
-        question['user_id'] = question['user_id']
-        question['space_id'] = question['space_id']
-        question['created_at'] = question['created_at']
-        question['updated_at'] = datetime.now()
+        question = Question.query.get(id) 
+        question.details = data['details']
+        question.user_id = request.json.get('user_id')
 
         db.session.commit()
 
