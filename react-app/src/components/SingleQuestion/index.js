@@ -16,6 +16,7 @@ const SingleQuestion = () => {
     const { questionId } = useParams();
     const dispatch = useDispatch();
     const { question } = useSelector((state) => state.question.singleQuestion)
+    console.log("question", question)
     const answer = useSelector((state) => state.answers)
     const {closeModal} = useModal
 
@@ -40,7 +41,7 @@ const SingleQuestion = () => {
                     {
                         question.answers.map(answer => {
                             return (
-                                <div>
+                                <div key={answer.id}>
                                     <hr />
                                     {answer.details}
                                     <OpenModalButton
@@ -59,7 +60,7 @@ const SingleQuestion = () => {
                                                     <div>{reply.details}</div>
                                                     <OpenModalButton
                                                         buttonText="Delete Comment"
-                                                        modalComponent={<DeleteReplyModal replyId={reply.id} />}
+                                                        modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
                                                     />
                                                 </div>
                                             )

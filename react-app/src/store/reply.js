@@ -1,3 +1,5 @@
+import { getOneQuestion } from "./question";
+
 const POST_REPLY = "replies/new"
 const DELETE_REPLY = "replies/delete"
 
@@ -40,7 +42,8 @@ export const createReply = (details) => async (dispatch) => {
 }
 
 // Delete a reply Thunk
-export const deleteReply = (replyId) => async (dispatch) => {
+export const deleteReply = (ids) => async (dispatch) => {
+    const {replyId, questionId} = ids
     // This deletes an answer by id
     const response = await fetch(`/api/replies/${replyId}`, {
         method: "DELETE",
@@ -49,7 +52,8 @@ export const deleteReply = (replyId) => async (dispatch) => {
         }
     })
     if (response.ok) {
-        dispatch(deleteReplyAction(replyId));
+        // dispatch(deleteReplyAction(replyId));
+        dispatch(getOneQuestion(questionId))
         return replyId
     }
     else {
@@ -78,7 +82,9 @@ const ReplyReducer = (state = initialState, action) => {
         case DELETE_REPLY: {
             const newState = {...state}
             delete newState[action.replyId]
-            return newState
+            console.log("newState", newState)
+            return {...newState}
+            // return newState
         }
         default:
             return state;

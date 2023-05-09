@@ -4,14 +4,14 @@ import { useModal } from "../../context/Modal";
 import { deleteReply } from "../../store/reply";
 import './DeleteReplyModal.css'
 
-function DeleteReplyModal({replyId}) {
+function DeleteReplyModal({replyId, questionId}) {
 	const dispatch = useDispatch();
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-
+	const ids = {replyId, questionId}
 	const deleter = async () => {
-		await dispatch(deleteReply(replyId))
+		await dispatch(deleteReply(ids))
 		closeModal()
 	}
 
