@@ -74,7 +74,9 @@ export const createQuestion = (details) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
+        // console.log('data: ', data)
         dispatch(postQuestion(data));
+        // dispatch(getOneQuestion(data.id));
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {

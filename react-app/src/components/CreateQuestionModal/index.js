@@ -11,6 +11,7 @@ function CreateQuestionModal({question}) {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -28,6 +29,7 @@ function CreateQuestionModal({question}) {
 				'user_id': currentUser.id
 			}
 			const data = await dispatch(createQuestion(item));
+
 			if (data) {
 				setErrors(data);
 			} else {
