@@ -134,10 +134,6 @@ const answerReducer = (state = initialState, action) => {
             const newState = { ...state };
             newState.answers = { ...action.payload };
             return newState;
-        // case LOAD_ONE:
-        //     const single_newState = { ...state };
-        //     single_newState.singleQuestion = {...action.payload};
-        //     return single_newState;
         case POST_ANSWER:
             const postNewState = { ...state };
             postNewState.answers[action.details.answer.id] = action.details.answer;
