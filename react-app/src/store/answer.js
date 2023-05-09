@@ -87,7 +87,7 @@ export const getUserAnswers = (userId) => async (dispatch) => {
 }
 
 //Create an answer Thunk
-export const createAnswer = (details) => async (dispatch) => {
+export const createAnswer = (details, questionId) => async (dispatch) => {
     //This is the create an answer Thunk
     console.log('details in create answer THUNK', details)
     const response = await fetch("/api/answers/new", {
@@ -103,7 +103,8 @@ export const createAnswer = (details) => async (dispatch) => {
     console.log("create answer thunk response", response);
     if (response.ok) {
         const data = await response.json();
-        dispatch(postAnswer(data));
+        // dispatch(postAnswer(data));
+        dispatch(getOneQuestion(questionId))
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {

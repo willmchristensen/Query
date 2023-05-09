@@ -75,11 +75,11 @@ const ReplyReducer = (state = initialState, action) => {
         //     const newState = { ...state };
         //     newState.answers = { ...action.payload };
         //     return newState;
-        case POST_REPLY: {
-            const newState = { ...state };
-            newState.replies[action.details.reply.id] = action.details.reply;
-            return newState;
-        }
+        // case POST_REPLY: {
+        //     const newState = { ...state };
+        //     newState.replies[action.details.reply.id] = action.details.reply;
+        //     return newState;
+        // }
         // case DELETE_REPLY: {
         //     const newState = {...state}
         //     delete newState[action.replyId]
