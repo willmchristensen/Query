@@ -29,8 +29,6 @@ def create_a_question():
     """
     Create an answer by question id
     """
-     # ------------------------------------------------------------
-    print("------------------------------------------------------------------------------------------------")
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print("this is form!!!", form.data)
@@ -71,7 +69,6 @@ def edit_one_answer(id):
     """
     Edit an Answer
     """
-    print("ANSWER EDIT ROUTE HIT!----------------")
     answer = Answer.query.get(id)
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']

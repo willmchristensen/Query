@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton';
 import CreateAnswerModal from '../CreateAnswerModal';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import EditAnswerModal from '../EditAnswerModal';
+import CreateReviewForm from '../CreateReplyForm';
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
@@ -45,6 +46,7 @@ const SingleQuestion = () => {
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
+                                   <CreateReviewForm answerId={answer.id} />
                                     <div>
                                         {answer.replies.map(reply => {
                                             return (
