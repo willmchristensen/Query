@@ -63,3 +63,4 @@ def delete_one_reply(reply_id):
     reply = Reply.query.get(reply_id)
     db.session.delete(reply)
     db.session.commit()
+    return "Route Deleted"

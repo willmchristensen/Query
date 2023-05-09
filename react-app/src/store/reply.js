@@ -50,6 +50,7 @@ export const deleteReply = (replyId) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(deleteReplyAction(replyId));
+        return replyId
     }
     else {
         return [
