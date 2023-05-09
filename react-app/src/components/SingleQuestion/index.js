@@ -9,16 +9,20 @@ import DeleteAnswerModal from '../DeleteAnswerModal';
 import EditAnswerModal from '../EditAnswerModal';
 import DeleteReplyModal from '../DeleteReplyModal';
 import CreateReviewForm from '../CreateReplyForm';
+import { useModal } from '../../context/Modal';
+
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
     const dispatch = useDispatch();
     const { question } = useSelector((state) => state.question.singleQuestion)
     const answer = useSelector((state) => state.answers)
+    const {closeModal} = useModal
 
     useEffect(() => {
+        console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
-    }, [dispatch, answer, questionId])
+    }, [dispatch, answer, questionId, closeModal])
 
 
     if (!question) return null;
@@ -54,7 +58,7 @@ const SingleQuestion = () => {
                                                 <div>
                                                     <div>{reply.details}</div>
                                                     <OpenModalButton
-                                                        buttonText="Delete Answer"
+                                                        buttonText="Delete Comment"
                                                         modalComponent={<DeleteReplyModal replyId={reply.id} />}
                                                     />
                                                 </div>

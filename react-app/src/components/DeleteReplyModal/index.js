@@ -6,7 +6,6 @@ import './DeleteReplyModal.css'
 
 function DeleteReplyModal({replyId}) {
 	const dispatch = useDispatch();
-	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
