@@ -1,7 +1,15 @@
 import './SpacesPage.css'
 import SquareSpaceCard from './SquareSpaceCard'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllSpaces } from '../../store/space';
 
 const SpacesPage = () => {
+    const 
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch()
+    },[])
 
     return(
         <div className="spaces-container">
@@ -27,22 +35,7 @@ const SpacesPage = () => {
                 </div>
             </div>   
         <div className="space-card-container">
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
-                <SquareSpaceCard >
-                </SquareSpaceCard>
+            <SquareSpaceCard />
         </div>
         <button
             className='view-more'

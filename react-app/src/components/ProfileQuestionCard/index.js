@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import OpenModalButton from '../OpenModalButton';
 import EditQuestionModal from '../EditQuestionModal';
 import { getAllAnswers } from '../../store/answer';
+import DeleteQuestionModal from '../DeleteQuestionModal';
 
 const ProfileQuestionCard = ({ question, user }) => {
     const dispatch = useDispatch();
@@ -64,7 +65,14 @@ const ProfileQuestionCard = ({ question, user }) => {
                                 />
                             }
                         />
-                        <button>Delete question</button>
+                        <OpenModalButton
+                            buttonText="Delete question"
+                            modalComponent={
+                                <DeleteQuestionModal 
+                                    questionId={question.id}
+                                />
+                            }
+                        />
                     </div>
                 </div>
             </div>
