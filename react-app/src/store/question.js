@@ -50,7 +50,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
     const response = await fetch(`/api/questions/${id}`)
     if (response.ok) {
         const data = await response.json();
-        console.log('data received in getOneQuestion', data)
+        // console.log('data received in getOneQuestion', data)
         dispatch(loadOne(data))
         return data
     } else {
@@ -124,8 +124,7 @@ export const deleteQuestion = (questionId) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(deleteQuestionAction(questionId));
-    }
-    else {
+    } else {
         return [
             "An error occurred. Please try again."
         ];

@@ -1,0 +1,22 @@
+.single-space-container {
+    display: flex;
+    flex-direction: column;
+    /* border-bottom: .1rem solid black; */
+}
+
+.edit-question-tooltip {
+    background-color: rgb(255, 255, 255);
+    border: .1rem solid black;
+    height: 3rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    border-radius: 1rem;
+    font-size: .9rem;
+}
+
+.hidden {
+    display: none;
+}

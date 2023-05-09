@@ -13,3 +13,22 @@ def get_all_spaces():
     all_spaces = Space.query.all()
     response = [space.to_dict() for space in all_spaces]
     return {'spaces': response}
+
+@space_routes.route('/<int:id>')
+def get_one_space(id):
+    """
+    Query for one space by id
+    """
+    space = Space.query.get(id)
+    response = space.to_dict()
+    return {"space": response}
+
+@space_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_one_space(id):
+    """
+    Deletes a single space by id
+    """
+    space = Space.query.get(id)
+    db.session.delete(space)
+    db.session.commit()
