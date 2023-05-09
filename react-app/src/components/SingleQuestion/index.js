@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton';
 import CreateAnswerModal from '../CreateAnswerModal';
 import DeleteAnswerModal from '../DeleteAnswerModal';
 import EditAnswerModal from '../EditAnswerModal';
+import DeleteReplyModal from '../DeleteReplyModal';
 import CreateReviewForm from '../CreateReplyForm';
 
 const SingleQuestion = () => {
@@ -42,18 +43,23 @@ const SingleQuestion = () => {
                                         buttonText="Delete Answer"
                                         modalComponent={<DeleteAnswerModal answerId={answer.id} />}
                                     />
-                                     <OpenModalButton
+                                    <OpenModalButton
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                   <CreateReviewForm answerId={answer.id} />
+                                    <CreateReviewForm answerId={answer.id} />
                                     <div>
                                         {answer.replies.map(reply => {
                                             return (
-                                                <div>{reply.details}</div>
+                                                <div>
+                                                    <div>{reply.details}</div>
+                                                    <OpenModalButton
+                                                        buttonText="Delete Answer"
+                                                        modalComponent={<DeleteReplyModal replyId={reply.id} />}
+                                                    />
+                                                </div>
                                             )
                                         })}
-
                                     </div>
                                 </div>
                             )

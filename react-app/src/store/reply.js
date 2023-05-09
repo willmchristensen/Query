@@ -1,11 +1,15 @@
-import normalize from "./normalizer";
-
 const POST_REPLY = "replies/new"
+const DELETE_REPLY = "replies/delete"
 
 const postReply = (details) => ({
     type: POST_REPLY,
     details
 })
+
+const deleteReplyAction = (replyId) => ({
+    type: DELETE_REPLY,
+    replyId
+});
 
 
 export const createReply = (details) => async (dispatch) => {
@@ -35,6 +39,25 @@ export const createReply = (details) => async (dispatch) => {
     }
 }
 
+// Delete a reply Thunk
+export const deleteReply = (replyId) => async (dispatch) => {
+    // This deletes an answer by id
+    const response = await fetch(`/api/replies/${replyId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    if (response.ok) {
+        dispatch(deleteReplyAction(replyId));
+    }
+    else {
+        return [
+            "An error occurred. Please try again."
+        ];
+    }
+}
+
 
 const initialState = {
     replies: {},
@@ -51,10 +74,11 @@ const ReplyReducer = (state = initialState, action) => {
             newState.replies[action.details.reply.id] = action.details.reply;
             return newState;
         }
-        // case DELETE_ANSWER:
-        //     const deleteNewState = {...state}
-        //     delete deleteNewState[action.answerId]
-        //     return deleteNewState
+        case DELETE_REPLY: {
+            const newState = {...state}
+            delete newState[action.replyId]
+            return newState
+        }
         default:
             return state;
     }
