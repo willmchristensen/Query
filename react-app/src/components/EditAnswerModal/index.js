@@ -9,6 +9,7 @@ function EditAnswerModal({answerId, questionId}) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
+	const question = useSelector((state) => state.question[questionId])
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
