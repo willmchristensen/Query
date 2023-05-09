@@ -34,10 +34,9 @@ const SingleQuestion = () => {
                     {
                         question.answers.map(answer => {
                             return (
-                                <>
+                                <div>
                                     <hr />
                                     {answer.details}
-
                                     <OpenModalButton
                                         buttonText="Delete Answer"
                                         modalComponent={<DeleteAnswerModal answerId={answer.id} />}
@@ -46,7 +45,15 @@ const SingleQuestion = () => {
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                </>
+                                    <div>
+                                        {answer.replies.map(reply => {
+                                            return (
+                                                <div>{reply.details}</div>
+                                            )
+                                        })}
+
+                                    </div>
+                                </div>
                             )
                         })
                     }

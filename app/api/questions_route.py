@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Question, Answer, db, User
+from app.models import Question, Answer, Reply, db, User
 from flask_login import login_required
 from app.forms import QuestionForm
 
@@ -25,7 +25,21 @@ def get_one_question(id):
     question = Question.query.get(id)
     answers = Answer.query.filter(Answer.question_id == id).all()
     response = question.to_dict()
+
+    # Get all replies by answer id
+    # for answer in answers:
+    #     replies = Reply.query.filter(Reply.answer_id == answer.id).all()
+        # answers["replies"] = [reply for reply in replies]
+
     response["answers"] = [answer.to_dict() for answer in answers]
+
+    for answer in response["answers"]:
+        replies = Reply.query.filter(Reply.answer_id == answer["id"]).all()
+        answer_replies = [reply.to_dict() for reply in replies]
+        # print("-------------------------------------------------")
+        # print("replies: ", answer_replies)
+        answer["replies"] = answer_replies
+
     # print("question", response)
     return {'question': response}
 
