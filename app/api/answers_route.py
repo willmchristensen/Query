@@ -20,6 +20,16 @@ def get_answer_routes(user_id):
     response = [answer.to_dict() for answer in all_answers]
     return {"answers": response}
 
+@answer_routes.route('')
+def get_all_answers():
+    """
+    Query for all answers and returns them in a list of dictionaries
+    """
+    all_answers = Answer.query.all()
+    response = [answer.to_dict() for answer in all_answers]
+    # print('get_all_questions response: ', response)
+    return {'answers': response}
+
 
 # ADD AN ANSWER TO A QUESTION BY ID
 @answer_routes.route('/new', methods=["POST"])

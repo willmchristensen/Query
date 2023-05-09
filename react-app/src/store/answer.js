@@ -19,7 +19,19 @@ const deleteAnswerAction = (answerId) => ({
     answerId
 });
 
-export const getAllAnswers = (userId) => async (dispatch) => {
+export const getAllAnswers = () => async (dispatch) => {
+    //This is the get all answers Thunk
+    console.log("inside gett all answers thunk")
+    const response = await fetch('/api/answers')
+    if (response.ok) {
+        const data = await response.json();
+        const allAnswers = normalize(data.answers);
+        dispatch(load(allAnswers))
+        return response
+    }
+}
+
+export const getUserAnswers = (userId) => async (dispatch) => {
     //This is the get all answers Thunk
     console.log("inside gett all answers thunk")
     const response = await fetch(`/api/answers/${userId}`)
@@ -30,6 +42,7 @@ export const getAllAnswers = (userId) => async (dispatch) => {
         return response
     }
 }
+
 
 export const createAnswer = (details) => async (dispatch) => {
     //This is the create an answer Thunk
