@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpaces } from '../../store/space';
 import SpaceCard from '../SpaceCardArea/SpaceCard';
+import OpenModalButton from '../OpenModalButton';
 
 const SpacesPage = () => {
     const dispatch = useDispatch();
@@ -26,9 +27,10 @@ const SpacesPage = () => {
                         <p>Follow Spaces to explore your interests on Quora.</p>
                     </div>
                     <div className="spaces-buttons">
-                        <button className="oval-button">
-                            Create a Space
-                        </button>
+                        <OpenModalButton 
+                            // modalComponent={}
+                            buttonText="Create a Space"
+                        />
                         <button className="oval-button">
                             Discover Spaces
                         </button>
