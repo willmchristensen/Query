@@ -52,7 +52,7 @@ const SingleQuestion = () => {
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                    <CreateReviewForm answerId={answer.id} />
+                                    <CreateReviewForm answerId={answer.id} questionId={questionId}/>
                                     <div>
                                         {answer.replies.map(reply => {
                                             return (

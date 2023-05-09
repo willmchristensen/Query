@@ -14,7 +14,7 @@ const postReply = (details) => ({
 // });
 
 
-export const createReply = (details) => async (dispatch) => {
+export const createReply = (details, questionId) => async (dispatch) => {
     console.log("reply details in thunk", details);
     const response = await fetch("/api/replies/new", {
         method: "POST",
@@ -28,7 +28,8 @@ export const createReply = (details) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json();
-        dispatch(postReply(data));
+        // dispatch(postReply(data));
+        dispatch(getOneQuestion(questionId))
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
