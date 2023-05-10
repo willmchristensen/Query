@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './SingleQuestion.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,26 +11,30 @@ import DeleteReplyModal from '../DeleteReplyModal';
 import CreateReviewForm from '../CreateReplyForm';
 import { useModal } from '../../context/Modal';
 
-
 const SingleQuestion = () => {
     const { questionId } = useParams();
     const dispatch = useDispatch();
     const { question } = useSelector((state) => state.question.singleQuestion)
     console.log("question", question)
     const answer = useSelector((state) => state.answers)
-    const {closeModal} = useModal
+    const { closeModal } = useModal
+
+    const {commentVisible, setCommentVisible} = useState(false)
+
+    let className = false
+    console.log(className)
 
     useEffect(() => {
         console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
-    }, [dispatch, answer, questionId, closeModal])
+    }, [dispatch, answer, questionId, closeModal, className])
 
 
     if (!question) return null;
 
 
     return (
-        <>
+        <div className="s-q-background">
             <div className="content-single-question">
                 <div className="s-q-content-container text">
                     <h1 className='border-check s-q-width100'>{question.details}</h1>
@@ -38,10 +42,10 @@ const SingleQuestion = () => {
                         <div>
                             <OpenModalButton
                                 buttonText={<i class="fas fa-edit"> Answer</i>}
-                            modalComponent={<CreateAnswerModal questionId={questionId} />}
+                                modalComponent={<CreateAnswerModal questionId={questionId} />}
                             />
                         </div>
-                        </div>
+                    </div>
                 </div>
                 <hr />
                 <div className="s-q-content-container text">
@@ -51,6 +55,10 @@ const SingleQuestion = () => {
                                 <div className='answer-box' key={answer.id}>
                                     <hr />
                                     {answer.details}
+                                    {/* See comments button */}
+                                    <button className="s-q-comment-button" onClick={className = !className}>
+                                        <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
+                                    </button>
 
                                     <OpenModalButton
                                         buttonText="Delete Answer"
@@ -61,8 +69,8 @@ const SingleQuestion = () => {
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                    <CreateReviewForm answerId={answer.id} questionId={questionId}/>
-                                    <div>
+                                    <CreateReviewForm answerId={answer.id} questionId={questionId} />
+                                    <div className={className === false ? "hidden" : ""}>
                                         {answer.replies.map(reply => {
                                             return (
                                                 <div>
@@ -81,8 +89,7 @@ const SingleQuestion = () => {
                     }
                 </div>
             </div>
-
-        </>
+        </div>
     )
 }
 
