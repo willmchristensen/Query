@@ -19,7 +19,7 @@ const SingleQuestion = () => {
     console.log("question", question)
     const answer = useSelector((state) => state.answers)
     const {closeModal} = useModal
-    
+
     useEffect(() => {
         console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
@@ -31,23 +31,32 @@ const SingleQuestion = () => {
 
     return (
         <>
-            <div className="content">
-                <h1>youve reached question number {question.id}</h1>
-                <div className="content-container text">
-                    {question.details}
+            <div className="content-single-question">
+                <div className="s-q-content-container text">
+                    <h1 className='border-check s-q-width100'>{question.details}</h1>
+                    <div className='s-q-width100'>
+                        <div>
+                            <OpenModalButton
+                                buttonText={<i class="fas fa-edit"> Answer</i>}
+                            modalComponent={<CreateAnswerModal questionId={questionId} />}
+                            />
+                        </div>
+                        </div>
                 </div>
                 <hr />
-                <div className="content-container text">
+                <div className="s-q-content-container text">
                     {
                         question.answers.map(answer => {
                             return (
-                                <div key={answer.id}>
+                                <div className='answer-box' key={answer.id}>
                                     <hr />
                                     {answer.details}
+
                                     <OpenModalButton
                                         buttonText="Delete Answer"
                                         modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
+
                                     <OpenModalButton
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
@@ -72,12 +81,7 @@ const SingleQuestion = () => {
                     }
                 </div>
             </div>
-            <div>
-                <OpenModalButton
-                    buttonText="Add Answer"
-                    modalComponent={<CreateAnswerModal questionId={questionId} />}
-                />
-            </div>
+
         </>
     )
 }

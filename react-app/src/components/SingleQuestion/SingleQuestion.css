@@ -1,0 +1,31 @@
+.border-check{
+    border: 3px solid black;
+
+}
+.content-single-question{
+    display: flex;
+    flex-direction: column;
+}
+.answer-box{
+    border: 2px solid red;
+    width: 50vw;
+    text-align: left;
+    box-sizing: border-box;
+}
+.s-q-content-container{
+    width: 50vw;
+    border: 2px solid blue;
+    text-align: left;
+    box-sizing: border-box;
+}
+.s-q-width100{
+    width: 100%;
+}
+/* .answer-btn{
+
+} */
+.s-q-width100 button{
+    border-radius: 15px;
+    background-color: white;
+    padding: 10px;
+}
