@@ -9,16 +9,21 @@ import DeleteAnswerModal from '../DeleteAnswerModal';
 import EditAnswerModal from '../EditAnswerModal';
 import DeleteReplyModal from '../DeleteReplyModal';
 import CreateReviewForm from '../CreateReplyForm';
+import { useModal } from '../../context/Modal';
+
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
     const dispatch = useDispatch();
     const { question } = useSelector((state) => state.question.singleQuestion)
+    console.log("question", question)
     const answer = useSelector((state) => state.answers)
-
+    const {closeModal} = useModal
+    
     useEffect(() => {
+        console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
-    }, [dispatch, answer, questionId])
+    }, [dispatch, answer, questionId, closeModal])
 
 
     if (!question) return null;
@@ -36,26 +41,26 @@ const SingleQuestion = () => {
                     {
                         question.answers.map(answer => {
                             return (
-                                <div>
+                                <div key={answer.id}>
                                     <hr />
                                     {answer.details}
                                     <OpenModalButton
                                         buttonText="Delete Answer"
-                                        modalComponent={<DeleteAnswerModal answerId={answer.id} />}
+                                        modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
                                     <OpenModalButton
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                    <CreateReviewForm answerId={answer.id} />
+                                    <CreateReviewForm answerId={answer.id} questionId={questionId}/>
                                     <div>
                                         {answer.replies.map(reply => {
                                             return (
                                                 <div>
                                                     <div>{reply.details}</div>
                                                     <OpenModalButton
-                                                        buttonText="Delete Answer"
-                                                        modalComponent={<DeleteReplyModal replyId={reply.id} />}
+                                                        buttonText="Delete Comment"
+                                                        modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
                                                     />
                                                 </div>
                                             )

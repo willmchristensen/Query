@@ -74,7 +74,8 @@ export const createQuestion = (details) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(postQuestion(data));
+        dispatch(postQuestion(data.question));
+        return data;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -89,8 +90,8 @@ export const createQuestion = (details) => async (dispatch) => {
 
 export const editOneQuestion = (res) => async (dispatch) => {
     console.log('details in Edit Thunk', res);
-    const { item, question } =  res;
-    const response = await fetch(`/api/questions/${question.id}`, {
+    const { item, questionId } =  res;
+    const response = await fetch(`/api/questions/${questionId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -101,7 +102,9 @@ export const editOneQuestion = (res) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(editQuestion(data));
+        dispatch(editQuestion(data.question));
+        // dispatch(getAllQuestions())
+        return data
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -123,7 +126,11 @@ export const deleteQuestion = (questionId) => async (dispatch) => {
         }
     })
     if (response.ok) {
+
         dispatch(deleteQuestionAction(questionId));
+        // dispatch(getAllQuestions())
+
+
     } else {
         return [
             "An error occurred. Please try again."
@@ -144,27 +151,27 @@ const questionReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_ONE: {
-            const single_newState = { ...state };
+            const single_newState = { ...state, singleQuestion: { ...state.singleQuestion } };
             single_newState.singleQuestion = { ...action.payload };
             return single_newState;
-
         }
         case POST_QUESTION: {
-            const post_newState = { ...state };
-            post_newState.questions[action.details.question.id] = action.details.question;
+            const post_newState = { ...state, questions: {...state.questions} };
+            post_newState.questions[action.details.id] = action.details;
             return post_newState;
-
         }
         case EDIT_QUESTION: {
-            const newState = { ...state };
+            const newState = { ...state, questions: { ...state.questions } };
             newState.questions[action.details.id] = action.details
             return newState
         }
+
         case DELETE_QUESTION: {
-            const newState = {...state}
-            delete newState[action.questionId]
+            const newState = {...state, questions: { ...state.questions }}
+            delete newState.questions[action.questionId]
             return newState
         }
+
         default:
             return state;
     }

@@ -7,6 +7,7 @@
     border: .3rem solid rgb(0, 0, 0);
     padding: 1rem;
     margin: 1rem;
+    width: 30vw;
 }
 .content:hover{
     background-color: rgba(220, 220, 220, 0.123);
@@ -17,6 +18,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    flex-direction: column;
 }
 .text{
     display: flex;
@@ -28,10 +30,13 @@
     margin-bottom: 0;
     padding-top: .2rem;
     margin-top: .2rem;
+    overflow-wrap: anywhere;
 }
 .support-text{
     padding-top: .2rem;
     margin-top: .2rem;
+    padding-bottom: 4rem;
+    overflow-wrap: anywhere;
 }
 /* @media screen and (max-width: 1024px){
     .content{

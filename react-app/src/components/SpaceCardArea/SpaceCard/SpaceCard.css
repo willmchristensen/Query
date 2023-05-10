@@ -1,6 +1,9 @@
 .space-card-container{
     display: flex;
     justify-content: left;
+    width: 10rem;
+    height: 5rem;
+    overflow: hidden;
 }
 .space-card{
     display: flex;
@@ -8,6 +11,10 @@
     align-items: center;
     padding: .5rem;
     margin: .5rem;
+    word-wrap: break-word;
+}
+.space-card > *{
+    width: 7rem;
 }
 .space-card:hover{
     background-color: rgba(220, 220, 220, 0.205);

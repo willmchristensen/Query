@@ -10,7 +10,7 @@ import NavBar from "./components/NavBar";
 import ProfilePage from "./components/ProfilePage";
 import SpacesPage from "./components/SpacesPage";
 import SingleSpace from "./components/SingleSpace";
-
+import Following from "./components/Following";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +43,9 @@ function App() {
           <Route path="/spaces">
             <SpacesPage />
           </Route>
+          {/* <Route path="/following">
+            <Following />
+          </Route> */}
           <Route path="/">
             <MainContent />
           </Route>

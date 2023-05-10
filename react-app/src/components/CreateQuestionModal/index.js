@@ -2,18 +2,20 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createQuestion } from "../../store/question";
+import { useHistory } from "react-router-dom"
 import './CreateQuestionModal.css'
 
 function CreateQuestionModal({question}) {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		// ---------- FORM DATA	-----------------
 		// const formData = new FormData();
 		// formData.append('details', details)
@@ -28,10 +30,15 @@ function CreateQuestionModal({question}) {
 				'user_id': currentUser.id
 			}
 			const data = await dispatch(createQuestion(item));
+
+			// if (data) {
+			// 	setErrors(data);
+			// } else {
+			// 	closeModal();
+			// }
 			if (data) {
-				setErrors(data);
-			} else {
 				closeModal();
+				history.push(`/questions/${data.question.id}`)
 			}
 		} else {
 			setErrors([
@@ -44,7 +51,7 @@ function CreateQuestionModal({question}) {
 		<div className="create-question-container">
 			<h1>Add Question</h1>
 			<form
-				 onSubmit={(e) => handleSubmit(e)}
+				 onSubmit={handleSubmit}
 				 encType="multipart/form-data"
 			>
 				<ul>
