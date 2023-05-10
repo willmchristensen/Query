@@ -74,8 +74,9 @@ export const createQuestion = (details) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
+        // console.log('data: ', data)
         dispatch(postQuestion(data));
-        // dispatch(getAllQuestions());
+
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -102,8 +103,8 @@ export const editOneQuestion = (res) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // dispatch(editQuestion(data));
-        dispatch(getAllQuestions())
+        dispatch(editQuestion(data));
+        // dispatch(getAllQuestions())
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -126,8 +127,11 @@ export const deleteQuestion = (questionId) => async (dispatch) => {
         }
     })
     if (response.ok) {
+
         dispatch(deleteQuestionAction(questionId));
         // dispatch(getAllQuestions())
+
+
     } else {
         return [
             "An error occurred. Please try again."
@@ -163,11 +167,13 @@ const questionReducer = (state = initialState, action) => {
             newState.questions[action.details.id] = action.details
             return newState
         }
+
         case DELETE_QUESTION: {
             const newState = {...state, questions: { ...state.questions }}
             delete newState.questions[action.questionId]
             return newState
         }
+
         default:
             return state;
     }

@@ -31,7 +31,7 @@ function CreateAnswerModal({questionId}) {
 				'question_id': questionId
 			}
 			console.log("item in handle submit for create answer modal", item);
-			const data = await dispatch(createAnswer(item));
+			const data = await dispatch(createAnswer(item, questionId));
 			if (data) {
 				setErrors(data);
 			} else {
