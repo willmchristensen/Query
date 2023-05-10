@@ -19,7 +19,7 @@ const SingleQuestion = () => {
     console.log("question", question)
     const answer = useSelector((state) => state.answers)
     const {closeModal} = useModal
-
+    
     useEffect(() => {
         console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))

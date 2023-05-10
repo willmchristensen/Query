@@ -52,6 +52,9 @@ const SingleSpace = () => {
                     </div>
                 </div>
             </div>
+            <div className="single-space-description">
+                   <p>{space.description}</p> 
+            </div>
             <div className='single-space-image-container'>
                 <img src={space.imageUrl}></img>
             </div>
