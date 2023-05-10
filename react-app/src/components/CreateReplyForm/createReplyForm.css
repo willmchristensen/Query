@@ -1,0 +1,26 @@
+.reply-form-background {
+    background-color: rgb(235, 235, 235);
+}
+
+.reply-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    gap: 10px;
+}
+
+.reply-add-comment {
+    padding: 5px;
+    text-align: center;
+    /* text-align:end; */
+    border-radius: 15px;
+    background-color: blue;
+    color: white;
+}
+
+.reply-center-width{
+    /* border: 2px solid green; */
+    width: 35vw;
+    /* box-sizing: border-box; */
+}

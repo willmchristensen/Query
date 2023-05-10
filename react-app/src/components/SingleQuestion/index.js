@@ -13,14 +13,17 @@ import { useModal } from '../../context/Modal';
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
-    const dispatch = useDispatch();
-    const { question } = useSelector((state) => state.question.singleQuestion)
-    console.log("question", question)
-    const answer = useSelector((state) => state.answers)
     const { closeModal } = useModal
+    const dispatch = useDispatch();
+
+    const answer = useSelector((state) => state.answers)
+    const { question } = useSelector((state) => state.question.singleQuestion)
+    // const users = useSelector((state) => state.)
+
+    
 
     const [commentVisible, setCommentVisible] = useState(false)
-    const [activeAnswerId, setActiveAnswerId] = useState(null)
+
 
     useEffect(() => {
         console.log("IT IS RENDERING!");
@@ -52,6 +55,7 @@ const SingleQuestion = () => {
                             return (
                                 <div className='answer-box' key={answer.id}>
                                     <hr />
+
                                     {answer.details}
                                     {/* See comments button */}
                                     <button className="s-q-comment-button" onClick={() => setCommentVisible(!commentVisible)}>
@@ -67,8 +71,9 @@ const SingleQuestion = () => {
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                    <CreateReviewForm answerId={answer.id} questionId={questionId} />
+                                    {/* ADD A COMMENT */}
                                     <div className={commentVisible ? "" : "hidden"}>
+                                    <CreateReviewForm answerId={answer.id} questionId={questionId} />
                                         {answer.replies.map(reply => {
                                             return (
                                                 <div>
