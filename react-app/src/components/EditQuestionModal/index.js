@@ -9,26 +9,22 @@ function EditQuestionModal({question}) {
 	const [details, setDetails] = useState(question.details);
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-
+	const questionId = question.id;
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (details.length >= 10) {
-			// const item = {
-			// 	"details": details,
-            //     "user_id": question.user_id
-			// }
 			const item = {
-				// question,
 				'details': details,
 				'user_id': question.userId,
 			}
-			const res = { item, question }
+			const res = { item, questionId }
 			const data = await dispatch(editOneQuestion(res));
 			if (data) {
-				setErrors(data);
-			} else {
 				closeModal();
+			// 	setErrors(data);
+			// } else {
+			// 	closeModal();
 			}
 		} else {
 			setErrors([
@@ -41,7 +37,7 @@ function EditQuestionModal({question}) {
 		<div className="create-question-container">
 			<h1>Add Question</h1>
 			<form
-				 onSubmit={(e) => handleSubmit(e)}
+				 onSubmit={handleSubmit}
 				 encType="multipart/form-data"
 			>
 				<ul>

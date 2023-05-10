@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MainContent.css'
 import ContentCard from './CardComponents/ContentCard'
-// import SpaceCardArea from '../SpaceCardArea/'
+import SpaceCardArea from '../SpaceCardArea/'
 import { getAllQuestions } from '../../store/question';
 
 // import {getUsers} from '../../store/users'
@@ -11,6 +11,7 @@ const MainContent = () => {
     const questions = useSelector(state => state.question.questions);
     const questionsArray = Object.values(questions);
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(getAllQuestions())
@@ -20,9 +21,14 @@ const MainContent = () => {
 
     return(
         <div className="main-content-section">
-            <div className="main-content-area">
-                {/* <SpaceCardArea spaces={spaces}></SpaceCardArea> */}
-            </div>
+            {
+                sessionUser ? 
+                <div className="main-content-area">
+                    <SpaceCardArea user={sessionUser}></SpaceCardArea>
+                </div>
+                :
+                <></>
+            }
             <div className="content-cards">
                 {
                     questionsArray.map(question => {
