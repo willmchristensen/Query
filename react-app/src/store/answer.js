@@ -93,7 +93,8 @@ export const createAnswer = (details, questionId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         // dispatch(postAnswer(data));
-        dispatch(getOneQuestion(questionId))
+        dispatch(getOneQuestion(questionId));
+        return data;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
