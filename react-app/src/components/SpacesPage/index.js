@@ -21,7 +21,7 @@ const SpacesPage = () => {
     return (
         <div className="spaces-container">
             <div className="spaces-banner">
-                <div className="spaces-banner-left">
+                <div className="spaces-banner-buttons">
                     <div className="spaces-text">
                         <h3>Welcome to Spaces!</h3>
                         <p>Follow Spaces to explore your interests on Quora.</p>
@@ -35,6 +35,8 @@ const SpacesPage = () => {
                             Discover Spaces
                         </button>
                     </div>
+                </div>
+                <div className="user-spaces">
                     {
                         userSpaces.map(space => {
                             return (
@@ -47,13 +49,8 @@ const SpacesPage = () => {
                         })
                     }
                 </div>
-                <div className="spaces-banner-right">
-                    <div className="spaces-image">
-                        <img className="spce-img" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/080.png" alt='kk' />
-                    </div>
-                </div>
             </div>
-            <div className="space-card-container">
+            <div className="square-space-card-container">
                 {
                     spacesArray.map(space => {
                         return (

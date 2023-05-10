@@ -16,7 +16,7 @@ const SquareSpaceCard = ({space}) => {
                         <h3 className='space-primary-text'>
                             {space.name}
                         </h3>
-                        <p className='support-text'>
+                        <p className='square-space-support-text'>
                             {space.description}
                         </p>
                     </div>

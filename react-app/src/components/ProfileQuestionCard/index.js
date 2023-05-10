@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import EditQuestionModal from '../EditQuestionModal';
 import { getAllAnswers } from '../../store/answer';
 import DeleteQuestionModal from '../DeleteQuestionModal';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ProfileQuestionCard = ({ question, user }) => {
     const dispatch = useDispatch();
@@ -25,58 +26,62 @@ const ProfileQuestionCard = ({ question, user }) => {
     let editQuestionTool = isHidden ? 'hidden' : 'edit-question-tooltip';
 
     return (
-        <div className="question-card-container">
-            <div className="question-card">
-                <div className="question-text">
-                    <h3>{question.details}</h3>
-                </div>
-            </div>
-            <div className="question-answers">
-                {questionAnswers.length ?
-                    (questionAnswers.length === 1 ?
-                        (
-                            <span>{questionAnswers.length} answer</span>
+            <div className="question-card-container">
+                <NavLink
+                    to={`/questions/${question.id}`}
+                >
+                    <div className="question-card">
+                        <div className="question-text">
+                            <h3>{question.details}</h3>
+                        </div>
+                    </div>
+                </NavLink>
+                <div className="question-answers">
+                    {questionAnswers.length ?
+                        (questionAnswers.length === 1 ?
+                            (
+                                <span>{questionAnswers.length} answer</span>
+                            )
+                            :
+                            (
+                                <span>{questionAnswers.length} answers</span>
+                            )
                         )
                         :
                         (
-                            <span>{questionAnswers.length} answers</span>
+                            <span>No answers yet</span>
                         )
-                    )
-                    :
-                    (
-                        <span>No answers yet</span>
-                    )
-                }
-            </div>
-            <div className="edit-question-button">
-                <button
-                    className="circle-button"
-                    onClick={handleClick}
-                >
-                    <i className="fas fa-ellipsis-h"></i>
-                </button>
-                <div className="edit-question-tooltip-container">
-                    <div className={editQuestionTool}>
-                        <OpenModalButton
-                            buttonText="Edit question"
-                            modalComponent={
-                                <EditQuestionModal 
-                                    question={question}
-                                />
-                            }
-                        />
-                        <OpenModalButton
-                            buttonText="Delete question"
-                            modalComponent={
-                                <DeleteQuestionModal 
-                                    questionId={question.id}
-                                />
-                            }
-                        />
+                    }
+                </div>
+                <div className="edit-question-button">
+                    <button
+                        className="circle-button"
+                        onClick={handleClick}
+                    >
+                        <i className="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div className="edit-question-tooltip-container">
+                        <div className={editQuestionTool}>
+                            <OpenModalButton
+                                buttonText="Edit question"
+                                modalComponent={
+                                    <EditQuestionModal 
+                                        question={question}
+                                    />
+                                }
+                            />
+                            <OpenModalButton
+                                buttonText="Delete question"
+                                modalComponent={
+                                    <DeleteQuestionModal 
+                                        questionId={question.id}
+                                    />
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     )
 
 }
