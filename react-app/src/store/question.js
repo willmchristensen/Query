@@ -75,6 +75,7 @@ export const createQuestion = (details) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(postQuestion(data));
+        // dispatch(getAllQuestions());
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -102,6 +103,7 @@ export const editOneQuestion = (res) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(editQuestion(data));
+        dispatch(getAllQuestions())
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -124,6 +126,7 @@ export const deleteQuestion = (questionId) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(deleteQuestionAction(questionId));
+        dispatch(getAllQuestions())
     } else {
         return [
             "An error occurred. Please try again."
@@ -144,24 +147,24 @@ const questionReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_ONE: {
-            const single_newState = { ...state };
+            const single_newState = { ...state, singleQuestion: { ...state.singleQuestion } };
             single_newState.singleQuestion = { ...action.payload };
             return single_newState;
 
         }
         case POST_QUESTION: {
-            const post_newState = { ...state };
+            const post_newState = { ...state, questions: {...state.questions} };
             post_newState.questions[action.details.question.id] = action.details.question;
             return post_newState;
 
         }
         case EDIT_QUESTION: {
-            const newState = { ...state };
+            const newState = { ...state, questions: { ...state.questions } };
             newState.questions[action.details.id] = action.details
             return newState
         }
         case DELETE_QUESTION: {
-            const newState = {...state}
+            const newState = {...state, questions: { ...state.questions }}
             delete newState[action.questionId]
             return newState
         }

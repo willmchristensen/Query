@@ -85,6 +85,9 @@ def delete_one_question(id):
     question = Question.query.get(id)
     db.session.delete(question)
     db.session.commit()
+    return {
+        "success":"success"
+    }
 
 
 @question_routes.route("/<int:id>", methods=["GET","PUT"])

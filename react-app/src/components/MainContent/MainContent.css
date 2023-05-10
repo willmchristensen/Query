@@ -1,10 +1,10 @@
 .main-content-section{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
     width: 100vw;
 }
 .main-content-area{
     display: flex;
-    justify-content: left;
+    align-items: center;
     flex-direction: column;
 }
