@@ -60,7 +60,7 @@ export const deleteOneSpace = (id) => async (dispatch) => {
     })
 
     if (response.ok) {
-        dispatch(deleteOneSpace);
+        dispatch(deleteOne(id));
     } else {
         return [
             "An error occurred. Please try again."
