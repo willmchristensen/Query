@@ -32,10 +32,13 @@ function CreateAnswerModal({questionId}) {
 			}
 			console.log("item in handle submit for create answer modal", item);
 			const data = await dispatch(createAnswer(item, questionId));
+			// if (data) {
+			// 	setErrors(data);
+			// } else {
+			// 	closeModal();
+			// }
 			if (data) {
-				setErrors(data);
-			} else {
-				closeModal();
+				closeModal()
 			}
 		} else {
 			setErrors([

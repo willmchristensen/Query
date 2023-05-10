@@ -58,15 +58,17 @@ def create_an_answer():
             question_id = data['question_id']
         )
         # ------------------------------
-
+        question = Question.query.get(new_answer.question_id)
+        print("question output:", question)
         # Current user must NOT be Question owner.
-        if current_user.id != new_answer.question_id:
+        if question.user_id != current_user.id:
             db.session.add(new_answer)
             db.session.commit()
             return {
                 "answer": new_answer.to_dict()
             }
-        else: {
+        else:
+            return {
             "errors": "You cannot answer your own question"
         }
         # ------------------------------------------
