@@ -5,17 +5,20 @@ import { getOneSpace } from '../../store/space';
 import OpenModalButton from '../OpenModalButton';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import DeleteSpaceModal from '../DeleteSpaceModal';
-
+import { getAllAnswers } from '../../store/answer';
+import './SingleSpace.css'
 
 const SingleSpace = () => {
     const dispatch = useDispatch();
     const [isHidden, setIsHidden] = useState(true)
     const { spaceId } = useParams();
     const { space } = useSelector((state) => state.space.singleSpace)
-    console.log("this is space", space)
-
+    const answers = useSelector((state) => state.answer.answers)
+    const answersArray = Object.values(answers)
+    
     useEffect(() => {
         dispatch(getOneSpace(spaceId));
+        dispatch(getAllAnswers())
     }, [dispatch, spaceId])
 
     const handleClick = () => {
@@ -28,15 +31,24 @@ const SingleSpace = () => {
 
     return (
         <div className='single-space-container'>
-            <h1>{space.name}</h1>
-            <div className="edit-space-button">
-                <button
-                    className="circle-button"
-                    onClick={handleClick}
-                >
-                    <i className="fas fa-ellipsis-h"></i>
-                </button>
-                <div className="edit-question-tooltip-container">
+            <div className="single-space-banner">
+                <div className="gradient-box">
+                    <div className='single-space-image-container'>
+                        <img src={space.imageUrl} className='single-space-image'></img>
+                    </div>
+                    <div className="single-space-description">
+                        <h1 className='single-space-title'>{space.name}</h1>
+                        <p className='single-space-support-text'>{space.description}</p> 
+                    </div>
+                </div>
+                <div className="edit-space-button">
+                    <button
+                        className="circle-button"
+                        onClick={handleClick}
+                    >
+                        <i className="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div className="edit-question-tooltip-container">
                     <div className={editQuestionTool}>
                         <button className='edit-space-placeholder'>
                             Edit space
@@ -51,26 +63,45 @@ const SingleSpace = () => {
                         />
                     </div>
                 </div>
-            </div>
-            <div className="single-space-description">
-                   <p>{space.description}</p> 
-            </div>
-            <div className='single-space-image-container'>
-                <img src={space.imageUrl}></img>
+                </div>
             </div>
             <div className='single-space-questions-container'>
                 {
                     space.questions.map(question => {
                         return (
-                            <NavLink to={`/questions/${question.id}`}>
-                                {question.details}
-                            </NavLink>
+                            <div className="single-space-question-container">
+                                <NavLink 
+                                    to={`/questions/${question.id}`}
+                                    className="single-space-question-link"
+                                >
+                                    {question.details}
+                                </NavLink>
+                                <div className="single-space-answers">
+                                    {answersArray.filter(a => a.questionId === question.id).length ?
+                                        (answersArray.filter(a => a.questionId === question.id).length === 1 ?
+                                            (
+                                                <span>{answersArray.filter(a => a.questionId === question.id).length} answer</span>
+                                            )
+                                            :
+                                            (
+                                                <span>{answersArray.filter(a => a.questionId === question.id).length} answers</span>
+                                            )
+                                        )
+                                        :
+                                        (
+                                            <span>No answers yet</span>
+                                        )
+                                    }
+                                </div>
+                            </div>
                         )
                     })
                 }
             </div>
         </div>
+        
     )
 }
 
 export default SingleSpace;
+
