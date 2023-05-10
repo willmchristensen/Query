@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Space, db
 from flask_login import login_required
+from app.forms import SpaceForm
 
 space_routes = Blueprint("spaces", __name__)
 
@@ -32,3 +33,33 @@ def delete_one_space(id):
     space = Space.query.get(id)
     db.session.delete(space)
     db.session.commit()
+
+@space_routes.route("/new", methods=["POST"])
+@login_required
+def create_one_space():
+    """
+    Creates a space
+    """
+    form = SpaceForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        # print('WE MADE IT')
+        data = form.data
+        # print('data',data)
+        new_space = Space(
+            name = data['name'],
+            description = data['description'],
+            image_url = data['image_url'],
+            owner_id = data['owner_id']
+        )
+
+        db.session.add(new_space)
+        db.session.commit()
+        return {
+            "space": new_space.to_dict()
+        }
+
+    return {
+        "errors": form.errors
+    }

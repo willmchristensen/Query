@@ -3,6 +3,7 @@ import SquareSpaceCard from './SquareSpaceCard'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpaces } from '../../store/space';
+import CreateSpaceModal from '../CreateSpaceModal';
 import SpaceCard from '../SpaceCardArea/SpaceCard';
 import OpenModalButton from '../OpenModalButton';
 
@@ -28,7 +29,7 @@ const SpacesPage = () => {
                     </div>
                     <div className="spaces-buttons">
                         <OpenModalButton 
-                            // modalComponent={}
+                            modalComponent={<CreateSpaceModal/>}
                             buttonText="Create a Space"
                         />
                         <button className="oval-button">
