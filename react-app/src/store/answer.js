@@ -146,15 +146,15 @@ const answerReducer = (state = initialState, action) => {
             newState.answers = { ...action.payload };
             return newState;
         case POST_ANSWER:
-            const postNewState = { ...state };
+            const postNewState = { ...state, answers:{ ...state.answers } };
             postNewState.answers[action.details.answer.id] = action.details.answer;
             return postNewState;
         case DELETE_ANSWER:
-            const deleteNewState = {...state}
+            const deleteNewState = {...state, answers:{ ...state.answers }}
             delete deleteNewState[action.answerId]
             return deleteNewState
         case EDIT_ANSWER:
-            const newEditState = { ...state };
+            const newEditState = { ...state, answers:{ ...state.answers } };
             newEditState.answers[action.details.id] = action.details
             return newEditState
         default:

@@ -3,6 +3,7 @@
     border-radius: .7rem;
     text-align: center;
     margin:.5rem;
+    width: 10rem;
 }
 .space:hover{
     box-shadow: 3px 3px 3px 3px rgba(117, 117, 117, 0.281) ;
@@ -16,9 +17,14 @@
 .support-text{
     padding-bottom: 4rem;
 }
-/* .spaces-text{
-
-} */
+.space-primary-text{
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-top: .2rem;
+    margin-top: .2rem;
+    overflow-wrap: break-word;
+    width: 100%;
+}
 .spaces-banner-left{
     width: 25vw;
 }
