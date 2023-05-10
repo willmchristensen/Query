@@ -39,6 +39,7 @@ const SpacesPage = () => {
                         userSpaces.map(space => {
                             return (
                                 <SpaceCard
+                                    id={space.id}
                                     name={space.name}
                                     image={space.imageUrl}
                                 ></SpaceCard>
