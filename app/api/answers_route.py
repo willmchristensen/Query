@@ -66,7 +66,7 @@ def create_an_answer():
             return {
                 "answer": new_answer.to_dict()
             }
-        else {
+        else: {
             "errors": "You cannot answer your own question"
         }
         # ------------------------------------------
@@ -81,9 +81,15 @@ def create_an_answer():
 def delete_one_answer(id):
     """This is the delete an answer route"""
     answer = Answer.query.get(id)
-    db.session.delete(answer)
-    db.session.commit()
-    return "Answer Deleted"
+
+    # Can only be deleted if current user id == answer owner id
+    # print('----------------------------------', answer.owner_id)
+    if current_user.id == answer.owner_id:
+        db.session.delete(answer)
+        db.session.commit()
+        return "Answer Deleted"
+    else:
+        return {"errors": "You must be the owner of an answer to delete that answer."}
 
 # Edit an answer by id
 @answer_routes.route("/<int:id>", methods=["PUT"])
@@ -93,13 +99,15 @@ def edit_one_answer(id):
     Edit an Answer
     """
     answer = Answer.query.get(id)
+
+    # Can only be edited if the current user id == answer owner id
+    if current_user.id != answer.owner_id:
+        return {"errors": "You must be the owner of an answer to edit that answer."}
+
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # answer.details = form.details.data
         answer.details = form.data["details"]
-        # details = request.get_json()["details"]
-        # answer.details = details
         db.session.commit()
         print('answer', answer, answer.to_dict())
         return answer.to_dict()
