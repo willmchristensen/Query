@@ -4,7 +4,7 @@ const LOAD = "questions/load";
 const LOAD_ONE = "questions/load_one";
 const POST_QUESTION = "questions/new";
 const EDIT_QUESTION = "questions/edit"
-// const DELETE_QUESTION = "questions/delete"
+const DELETE_QUESTION = "questions/delete"
 
 const load = (data) => ({
     type: LOAD,
@@ -26,10 +26,10 @@ const editQuestion = (details) => ({
     details
 })
 
-// const deleteQuestionAction = (questionId) => ({
-//     type: DELETE_QUESTION,
-//     questionId
-// });
+const deleteQuestionAction = (questionId) => ({
+    type: DELETE_QUESTION,
+    questionId
+});
 
 export const getAllQuestions = () => async (dispatch) => {
     // console.log('All Question THUNK')
@@ -103,8 +103,8 @@ export const editOneQuestion = (res) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // dispatch(editQuestion(data));
-        dispatch(getAllQuestions())
+        dispatch(editQuestion(data));
+        // dispatch(getAllQuestions())
         return data
     } else if (response.status < 500) {
         const data = await response.json();
