@@ -60,7 +60,7 @@ export const deleteOneSpace = (id) => async (dispatch) => {
     })
 
     if (response.ok) {
-        dispatch(deleteOneSpace);
+        dispatch(deleteOne(id));
     } else {
         return [
             "An error occurred. Please try again."
@@ -112,12 +112,12 @@ const spaceReducer = (state = initialState, action) => {
             return newState
         }
         case DELETE_ONE: {
-            const newState = { ...state };
+            const newState = { ...state, spaces: { ...state.spaces } };
             delete newState.spaces[action.id]
             return newState
         }
         case CREATE_SPACE: {
-            const newState = { ...state };
+            const newState = { ...state, spaces: { ...state.spaces }};
             newState[action.space.id] = { ...action.space }
             return newState
         }

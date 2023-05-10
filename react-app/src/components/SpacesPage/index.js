@@ -9,15 +9,14 @@ import OpenModalButton from '../OpenModalButton';
 
 const SpacesPage = () => {
     const dispatch = useDispatch();
+    const spaces = useSelector((state) => state.space.spaces);
     const sessionUser = useSelector((state) => state.session.user)
-    const spaces = useSelector((state) => state.space.spaces)
     const spacesArray = Object.values(spaces)
     const userSpaces = spacesArray.filter((s) => s.ownerId == sessionUser.id)
-
-
+   
     useEffect(() => {
         dispatch(getAllSpaces())
-    }, [dispatch])
+    }, [dispatch]) 
 
     return (
         <div className="spaces-container">

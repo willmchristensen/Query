@@ -14,7 +14,6 @@ function CreateQuestionModal({question}) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		// ---------- FORM DATA	-----------------
 		// const formData = new FormData();
 		// formData.append('details', details)
