@@ -19,7 +19,8 @@ const SingleQuestion = () => {
     const answer = useSelector((state) => state.answers)
     const { closeModal } = useModal
 
-    const [commentVisible, setCommentVisible]= useState(false)
+    const [commentVisible, setCommentVisible] = useState(false)
+    const [activeAnswerId, setActiveAnswerId] = useState(null)
 
     useEffect(() => {
         console.log("IT IS RENDERING!");
