@@ -82,6 +82,7 @@ export const createOneSpace = (space) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(createSpace(data))
+        return data
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {

@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
 import DeleteSpaceModal from '../DeleteSpaceModal';
 import { getAllAnswers } from '../../store/answer';
+import CreateQuestionModal from '../CreateQuestionModal';
 import './SingleSpace.css'
 
 const SingleSpace = () => {
@@ -63,6 +64,12 @@ const SingleSpace = () => {
                         />
                     </div>
                 </div>
+                </div>
+                <div className="add-space-question-button">
+                    <OpenModalButton
+                        buttonText="Create Question"
+                        modalComponent={<CreateQuestionModal spaceId={spaceId} />}
+                    />
                 </div>
             </div>
             <div className='single-space-questions-container'>

@@ -64,6 +64,7 @@ def create_one_question():
         new_question = Question(
             details = data['details'],
             user_id = data['user_id'],
+            space_id = data['space_id']
         )
         # print('NEW QUESTION', new_question.to_dict())
         # ------------------------------
