@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, db, User
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.forms import AnswerForm
+
 
 answer_routes = Blueprint("answers", __name__)
 
@@ -21,6 +22,7 @@ def get_answer_routes(user_id):
     response = [answer.to_dict() for answer in all_answers]
     return {"answers": response}
 
+# All answers route
 @answer_routes.route('')
 def get_all_answers():
     """
@@ -35,10 +37,14 @@ def get_all_answers():
 # ADD AN ANSWER TO A QUESTION BY ID
 @answer_routes.route('/new', methods=["POST"])
 @login_required
-def create_a_question():
+def create_an_answer():
     """
     Create an answer by question id
     """
+    # print('-----------------------------------------------------------------')
+    # print('current_suer: ', current_user)
+    # print('current_suer: ', current_user.id)
+
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print("this is form!!!", form.data)
@@ -52,10 +58,16 @@ def create_a_question():
             question_id = data['question_id']
         )
         # ------------------------------
-        db.session.add(new_answer)
-        db.session.commit()
-        return {
-            "answer": new_answer.to_dict()
+
+        # Current user must NOT be Question owner.
+        if current_user.id != new_answer.question_id:
+            db.session.add(new_answer)
+            db.session.commit()
+            return {
+                "answer": new_answer.to_dict()
+            }
+        else: {
+            "errors": "You cannot answer your own question"
         }
         # ------------------------------------------
 
@@ -69,9 +81,15 @@ def create_a_question():
 def delete_one_answer(id):
     """This is the delete an answer route"""
     answer = Answer.query.get(id)
-    db.session.delete(answer)
-    db.session.commit()
-    return "Answer Deleted"
+
+    # Can only be deleted if current user id == answer owner id
+    # print('----------------------------------', answer.owner_id)
+    if current_user.id == answer.owner_id:
+        db.session.delete(answer)
+        db.session.commit()
+        return "Answer Deleted"
+    else:
+        return {"errors": "You must be the owner of an answer to delete that answer."}
 
 # Edit an answer by id
 @answer_routes.route("/<int:id>", methods=["PUT"])
@@ -81,13 +99,15 @@ def edit_one_answer(id):
     Edit an Answer
     """
     answer = Answer.query.get(id)
+
+    # Can only be edited if the current user id == answer owner id
+    if current_user.id != answer.owner_id:
+        return {"errors": "You must be the owner of an answer to edit that answer."}
+
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # answer.details = form.details.data
         answer.details = form.data["details"]
-        # details = request.get_json()["details"]
-        # answer.details = details
         db.session.commit()
         print('answer', answer, answer.to_dict())
         return answer.to_dict()
