@@ -11,7 +11,8 @@ const MainContent = () => {
     const questions = useSelector(state => state.question.questions);
     const questionsArray = Object.values(questions);
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user);
+
     useEffect(() => {
         dispatch(getAllQuestions())
     }, [dispatch])

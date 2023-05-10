@@ -10,9 +10,11 @@ const SpaceCardArea = ({user}) => {
     const spaces = useSelector(state => state.space.spaces);
     const spacesArray = Object.values(spaces);
     const userSpaces = spacesArray.filter(s => s.ownerId === user.id);
+
     useEffect(() => {
         dispatch(getAllSpaces())
     }, [dispatch])
+    
     return(
         <div className="space-cards-container">
             {
