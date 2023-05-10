@@ -16,7 +16,7 @@ class Answer(db.Model):
     updated_at = db.Column(db.DateTime)
 
     question = db.relationship("Question", back_populates="answers")
-    replies = db.relationship("Reply", back_populates="answer")
+    replies = db.relationship("Reply", back_populates="answer", cascade="all, delete-orphan")
     owner = db.relationship("User", back_populates="answers")
 
     def to_dict(self):

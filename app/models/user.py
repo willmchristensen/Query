@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .space_users import space_users
 
 
 class User(db.Model, UserMixin):
@@ -18,6 +19,8 @@ class User(db.Model, UserMixin):
     replies = db.relationship("Reply", back_populates="owner")
     answers = db.relationship("Answer", back_populates="owner")
     questions = db.relationship("Question", back_populates="owner")
+
+    followed_spaces = db.relationship("Space", secondary=space_users, back_populates="users")
 
     @property
     def password(self):

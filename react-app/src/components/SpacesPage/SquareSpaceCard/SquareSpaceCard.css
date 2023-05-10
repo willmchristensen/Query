@@ -1,0 +1,43 @@
+.space{
+    box-shadow: 2px 2px 2px 2px rgba(117, 117, 117, 0.281) ;
+    border-radius: .7rem;
+    text-align: center;
+    margin:.5rem;
+    width: 10rem;
+}
+.space:hover{
+    box-shadow: 3px 3px 3px 3px rgba(117, 117, 117, 0.281) ;
+    cursor:pointer;
+}
+.space-card-img{
+    width:100%;
+    height: 2rem;
+    object-fit: cover;
+}
+.support-text{
+    padding-bottom: 4rem;
+}
+.space-primary-text{
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-top: .2rem;
+    margin-top: .2rem;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+.spaces-banner-left{
+    width: 25vw;
+}
+.spaces-banner-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+}
+.spaces-banner{
+    display: flex;
+    justify-content: space-between;
+    background-color: yellow;
+    border-radius: .23rem;
+    width: 40vw;
+}
