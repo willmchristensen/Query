@@ -85,9 +85,8 @@ def delete_one_question(id):
     question = Question.query.get(id)
     db.session.delete(question)
     db.session.commit()
-    return {
-        "success":"success"
-    }
+
+    return "Question Deleted"
 
 
 @question_routes.route("/<int:id>", methods=["GET","PUT"])
@@ -103,7 +102,7 @@ def edit_one_question(id):
     if form.validate_on_submit():
         data = form.data
 
-        question = Question.query.get(id) 
+        question = Question.query.get(id)
         question.details = data['details']
         question.user_id = request.json.get('user_id')
 

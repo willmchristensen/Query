@@ -71,6 +71,7 @@ def delete_one_answer(id):
     answer = Answer.query.get(id)
     db.session.delete(answer)
     db.session.commit()
+    return "Answer Deleted"
 
 # Edit an answer by id
 @answer_routes.route("/<int:id>", methods=["PUT"])

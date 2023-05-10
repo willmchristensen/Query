@@ -5,7 +5,7 @@ import { createReply } from "../../store/reply";
 
 
 
-function CreateReviewForm({answerId}) {
+function CreateReviewForm({answerId, questionId}) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
@@ -21,7 +21,7 @@ function CreateReviewForm({answerId}) {
 				'answer_id': answerId
 			}
 			console.log("item in handle submit for create reply", item);
-			const data = await dispatch(createReply(item));
+			const data = await dispatch(createReply(item, questionId));
             if (data) {
                 setErrors(data);
             }

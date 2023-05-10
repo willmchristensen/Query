@@ -5,15 +5,12 @@ import { deleteAnswer } from "../../store/answer";
 import './DeleteAnswerModal.css'
 
 
-function DeleteAnswerModal({answerId}) {
+function DeleteAnswerModal({answerId, questionId}) {
 	const dispatch = useDispatch();
-	const [details, setDetails] = useState("");
-	const currentUser = useSelector((state) => state.session.user)
-	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-
+	const ids = {answerId, questionId}
 	const deleter = async () => {
-		await dispatch(deleteAnswer(answerId))
+		await dispatch(deleteAnswer(ids))
 		closeModal()
 	}
 

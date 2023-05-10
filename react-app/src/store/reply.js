@@ -1,18 +1,20 @@
+import { getOneQuestion } from "./question";
+
 const POST_REPLY = "replies/new"
-const DELETE_REPLY = "replies/delete"
+// const DELETE_REPLY = "replies/delete"
 
 const postReply = (details) => ({
     type: POST_REPLY,
     details
 })
 
-const deleteReplyAction = (replyId) => ({
-    type: DELETE_REPLY,
-    replyId
-});
+// const deleteReplyAction = (replyId) => ({
+//     type: DELETE_REPLY,
+//     replyId
+// });
 
 
-export const createReply = (details) => async (dispatch) => {
+export const createReply = (details, questionId) => async (dispatch) => {
     console.log("reply details in thunk", details);
     const response = await fetch("/api/replies/new", {
         method: "POST",
@@ -26,7 +28,8 @@ export const createReply = (details) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json();
-        dispatch(postReply(data));
+        // dispatch(postReply(data));
+        dispatch(getOneQuestion(questionId))
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -40,7 +43,8 @@ export const createReply = (details) => async (dispatch) => {
 }
 
 // Delete a reply Thunk
-export const deleteReply = (replyId) => async (dispatch) => {
+export const deleteReply = (ids) => async (dispatch) => {
+    const {replyId, questionId} = ids
     // This deletes an answer by id
     const response = await fetch(`/api/replies/${replyId}`, {
         method: "DELETE",
@@ -49,7 +53,8 @@ export const deleteReply = (replyId) => async (dispatch) => {
         }
     })
     if (response.ok) {
-        dispatch(deleteReplyAction(replyId));
+        // dispatch(deleteReplyAction(replyId));
+        dispatch(getOneQuestion(questionId))
         return replyId
     }
     else {
@@ -70,16 +75,18 @@ const ReplyReducer = (state = initialState, action) => {
         //     const newState = { ...state };
         //     newState.answers = { ...action.payload };
         //     return newState;
-        case POST_REPLY: {
-            const newState = { ...state };
-            newState.replies[action.details.reply.id] = action.details.reply;
-            return newState;
-        }
-        case DELETE_REPLY: {
-            const newState = {...state}
-            delete newState[action.replyId]
-            return newState
-        }
+        // case POST_REPLY: {
+        //     const newState = { ...state };
+        //     newState.replies[action.details.reply.id] = action.details.reply;
+        //     return newState;
+        // }
+        // case DELETE_REPLY: {
+        //     const newState = {...state}
+        //     delete newState[action.replyId]
+        //     console.log("newState", newState)
+        //     return {...newState}
+            // return newState
+        // }
         default:
             return state;
     }
