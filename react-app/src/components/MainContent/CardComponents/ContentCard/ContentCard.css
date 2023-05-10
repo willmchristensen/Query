@@ -30,11 +30,13 @@
     margin-bottom: 0;
     padding-top: .2rem;
     margin-top: .2rem;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
 }
 .support-text{
     padding-top: .2rem;
     margin-top: .2rem;
+    padding-bottom: 4rem;
+    overflow-wrap: anywhere;
 }
 /* @media screen and (max-width: 1024px){
     .content{

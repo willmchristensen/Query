@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, Reply, db, User
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.forms import ReplyForm
 
 reply_routes = Blueprint("replies", __name__)
@@ -61,6 +61,11 @@ def create_a_reply():
 def delete_one_reply(reply_id):
     """This is the delete a reply route"""
     reply = Reply.query.get(reply_id)
-    db.session.delete(reply)
-    db.session.commit()
-    return "Route Deleted"
+
+    # Current user must be the owner of the reply to delete the reply
+    if current_user.id == reply.owner_id:
+        db.session.delete(reply)
+        db.session.commit()
+        return "Route Deleted"
+    else:
+        return {"errors": "You must be the onwer of the reply to delete the reply."}

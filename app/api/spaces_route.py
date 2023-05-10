@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Space, db
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.forms import SpaceForm
 
 space_routes = Blueprint("spaces", __name__)
@@ -31,8 +31,15 @@ def delete_one_space(id):
     Deletes a single space by id
     """
     space = Space.query.get(id)
-    db.session.delete(space)
-    db.session.commit()
+
+    if space.owner_id == current_user.id:
+        db.session.delete(space)
+        db.session.commit()
+        return "Space Deleted"
+    else:
+        return {"errors": "You must be the owner of a space to delete it."}
+
+
 
 @space_routes.route("/new", methods=["POST"])
 @login_required

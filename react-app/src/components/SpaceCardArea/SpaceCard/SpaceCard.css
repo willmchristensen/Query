@@ -2,6 +2,8 @@
     display: flex;
     justify-content: left;
     width: 10rem;
+    height: 5rem;
+    overflow: hidden;
 }
 .space-card{
     display: flex;

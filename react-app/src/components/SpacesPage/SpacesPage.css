@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
 }
-.space-card-container{
+.square-space-card-container{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     width: 50vw;
@@ -33,4 +33,14 @@
 }
 .spaces-buttons > button{
     color: blue;
+}
+.spaces-banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: .23rem;
+    width: 40vw;
+}
+.user-spaces {
+    overflow: hidden;
 }

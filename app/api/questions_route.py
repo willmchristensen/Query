@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import Question, Answer, Reply, db, User
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.forms import QuestionForm
 from datetime import datetime
 
@@ -46,7 +46,7 @@ def get_one_question(id):
 
 
 @question_routes.route('/new', methods=["POST"])
-# @login_required
+@login_required
 def create_one_question():
     """
     Create a question
@@ -78,17 +78,22 @@ def create_one_question():
     }
     # ------------------------------------------
 
+# Delete a question
 @question_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_one_question(id):
     """This is the delete a question route"""
     question = Question.query.get(id)
-    db.session.delete(question)
-    db.session.commit()
 
-    return "Question Deleted"
+    # Current user id must == question owner id to delete
+    if current_user.id != question.user_id:
+        db.session.delete(question)
+        db.session.commit()
+        return "Question Deleted"
+    else:
+        return {"errors": "You must be the owner of a question to delete that question."}
 
-
+# Edit a question
 @question_routes.route("/<int:id>", methods=["GET","PUT"])
 @login_required
 def edit_one_question(id):
@@ -103,14 +108,17 @@ def edit_one_question(id):
         data = form.data
 
         question = Question.query.get(id)
-        question.details = data['details']
-        question.user_id = request.json.get('user_id')
 
-        db.session.commit()
-
-        return {
-            "question": question.to_dict()
-        }
+        # Can only edit a question if the current user id == question user id
+        if current_user.id == question.user_id:
+            question.details = data['details']
+            question.user_id = request.json.get('user_id')
+            db.session.commit()
+            return {
+                "question": question.to_dict()
+            }
+        else:
+            return {"errors": "You must be the owner of a question to edit that question."}
 
     return {
         "errors": form.errors

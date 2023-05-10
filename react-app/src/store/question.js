@@ -74,9 +74,8 @@ export const createQuestion = (details) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        // console.log('data: ', data)
-        dispatch(postQuestion(data));
-
+        dispatch(postQuestion(data.question));
+        return data;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -103,7 +102,7 @@ export const editOneQuestion = (res) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(editQuestion(data));
+        dispatch(editQuestion(data.question));
         // dispatch(getAllQuestions())
         return data
     } else if (response.status < 500) {
@@ -158,12 +157,11 @@ const questionReducer = (state = initialState, action) => {
         }
         case POST_QUESTION: {
             const post_newState = { ...state, questions: {...state.questions} };
-            post_newState.questions[action.details.question.id] = action.details.question;
+            post_newState.questions[action.details.id] = action.details;
             return post_newState;
         }
         case EDIT_QUESTION: {
             const newState = { ...state, questions: { ...state.questions } };
-            console.log('------------------------------s', newState);
             newState.questions[action.details.id] = action.details
             return newState
         }
