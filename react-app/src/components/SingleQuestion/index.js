@@ -19,15 +19,12 @@ const SingleQuestion = () => {
     const answer = useSelector((state) => state.answers)
     const { closeModal } = useModal
 
-    const {commentVisible, setCommentVisible} = useState(false)
-
-    let className = false
-    console.log(className)
+    const [commentVisible, setCommentVisible]= useState(false)
 
     useEffect(() => {
         console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
-    }, [dispatch, answer, questionId, closeModal, className])
+    }, [dispatch, answer, questionId, closeModal])
 
 
     if (!question) return null;
@@ -56,7 +53,7 @@ const SingleQuestion = () => {
                                     <hr />
                                     {answer.details}
                                     {/* See comments button */}
-                                    <button className="s-q-comment-button" onClick={className = !className}>
+                                    <button className="s-q-comment-button" onClick={() => setCommentVisible(!commentVisible)}>
                                         <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
                                     </button>
 
@@ -70,7 +67,7 @@ const SingleQuestion = () => {
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
                                     <CreateReviewForm answerId={answer.id} questionId={questionId} />
-                                    <div className={className === false ? "hidden" : ""}>
+                                    <div className={commentVisible ? "" : "hidden"}>
                                         {answer.replies.map(reply => {
                                             return (
                                                 <div>
