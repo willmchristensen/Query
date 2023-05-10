@@ -1,20 +1,24 @@
 import './SpaceCard.css'
+import {NavLink} from 'react-router-dom';
 
-
-const SpaceCard = ({name,image}) => {
+const SpaceCard = ({name,image,id}) => {
 
     return(
-        <div className="space-card-container">
-            <div className="space-card">
-                <div className="space-image">
-                    {/* <img className="spce-img" src={image} alt={name} /> */}
-                    <img className="spce-img" src={image}  />
-                </div>
-                <div className="space-text">
-                    <h3>{name}</h3>
-                </div>
-            </div>   
-        </div>
+        <NavLink
+            to={`/spaces/${id}`}
+        >
+            <div className="space-card-container">
+                <div className="space-card">
+                    <div className="space-image">
+                        {/* <img className="spce-img" src={image} alt={name} /> */}
+                        <img className="spce-img" src={image}  />
+                    </div>
+                    <div className="space-text">
+                        <h3>{name}</h3>
+                    </div>
+                </div>   
+            </div>    
+        </NavLink>
     )
 
 }

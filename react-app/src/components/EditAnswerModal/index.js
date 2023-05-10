@@ -20,7 +20,7 @@ function EditAnswerModal({answerId, questionId}) {
 			const item = {
 				'details': details,
 				'owner_id': currentUser.id,
-				'question_id': questionId
+				'question_id': Number(questionId)
 			}
 		const res = {item, answerId}
 			console.log("item in handle submit for edit answer modal", item);

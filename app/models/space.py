@@ -27,6 +27,7 @@ class Space(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "description": self.description,
             "ownerId": self.owner_id,
             "questions": [question.to_dict() for question in self.questions],
             "imageUrl": self.image_url,

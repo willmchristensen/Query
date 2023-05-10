@@ -20,7 +20,8 @@ const SpaceCardArea = ({user}) => {
             {
                 userSpaces.map(space => {
                     return (
-                        <SpaceCard 
+                        <SpaceCard
+                            id={space.id} 
                             name={space.name}
                             image={space.image}
                         ></SpaceCard>
