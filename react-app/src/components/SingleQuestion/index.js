@@ -60,31 +60,32 @@ const SingleQuestion = () => {
                             return (
                                 <div className='answer-box s-q-answer-bottom border-radius3' key={answer.id}>
 
-                                    <div className="answer-formatter">
+                                    <div className="answer-formatter s-q-answer-fontSize">
                                         <h4>
                                             {answer.details}
                                         </h4>
                                     </div>
                                     {/* See comments button */}
-                                    <button className="circle-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
-                                        <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
-                                    </button>
-                                    {user && user.id === question.userId && <div className="s-q-displayFlex-row">
+
+                                    <div className="s-q-displayFlex-row">
+                                            <button className="circle-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
+                                                <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
+                                            </button>
                                         <div className="s-q-right">
 
-                                            <OpenModalButton
+                                            {user && user.id === answer.ownerId && <OpenModalButton
                                                 className="oval-button"
                                                 buttonText="Delete Answer"
                                                 modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
-                                            />
-
+                                            />}
                                         </div>
-                                        <OpenModalButton
+                                        {user && user.id === answer.ownerId && <OpenModalButton
                                             className="oval-button"
                                             buttonText="Edit Answer"
                                             modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
-                                        />
-                                    </div>}
+                                        />}
+                                    </div>
+
                                     {/* ADD A COMMENT */}
                                     <div className={commentVisible ? "" : "hidden"}>
                                         {user && <CreateReviewForm answerId={answer.id} questionId={questionId} />}

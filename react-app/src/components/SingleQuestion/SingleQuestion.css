@@ -77,9 +77,9 @@
 }
 
 .s-q-answer-bottom {
-   margin-bottom: 10px;
+   margin-bottom: 15px;
 }
 
-/* .s-q-reply-bottom {
-    margin-bottom: 10px;
-} */
+.s-q-answer-fontSize {
+    font-size: x-large;
+}
