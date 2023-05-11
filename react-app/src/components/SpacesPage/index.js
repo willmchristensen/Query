@@ -12,11 +12,11 @@ const SpacesPage = () => {
     const spaces = useSelector((state) => state.space.spaces);
     const sessionUser = useSelector((state) => state.session.user)
     const spacesArray = Object.values(spaces)
-    // const userSpaces = ;
-   
+    const userSpaces = spacesArray.filter((s) => s.ownerId == sessionUser?.id);
+
     useEffect(() => {
         dispatch(getAllSpaces())
-    }, [dispatch]) 
+    }, [dispatch])
 
     const handleClick = () => {
         alert('Feature coming soon')
@@ -28,14 +28,14 @@ const SpacesPage = () => {
                 <div className="spaces-banner-buttons">
                     <div className="spaces-text">
                         <h3>Welcome to Spaces!</h3>
-                        <p>Follow Spaces to explore your interests on Quora.</p>
+                        <p>Create a space to add questions about a topic you are interested in.</p>
                     </div>
                     <div className="spaces-buttons">
-                        <OpenModalButton 
+                        <OpenModalButton
                             modalComponent={<CreateSpaceModal/>}
                             buttonText="Create a Space"
                         />
-                        <button 
+                        <button
                             className="oval-button"
                             onClick={handleClick}
                         >
@@ -44,8 +44,8 @@ const SpacesPage = () => {
                     </div>
                 </div>
                 <div className="user-spaces">
-                    {sessionUser ?
-                        spacesArray.filter((s) => s.ownerId == sessionUser?.id).map(space => {
+                    {userSpaces.length ?
+                        userSpaces.map(space => {
                             return (
                                 <SpaceCard
                                     id={space.id}
@@ -55,7 +55,9 @@ const SpacesPage = () => {
                             )
                         })
                         :
-                        <></>
+                        <div className="no-user-spaces">
+                            Spaces you Create will show up here
+                        </div>
                     }
                 </div>
             </div>

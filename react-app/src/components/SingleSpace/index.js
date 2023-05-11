@@ -16,7 +16,7 @@ const SingleSpace = () => {
     const { space } = useSelector((state) => state.space.singleSpace)
     const answers = useSelector((state) => state.answer.answers)
     const answersArray = Object.values(answers)
-    
+
     useEffect(() => {
         dispatch(getOneSpace(spaceId));
         dispatch(getAllAnswers())
@@ -39,7 +39,7 @@ const SingleSpace = () => {
                     </div>
                     <div className="single-space-description">
                         <h1 className='single-space-title'>{space.name}</h1>
-                        <p className='single-space-support-text'>{space.description}</p> 
+                        <p className='single-space-support-text'>{space.description}</p>
                     </div>
                 </div>
                 <div className="edit-space-button">
@@ -67,7 +67,7 @@ const SingleSpace = () => {
                 </div>
                 <div className="add-space-question-button">
                     <OpenModalButton
-                        buttonText="Create Question"
+                        buttonText="Add a Question to this Space"
                         modalComponent={<CreateQuestionModal spaceId={spaceId} />}
                     />
                 </div>
@@ -77,7 +77,7 @@ const SingleSpace = () => {
                     space.questions.map(question => {
                         return (
                             <div className="single-space-question-container">
-                                <NavLink 
+                                <NavLink
                                     to={`/questions/${question.id}`}
                                     className="single-space-question-link"
                                 >
@@ -106,9 +106,8 @@ const SingleSpace = () => {
                 }
             </div>
         </div>
-        
+
     )
 }
 
 export default SingleSpace;
-
