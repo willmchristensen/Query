@@ -5,10 +5,11 @@ import { createAnswer } from "../../store/answer";
 import './CreateAnswerModal.css'
 
 
-function CreateAnswerModal({questionId}) {
+function CreateAnswerModal({ questionId }) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
+	const question = useSelector((state) => state.question.singleQuestion.question)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -49,24 +50,27 @@ function CreateAnswerModal({questionId}) {
 
 	return (
 		<div className="create-answer-container">
-			<h1>Add Answer</h1>
+			<h1 className="answer-formatter">{question.details}</h1>
 			<form
-				 onSubmit={handleSubmit}
-				 encType="multipart/form-data"
+				onSubmit={handleSubmit}
+				encType="multipart/form-data"
 			>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<input
-					type="text"
-					value={details}
-					onChange={(e) => setDetails(e.target.value)}
-					placeholder={`Start your answer.`}
-				/>
-				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Answer</button>
+				<div className="text-area-modal">
+					<textarea
+						value={details}
+						onChange={(e) => setDetails(e.target.value)}
+						placeholder={`Start your answer.`}
+					/>
+				</div>
+				<div className="button-order">
+					<button className="oval-button" onClick={closeModal}>Cancel</button>
+					<button className="oval-button" type="submit">Post</button>
+				</div>
 			</form>
 		</div>
 	)

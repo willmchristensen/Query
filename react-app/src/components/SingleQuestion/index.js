@@ -15,10 +15,10 @@ const SingleQuestion = () => {
     const { questionId } = useParams();
     const { closeModal } = useModal
     const dispatch = useDispatch();
-
+    const user = useSelector((state) => state.session.user)
     const answer = useSelector((state) => state.answers)
     const { question } = useSelector((state) => state.question.singleQuestion)
-    // const users = useSelector((state) => state.)
+    console.log("user", user);
 
 
 
@@ -36,74 +36,80 @@ const SingleQuestion = () => {
     const openDeleteModal = () => {
         console.log("hi")
 
-}
+    }
 
 
-return (
-    <div className="s-q-background">
-        <div className="content-single-question">
-            <div className="s-q-content-container text s-q-question-top-bottom">
-                <h1 className='border-check s-q-width100'>{question.details}</h1>
-                    <div className="s-q-answer-button">
+    return (
+        <div className="s-q-background">
+            <div className="content-single-question">
+                <div className="s-q-content-container text s-q-question-top-bottom border-radius3">
+                    <h1 className='border-check s-q-width100 answer-formatter'>{question.details}</h1>
+                    {user && user.id !== question.userId && <div className="s-q-answer-button">
                         <OpenModalButton
                             className="oval-button"
                             buttonText={<i class="fas fa-edit"> Answer</i>}
                             modalComponent={<CreateAnswerModal questionId={questionId} />}
                         />
-                    </div>
-            </div>
-            <hr />
+                    </div>}
+                </div>
+                <hr />
 
-            <div className="s-q-content-container text">
-                {
-                    question.answers.map(answer => {
-                        return (
-                            <div className='answer-box s-q-answer-bottom' key={answer.id}>
-                                <hr />
-                                {answer.details}
-                                {/* See comments button */}
-                                <div className="s-q-displayFlex-row">
-                                    <button className="s-q-comment-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
-                                        <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
-                                    </button>
-                                    <div className="s-q-right">
+                <div className="s-q-content-container text">
+                    {
+                        question.answers.map(answer => {
+                            return (
+                                <div className='answer-box s-q-answer-bottom border-radius3' key={answer.id}>
 
-                                        <OpenModalButton
-                                            className="oval-button"
-                                            buttonText="Delete Answer"
-                                            modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
-                                            />
-
+                                    <div className="answer-formatter s-q-answer-fontSize">
+                                        <h4>
+                                            {answer.details}
+                                        </h4>
                                     </div>
-                                    <OpenModalButton
-                                        className="oval-button"
-                                        buttonText="Edit Answer"
-                                        modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
-                                    />
+                                    {/* See comments button */}
+
+                                    <div className="s-q-displayFlex-row">
+                                            <button className="circle-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
+                                                <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
+                                            </button>
+                                        <div className="s-q-right">
+
+                                            {user && user.id === answer.ownerId && <OpenModalButton
+                                                className="oval-button"
+                                                buttonText="Delete Answer"
+                                                modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
+                                            />}
+                                        </div>
+                                        {user && user.id === answer.ownerId && <OpenModalButton
+                                            className="oval-button"
+                                            buttonText="Edit Answer"
+                                            modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
+                                        />}
+                                    </div>
+
+                                    {/* ADD A COMMENT */}
+                                    <div className={commentVisible ? "" : "hidden"}>
+                                        {user && <CreateReviewForm answerId={answer.id} questionId={questionId} />}
+                                        {answer.replies.map(reply => {
+                                            return (
+                                                <div className="reply-formatter s-q-displayFlex-row border-radius3">
+                                                    <div>{reply.details}</div>
+                                                    {user && user.id === reply.ownerId && <OpenModalButton
+                                                        className="oval-button"
+                                                        buttonText="Delete Comment"
+                                                        modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
+                                                    />}
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                                {/* ADD A COMMENT */}
-                                <div className={commentVisible ? "" : "hidden"}>
-                                    <CreateReviewForm answerId={answer.id} questionId={questionId} />
-                                    {answer.replies.map(reply => {
-                                        return (
-                                            <div>
-                                                <div>{reply.details}</div>
-                                                <OpenModalButton
-                                                    buttonText="Delete Comment"
-                                                    modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
-                                                />
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
 }
 
 export default SingleQuestion

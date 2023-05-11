@@ -15,19 +15,20 @@ const NavBar = ({ isLoaded }) => {
         <div className="nav-container">
             <nav className="nav">
                 <div className="nav-section">
-                    <div className="logo">
+                    <div className="logo quora-font query-logo">
                         <NavLink
                             to='/home'
                         >
                             Query
                         </NavLink>
+
                     </div>
                     <NavItem
                         icon={<i class="fas fa-home"></i>}
                         item={"Home"}
                         url={"/home"}
                         text={"Home"}
-                    >
+                        >
                     </NavItem>
                      <NavItem
                         icon={<i class="fab fa-wpforms"></i>}

@@ -1,5 +1,11 @@
 .reply-form-background {
     background-color: rgb(235, 235, 235);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.reply-form-background textarea{
+    resize: none;
 }
 
 .reply-center {
@@ -21,6 +27,6 @@
 
 .reply-center-width{
     /* border: 2px solid green; */
-    width: 35vw;
+    width: 40vw;
     /* box-sizing: border-box; */
 }
