@@ -12,16 +12,14 @@ const SpacesPage = () => {
     const spaces = useSelector((state) => state.space.spaces);
     const sessionUser = useSelector((state) => state.session.user)
     const spacesArray = Object.values(spaces)
-    const userSpaces = spacesArray.filter((s) => s.ownerId == sessionUser.id)
+    // const userSpaces = ;
    
     useEffect(() => {
         dispatch(getAllSpaces())
     }, [dispatch]) 
 
     const handleClick = () => {
-        // const square = document.getElementsByClassName("square-space-card-container");
-        // square.scrollIntoView()
-        window.scrollBy(0, 1000)
+        alert('Feature coming soon')
     }
 
     return (
@@ -46,8 +44,8 @@ const SpacesPage = () => {
                     </div>
                 </div>
                 <div className="user-spaces">
-                    {
-                        userSpaces.map(space => {
+                    {sessionUser ?
+                        spacesArray.filter((s) => s.ownerId == sessionUser?.id).map(space => {
                             return (
                                 <SpaceCard
                                     id={space.id}
@@ -56,6 +54,8 @@ const SpacesPage = () => {
                                 ></SpaceCard>
                             )
                         })
+                        :
+                        <></>
                     }
                 </div>
             </div>
@@ -70,6 +70,7 @@ const SpacesPage = () => {
             </div>
             <button
                 className='view-more'
+                onClick={handleClick}
             >
                 view more
                 <i class="fas fa-caret-down"></i>
