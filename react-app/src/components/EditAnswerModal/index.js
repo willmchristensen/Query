@@ -4,7 +4,6 @@ import { useModal } from "../../context/Modal";
 import { editAnswer } from "../../store/answer";
 import './EditAnswerModal.css'
 
-
 function EditAnswerModal({answerId, questionId}) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
