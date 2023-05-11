@@ -1,3 +1,7 @@
+.profile-question-card-container{
+    display: flex;
+}
+
 .question-card-container {
     display: flex;
     flex-direction: column;
