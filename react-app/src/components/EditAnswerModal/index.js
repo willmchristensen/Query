@@ -22,7 +22,7 @@ function EditAnswerModal({answerId, questionId}) {
 				'owner_id': currentUser.id,
 				'question_id': Number(questionId)
 			}
-		const res = {item, answerId}
+		const res = {item, answerId, questionId}
 			console.log("item in handle submit for edit answer modal", item);
 			const data = await dispatch(editAnswer(res));
 			if (data) {

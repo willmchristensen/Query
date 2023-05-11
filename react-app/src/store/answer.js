@@ -28,7 +28,7 @@ const postAnswer = (details) => ({
 
 //Edit answer Thunk
 export const editAnswer = (data) => async (dispatch) => {
-    let { answerId, item } = data
+    let { answerId, item, questionId } = data
 
     const response = await fetch(`/api/answers/${answerId}`, {
         method: "PUT",
@@ -39,7 +39,7 @@ export const editAnswer = (data) => async (dispatch) => {
     })
     if (response.ok) {
         const editedAnswer = await response.json()
-        dispatch(editLoad(editedAnswer))
+        dispatch(getOneQuestion(questionId))
     } else if (response.status < 500) {
         const editedAnswer = await response.json();
         if (editedAnswer.errors) {
