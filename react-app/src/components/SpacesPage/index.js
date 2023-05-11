@@ -34,6 +34,7 @@ const SpacesPage = () => {
                         <OpenModalButton
                             modalComponent={<CreateSpaceModal/>}
                             buttonText="Create a Space"
+                            className="oval-button"
                         />
                         <button
                             className="oval-button"

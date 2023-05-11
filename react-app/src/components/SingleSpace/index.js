@@ -50,27 +50,28 @@ const SingleSpace = () => {
                         <i className="fas fa-ellipsis-h"></i>
                     </button>
                     <div className="edit-question-tooltip-container">
-                    <div className={editQuestionTool}>
-                        <button className='edit-space-placeholder'>
-                            Edit space
-                        </button>
-                        <OpenModalButton
-                            buttonText="Delete space"
-                            modalComponent={
-                                <DeleteSpaceModal
-                                    id={space.id}
-                                />
-                            }
-                        />
+                        <div className={editQuestionTool}>
+                            <button className='edit-space-placeholder'>
+                                Edit space
+                            </button>
+                            <OpenModalButton
+                                buttonText="Delete space"
+                                modalComponent={
+                                    <DeleteSpaceModal
+                                        id={space.id}
+                                    />
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
-                </div>
-                <div className="add-space-question-button">
-                    <OpenModalButton
-                        buttonText="Add a Question to this Space"
-                        modalComponent={<CreateQuestionModal spaceId={spaceId} />}
-                    />
-                </div>
+            </div>
+            <div className="add-space-question-button">
+                <OpenModalButton
+                    buttonText="Add a Question to this Space"
+                    modalComponent={<CreateQuestionModal spaceId={spaceId} />}
+                    className="oval-button"
+                />
             </div>
             <div className='single-space-questions-container'>
                 {
