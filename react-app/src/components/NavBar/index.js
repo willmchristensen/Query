@@ -11,10 +11,6 @@ const NavBar = ({ isLoaded }) => {
 
     let index = 0;
 
-    const handleDeadLinks = () => {
-        window.alert('sup')
-    }
-
     return(
         <div className="nav-container">
             <nav className="nav">
@@ -38,7 +34,6 @@ const NavBar = ({ isLoaded }) => {
                         item={"Following"}
                         url={"/following"}
                         text={"Following"}
-                        onClick={handleDeadLinks}
                     >
                     </NavItem>
                     <NavItem 
@@ -48,18 +43,13 @@ const NavBar = ({ isLoaded }) => {
                         text={"Answer"}
                     >
                     </NavItem>
-                    {
-                        sessionUser ? 
-                        <NavItem 
-                            icon={<i class="fas fa-users"></i>}
-                            item={"Spaces"}
-                            url={"/spaces"}
-                            text={"Spaces"}
-                        >
-                        </NavItem>
-                        :
-                        <></>
-                    }
+                    <NavItem 
+                        icon={<i class="fas fa-users"></i>}
+                        item={"Spaces"}
+                        url={"/spaces"}
+                        text={"Spaces"}
+                    >
+                    </NavItem>
                     <NavItem 
                         icon={<i class="fas fa-bell"></i>}
                         item={"Notifications"}

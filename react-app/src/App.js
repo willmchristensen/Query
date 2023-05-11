@@ -43,13 +43,7 @@ function App() {
           <Route path="/spaces">
             <SpacesPage />
           </Route>
-          <Route path="/following">
-            <Following />
-          </Route>
-          <Route path="/answer">
-            <Following />
-          </Route>
-          <Route path="/notifications">
+          <Route path={["/following","/answer","/notifications"]}>
             <Following />
           </Route>
           <Route path="/">
