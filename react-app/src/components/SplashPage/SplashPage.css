@@ -43,3 +43,9 @@
 .right-side{
     border-left: 2px solid  rgb(235, 235, 235);
 }
+
+.splash-background {
+    background-size: cover;
+    background-position: center;
+    background-image: url(${splashBackground});
+}

@@ -3,7 +3,9 @@ import SignupFormPage from "../SignupFormPage"
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import splashBackground from "../../assets/images/splash-page-background.jpg"
 import "./SplashPage.css"
+
 
 function SplashPage() {
     const dispatch = useDispatch();
@@ -17,7 +19,7 @@ function SplashPage() {
     }
 
     return (
-        <div>
+        <div className="splash-background">
             <div className="splash-page-container white-background">
                 <h1 className="query quora-font">Query</h1>
                 <h2 className="mission-statement">A place to share knowledge and better understand the world</h2>
