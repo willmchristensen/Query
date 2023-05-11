@@ -165,13 +165,11 @@ const questionReducer = (state = initialState, action) => {
             newState.questions[action.details.id] = action.details
             return newState
         }
-
         case DELETE_QUESTION: {
             const newState = {...state, questions: { ...state.questions }}
             delete newState.questions[action.questionId]
             return newState
         }
-
         default:
             return state;
     }

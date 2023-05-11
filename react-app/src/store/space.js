@@ -69,7 +69,6 @@ export const deleteOneSpace = (id) => async (dispatch) => {
 };
 
 export const createOneSpace = (space) => async (dispatch) => {
-    console.log('------------------------------space in thunk', space);
     const response = await fetch("/api/spaces/new", {
         method: "POST",
         headers: {
@@ -81,7 +80,7 @@ export const createOneSpace = (space) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        dispatch(createSpace(data))
+        dispatch(createSpace(data.space))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -108,7 +107,7 @@ const spaceReducer = (state = initialState, action) => {
             return newState;
         }
         case LOAD_ONE: {
-            const newState = { ...state };
+            const newState = { ...state, singleSpace: { ...state.singleSpace } };
             newState.singleSpace = { ...action.space }
             return newState
         }
@@ -119,7 +118,7 @@ const spaceReducer = (state = initialState, action) => {
         }
         case CREATE_SPACE: {
             const newState = { ...state, spaces: { ...state.spaces }};
-            newState[action.space.id] = { ...action.space }
+            newState.spaces[action.space.id] = action.space 
             return newState
         }
         default:

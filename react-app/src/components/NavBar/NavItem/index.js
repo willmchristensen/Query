@@ -2,7 +2,7 @@ import './NavItem.css'
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
-const NavItem = ({item, icon,url}) => {
+const NavItem = ({item, icon,url, text}) => {
     const [isHidden,setIsHidden] = useState(true)
     // FIXME: LONG HOVER
     // let timer = 0;
@@ -43,7 +43,7 @@ const NavItem = ({item, icon,url}) => {
                 <div className={tooltip}>
                     <div className="triangle">
                     </div>
-                    {item.text}
+                    {text}
                 </div>
             </div>
         </div>

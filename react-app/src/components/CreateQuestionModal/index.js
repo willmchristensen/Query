@@ -12,7 +12,6 @@ function CreateQuestionModal({spaceId}) {
 	const currentUser = useSelector((state) => state.session.user)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-	console.log('------------------------------spaceId',spaceId);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -20,11 +19,10 @@ function CreateQuestionModal({spaceId}) {
 			const item = {
 				'details': details,
 				'user_id': currentUser.id,
-				'space_id': Number(spaceId)
+				'space_id': spaceId ? Number(spaceId) : 4
 			}
-			console.log('------------------------------item',item);
 			const data = await dispatch(createQuestion(item));
-			console.log('------------------------------data.question', data.question);
+			console.log('------------------------------data', data);
 			if (data) {
 				closeModal();
 				history.push(`/questions/${data.question.id}`)

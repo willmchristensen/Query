@@ -43,9 +43,15 @@ function App() {
           <Route path="/spaces">
             <SpacesPage />
           </Route>
-          {/* <Route path="/following">
+          <Route path="/following">
             <Following />
-          </Route> */}
+          </Route>
+          <Route path="/answer">
+            <Following />
+          </Route>
+          <Route path="/notifications">
+            <Following />
+          </Route>
           <Route path="/">
             <MainContent />
           </Route>

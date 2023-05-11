@@ -18,6 +18,12 @@ const SpacesPage = () => {
         dispatch(getAllSpaces())
     }, [dispatch]) 
 
+    const handleClick = () => {
+        // const square = document.getElementsByClassName("square-space-card-container");
+        // square.scrollIntoView()
+        window.scrollBy(0, 1000)
+    }
+
     return (
         <div className="spaces-container">
             <div className="spaces-banner">
@@ -31,7 +37,10 @@ const SpacesPage = () => {
                             modalComponent={<CreateSpaceModal/>}
                             buttonText="Create a Space"
                         />
-                        <button className="oval-button">
+                        <button 
+                            className="oval-button"
+                            onClick={handleClick}
+                        >
                             Discover Spaces
                         </button>
                     </div>
