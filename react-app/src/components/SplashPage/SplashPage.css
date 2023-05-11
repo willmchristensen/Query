@@ -1,6 +1,5 @@
 .login-signup-container {
     display: flex;
-    border: 3px orange solid;
     justify-content: center;
     width: 100%;
 }
@@ -20,7 +19,6 @@
 }
 .splash-page-container{
     display: flex;
-    border: blue 2px solid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -29,7 +27,6 @@
 .form-container{
     display: flex;
     flex-direction: column;
-    border: solid red 2px
 }
 .mission-statement{
     font-size: medium;
@@ -38,14 +35,19 @@
 }
 .width-fifty{
     width: 50%;
-    border: red solid 5px;
 }
 .right-side{
     border-left: 2px solid  rgb(235, 235, 235);
 }
 
-.splash-background {
+/* .splash-background {
     background-size: cover;
     background-position: center;
     background-image: url(${splashBackground});
-}
+} */
+
+/* .splash-background {
+    background-image: url("../assets/images/splash-page-background.jpg");
+    background-size: cover;
+    background-position: center;
+  } */
