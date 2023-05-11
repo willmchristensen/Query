@@ -13,7 +13,6 @@ function ProfilePage() {
     const questionsArray = Object.values(questions);
     const userQuestions = questionsArray.filter(q => q.userId === sessionUser?.id);
 
-
     useEffect(()=> {
         dispatch(getAllQuestions())
     }, [dispatch, sessionUser])
@@ -24,7 +23,7 @@ function ProfilePage() {
 
     return (
         <div className="profile-page-container">
-            <h1>{sessionUser.username}</h1>
+            <h1 className='profile-page-username'>{sessionUser.username}</h1>
             {
                 userQuestions.map(question => {
                     return (
