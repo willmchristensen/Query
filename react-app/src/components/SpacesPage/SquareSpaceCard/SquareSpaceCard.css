@@ -30,3 +30,6 @@
     padding-bottom: 4rem;
     overflow-wrap: anywhere;
 }
+.square-space-support-text > p{
+    text-decoration: none;
+}

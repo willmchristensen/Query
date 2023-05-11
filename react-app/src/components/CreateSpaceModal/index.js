@@ -25,10 +25,7 @@ function CreateSpaceModal() {
 				"image_url": imageUrl
 			}
 			const data = await dispatch(createOneSpace(item));	
-			console.log('------------------------------data',data);
 			if (data) {
-				setErrors(data);
-			} else {
 				closeModal();
 			}
 		} else {

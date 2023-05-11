@@ -51,7 +51,7 @@ function CreateAnswerModal({questionId}) {
 		<div className="create-answer-container">
 			<h1>Add Answer</h1>
 			<form
-				 onSubmit={(e) => handleSubmit(e)}
+				 onSubmit={handleSubmit}
 				 encType="multipart/form-data"
 			>
 				<ul>
