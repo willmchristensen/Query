@@ -19,7 +19,7 @@ function CreateQuestionModal({spaceId}) {
 			const item = {
 				'details': details,
 				'user_id': currentUser.id,
-				'space_id': spaceId ? Number(spaceId) : 4
+				'space_id': spaceId ? Number(spaceId) : 9
 			}
 			const data = await dispatch(createQuestion(item));
 			console.log('------------------------------data', data);

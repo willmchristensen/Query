@@ -22,35 +22,39 @@ function App() {
 
   return (
     <>
-      <NavBar isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/questions/:questionId">
-            <SingleQuestion />
-          </Route>
-          <Route path="/users/:userId">
-            <ProfilePage />
-          </Route>
-          <Route path="/spaces/:spaceId">
-            <SingleSpace />
-          </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/spaces">
-            <SpacesPage />
-          </Route>
-          <Route path={["/following","/answer","/notifications"]}>
-            <Following />
-          </Route>
-          <Route path="/">
-            <MainContent />
-          </Route>
-        </Switch>
-      )}
+      <NavBar isLoaded={isLoaded}>
+        {isLoaded && (
+          <Switch>
+            <Route path="/questions/:questionId">
+              <SingleQuestion />
+            </Route>
+            <Route path="/users/:userId">
+              <ProfilePage />
+            </Route>
+            <Route path="/spaces/:spaceId">
+              <SingleSpace />
+            </Route>
+            {/* <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route> */}
+            <Route path="/spaces">
+              <SpacesPage />
+            </Route>
+            <Route path={["/following","/answer","/notifications"]}>
+              <Following />
+            </Route>
+            <Route path="/home">
+              <MainContent />
+            </Route>
+            <Route path="/">
+              <LoginFormPage />
+            </Route>
+          </Switch>
+        )}
+      </NavBar>
     </>
   );
 }
