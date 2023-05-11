@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import Space, db
+from app.models import Space, db, Question
 from flask_login import login_required, current_user
-from app.forms import SpaceForm
+from app.forms import SpaceForm, QuestionForm
 
 space_routes = Blueprint("spaces", __name__)
 
@@ -39,8 +39,6 @@ def delete_one_space(id):
     else:
         return {"errors": "You must be the owner of a space to delete it."}
 
-
-
 @space_routes.route("/new", methods=["POST"])
 @login_required
 def create_one_space():
@@ -70,3 +68,27 @@ def create_one_space():
     return {
         "errors": form.errors
     }
+
+@space_routes.route("/<int:id>/questions/new", methods=["POST"])
+@login_required
+def create_space_question():
+    """
+    Create a question for a space
+    """
+    form = QuestionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+        print('data!!',data)
+        new_question = Question(
+            details = data['details'],
+            user_id = data['user_id'],
+            space_id = data['space_id']
+        )
+
+        db.session.add(new_question)
+        db.session.commit()
+        return{ "question": new_question.to_dict() }
+    
+    return { "errors": form.errors }

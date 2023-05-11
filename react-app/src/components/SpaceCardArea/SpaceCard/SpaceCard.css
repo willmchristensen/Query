@@ -1,20 +1,16 @@
 .space-card-container{
     display: flex;
     justify-content: left;
-    width: 10rem;
     height: 5rem;
-    overflow: hidden;
+    width: 100%;
 }
 .space-card{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     padding: .5rem;
     margin: .5rem;
-    word-wrap: break-word;
-}
-.space-card > *{
-    width: 7rem;
+    width: 100%;
 }
 .space-card:hover{
     background-color: rgba(220, 220, 220, 0.205);
