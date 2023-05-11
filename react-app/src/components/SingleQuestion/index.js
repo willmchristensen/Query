@@ -15,10 +15,10 @@ const SingleQuestion = () => {
     const { questionId } = useParams();
     const { closeModal } = useModal
     const dispatch = useDispatch();
-
+    const user = useSelector((state) => state.session.user)
     const answer = useSelector((state) => state.answers)
     const { question } = useSelector((state) => state.question.singleQuestion)
-    // const users = useSelector((state) => state.)
+    console.log("user", user);
 
 
 
@@ -44,13 +44,13 @@ return (
         <div className="content-single-question">
             <div className="s-q-content-container text s-q-question-top-bottom">
                 <h1 className='border-check s-q-width100 answer-formatter'>{question.details}</h1>
-                    <div className="s-q-answer-button">
-                        <OpenModalButton
-                            className="oval-button"
-                            buttonText={<i class="fas fa-edit"> Answer</i>}
-                            modalComponent={<CreateAnswerModal questionId={questionId} />}
-                        />
-                    </div>
+                {user && user.id !== question.userId && <div className="s-q-answer-button">
+                    <OpenModalButton
+                        className="oval-button"
+                        buttonText={<i class="fas fa-edit"> Answer</i>}
+                        modalComponent={<CreateAnswerModal questionId={questionId} />}
+                    />
+                </div>}
             </div>
             <hr />
 
@@ -64,17 +64,17 @@ return (
                                 {answer.details}
                                 </div>
                                 {/* See comments button */}
-                                <div className="s-q-displayFlex-row">
                                     <button className="circle-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
                                         <i class="fa fa-regular fa-comment"> {answer.replies.length >= 1 ? answer.replies.length : null}</i>
                                     </button>
+                {user && user.id === question.userId && <div className="s-q-displayFlex-row">
                                     <div className="s-q-right">
 
                                         <OpenModalButton
                                             className="oval-button"
                                             buttonText="Delete Answer"
                                             modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
-                                            />
+                                        />
 
                                     </div>
                                     <OpenModalButton
@@ -82,7 +82,7 @@ return (
                                         buttonText="Edit Answer"
                                         modalComponent={<EditAnswerModal questionId={questionId} answerId={answer.id} />}
                                     />
-                                </div>
+                                </div>}
                                 {/* ADD A COMMENT */}
                                 <div className={commentVisible ? "" : "hidden"}>
                                     <CreateReviewForm answerId={answer.id} questionId={questionId} />
