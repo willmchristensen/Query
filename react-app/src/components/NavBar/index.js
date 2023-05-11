@@ -17,40 +17,40 @@ const NavBar = ({ isLoaded }) => {
                 <div className="nav-section">
                     <div className="logo">
                         <NavLink
-                            to='/'
+                            to='/home'
                         >
                             Query
                         </NavLink>
                     </div>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-home"></i>}
                         item={"Home"}
-                        url={"/"}
+                        url={"/home"}
                         text={"Home"}
                     >
                     </NavItem>
-                     <NavItem 
+                     <NavItem
                         icon={<i class="fab fa-wpforms"></i>}
                         item={"Following"}
                         url={"/following"}
                         text={"Following"}
                     >
                     </NavItem>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-check-square"></i>}
                         item={"Answer"}
                         url={"/answer"}
                         text={"Answer"}
                     >
                     </NavItem>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-users"></i>}
                         item={"Spaces"}
                         url={"/spaces"}
                         text={"Spaces"}
                     >
                     </NavItem>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-bell"></i>}
                         item={"Notifications"}
                         url={"/notifications"}
@@ -67,12 +67,11 @@ const NavBar = ({ isLoaded }) => {
                         <ProfileButton user={sessionUser} />
                     )}
                     {
-                        sessionUser ?
+                        sessionUser &&
                         <OpenModalButton
                             buttonText="Add question"
                             modalComponent={<CreateQuestionModal />}
-                        /> :
-                        <></>
+                        />
                     }
                 </div>
             </nav>

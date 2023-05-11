@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import SplashPage from "./components/SplashPage";
 import { authenticate } from "./store/session";
 import MainContent from "./components/MainContent";
 import SingleQuestion from "./components/SingleQuestion";
@@ -22,16 +21,18 @@ function App() {
 
   return (
     <>
-      <NavBar isLoaded={isLoaded}>
         {isLoaded && (
           <Switch>
             <Route path="/questions/:questionId">
+              <NavBar isLoaded={isLoaded} />
               <SingleQuestion />
             </Route>
             <Route path="/users/:userId">
+              <NavBar isLoaded={isLoaded} />
               <ProfilePage />
             </Route>
             <Route path="/spaces/:spaceId">
+              <NavBar isLoaded={isLoaded} />
               <SingleSpace />
             </Route>
             {/* <Route path="/login" >
@@ -41,20 +42,22 @@ function App() {
               <SignupFormPage />
             </Route> */}
             <Route path="/spaces">
+              <NavBar isLoaded={isLoaded} />
               <SpacesPage />
             </Route>
             <Route path={["/following","/answer","/notifications"]}>
+              <NavBar isLoaded={isLoaded} />
               <Following />
             </Route>
             <Route path="/home">
+              <NavBar isLoaded={isLoaded} />
               <MainContent />
             </Route>
-            <Route path="/">
-              <LoginFormPage />
+            <Route exact path={["/", "/login"]}>
+              <SplashPage />
             </Route>
           </Switch>
         )}
-      </NavBar>
     </>
   );
 }
