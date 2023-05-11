@@ -3,6 +3,9 @@
     flex-direction: column;
     /* border-bottom: .1rem solid black; */
 }
+.single-space-banner {
+    background-color: grey;
+}
 .edit-question-tooltip {
     background-color: rgb(255, 255, 255);
     border: .1rem solid black;
@@ -18,12 +21,12 @@
 .hidden {
     display: none;
 }
-.gradient-box{
+/* .gradient-box{
     background: radial-gradient(whitesmoke, #FFFFED);
     width: 100%;
     height: 40vh;
     padding: 2%;
-}
+} */
 .single-space-image-container > img{
     height: 20vh;
     width: 11%;
