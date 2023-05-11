@@ -1,4 +1,45 @@
-.splash-page-container {
+.login-signup-container {
+    display: flex;
+    border: 3px orange solid;
+    justify-content: center;
+    width: 100%;
+}
+.login-splash-page{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.signup-splash-page{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.splash-page-container{
+    display: flex;
+    border: blue 2px solid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10% 25% 0px 25%;
+}
+.form-container{
     display: flex;
     flex-direction: column;
+    border: solid red 2px
+}
+.mission-statement{
+    font-size: medium;
+    text-align: center;
+    margin: 15px 10px;
+}
+.width-fifty{
+    width: 50%;
+    border: red solid 5px;
+}
+.right-side{
+    border-left: 2px solid  rgb(235, 235, 235);
 }
