@@ -19,21 +19,22 @@ const NavBar = ({ isLoaded }) => {
         <div className="nav-container">
             <nav className="nav">
                 <div className="nav-section">
-                    <div className="logo">
+                    <div className="logo quora-font query-logo">
                         <NavLink
+                            className="no-underline"
                             to='/'
                         >
                             Query
                         </NavLink>
                     </div>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-home"></i>}
                         item={"Home"}
                         url={"/"}
                         text={"Home"}
                     >
                     </NavItem>
-                     <NavItem 
+                     <NavItem
                         icon={<i class="fab fa-wpforms"></i>}
                         item={"Following"}
                         url={"/following"}
@@ -41,7 +42,7 @@ const NavBar = ({ isLoaded }) => {
                         onClick={handleDeadLinks}
                     >
                     </NavItem>
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-check-square"></i>}
                         item={"Answer"}
                         url={"/answer"}
@@ -49,8 +50,8 @@ const NavBar = ({ isLoaded }) => {
                     >
                     </NavItem>
                     {
-                        sessionUser ? 
-                        <NavItem 
+                        sessionUser ?
+                        <NavItem
                             icon={<i class="fas fa-users"></i>}
                             item={"Spaces"}
                             url={"/spaces"}
@@ -60,7 +61,7 @@ const NavBar = ({ isLoaded }) => {
                         :
                         <></>
                     }
-                    <NavItem 
+                    <NavItem
                         icon={<i class="fas fa-bell"></i>}
                         item={"Notifications"}
                         url={"/notifications"}
