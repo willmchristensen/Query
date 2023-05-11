@@ -88,7 +88,7 @@ return (
                                     <CreateReviewForm answerId={answer.id} questionId={questionId} />
                                     {answer.replies.map(reply => {
                                         return (
-                                            <div>
+                                            <div className="reply-formatter s-q-displayFlex-row">
                                                 <div>{reply.details}</div>
                                                 <OpenModalButton
                                                     className="oval-button"
