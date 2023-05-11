@@ -19,9 +19,7 @@ const SpacesPage = () => {
     }, [dispatch]) 
 
     const handleClick = () => {
-        // const square = document.getElementsByClassName("square-space-card-container");
-        // square.scrollIntoView()
-        window.scrollBy(0, 1000)
+        window.alert('Feature coming soon')
     }
 
     return (
