@@ -6,9 +6,9 @@ const LOAD = "answers/load"
 const DELETE_ANSWER = "answers/delete"
 const EDIT_ANSWER = "answers/edit"
 
-const editLoad = (answer) => ({
+const editLoad = (details) => ({
     type: EDIT_ANSWER,
-    answer
+    details
 })
 
 const load = (data) => ({
@@ -150,7 +150,7 @@ const answerReducer = (state = initialState, action) => {
 
         case EDIT_ANSWER:
             const newEditState = { ...state, answers:{ ...state.answers } };
-            newEditState.answers[action.answer.id] = action.answer
+            newEditState.answers[action.details.id] = action.details
             return newEditState
         default:
             return state;
