@@ -69,7 +69,6 @@ export const deleteOneSpace = (id) => async (dispatch) => {
 };
 
 export const createOneSpace = (space) => async (dispatch) => {
-    console.log('------------------------------space in thunk', space);
     const response = await fetch("/api/spaces/new", {
         method: "POST",
         headers: {
@@ -81,7 +80,6 @@ export const createOneSpace = (space) => async (dispatch) => {
     });
     if (response.ok) {
         const data = await response.json();
-        console.log('data in thunk', data)
         dispatch(createSpace(data.space))
         return data
     } else if (response.status < 500) {

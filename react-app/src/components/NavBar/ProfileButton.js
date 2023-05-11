@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import { login, logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
-
+  const { closeModal } = useModal();
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -34,6 +35,13 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
   };
+
+  const handleClick = async (e) => {
+      e.preventDefault();
+      await dispatch(login('demo@aa.io', 'password'));
+      closeModal()
+    }
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -68,11 +76,12 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <button onClick={handleClick}>Demo User</button>
           </>
         )}
       </ul>
     </>
   );
-}
+};
 
 export default ProfileButton;
