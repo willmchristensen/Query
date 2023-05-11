@@ -16,6 +16,11 @@
     align-items: center;
     justify-content:space-between;
 }
+
+.border {
+    border: 2px solid black;
+}
+
 .nav-section-two{
     display: flex;
     align-items: center;

@@ -15,7 +15,7 @@ const NavBar = ({ isLoaded }) => {
         window.alert('sup')
     }
 
-    return(
+    return (
         <div className="nav-container">
             <nav className="nav">
                 <div className="nav-section">
@@ -26,15 +26,17 @@ const NavBar = ({ isLoaded }) => {
                         >
                             Query
                         </NavLink>
+
                     </div>
-                    <NavItem
+                        <NavItem
                         icon={<i class="fas fa-home"></i>}
                         item={"Home"}
                         url={"/"}
                         text={"Home"}
-                    >
+                        >
                     </NavItem>
-                     <NavItem
+
+                    <NavItem
                         icon={<i class="fab fa-wpforms"></i>}
                         item={"Following"}
                         url={"/following"}
@@ -51,15 +53,15 @@ const NavBar = ({ isLoaded }) => {
                     </NavItem>
                     {
                         sessionUser ?
-                        <NavItem
-                            icon={<i class="fas fa-users"></i>}
-                            item={"Spaces"}
-                            url={"/spaces"}
-                            text={"Spaces"}
-                        >
-                        </NavItem>
-                        :
-                        <></>
+                            <NavItem
+                                icon={<i class="fas fa-users"></i>}
+                                item={"Spaces"}
+                                url={"/spaces"}
+                                text={"Spaces"}
+                            >
+                            </NavItem>
+                            :
+                            <></>
                     }
                     <NavItem
                         icon={<i class="fas fa-bell"></i>}
@@ -79,11 +81,11 @@ const NavBar = ({ isLoaded }) => {
                     )}
                     {
                         sessionUser ?
-                        <OpenModalButton
-                            buttonText="Add question"
-                            modalComponent={<CreateQuestionModal />}
-                        /> :
-                        <></>
+                            <OpenModalButton
+                                buttonText="Add question"
+                                modalComponent={<CreateQuestionModal />}
+                            /> :
+                            <></>
                     }
                 </div>
             </nav>
