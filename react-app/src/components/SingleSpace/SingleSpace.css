@@ -58,7 +58,6 @@
 
 .add-space-question-button button {
     padding: 10px 10%;
-
 }
 
 .single-space-questions-container{
@@ -77,6 +76,6 @@
     font-size: 2vw;
 }
 .single-space-answers{
-    font-size: 1.3vw;
+    font-size: 12pt;
     padding-top: 7px;
 }

@@ -17,7 +17,7 @@ function ProfilePage() {
         dispatch(getAllQuestions())
     }, [dispatch, sessionUser])
 
-    if (!sessionUser) return <Redirect to="/" />
+    if (!sessionUser) return <Redirect to="/login" />
 
     if(!questions) return null
 
