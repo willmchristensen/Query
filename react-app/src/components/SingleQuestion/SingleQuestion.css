@@ -17,6 +17,8 @@
     /* background-color: white; */
 }
 .answer-box{
+    display: flex;
+    flex-direction: column;
     border: 2px solid red;
     width: 50vw;
     text-align: left;
@@ -50,6 +52,15 @@
 }
 
 .s-q-comment-button:hover{
- background-color: rgb(235, 235, 235);
- border: 1px solid  rgb(235, 235, 235);
+    background-color: rgb(235, 235, 235);
+    border: 1px solid  rgb(235, 235, 235);
+}
+
+.s-q-displayFlex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.s-q-right {
+    margin-right: 15px;
 }
