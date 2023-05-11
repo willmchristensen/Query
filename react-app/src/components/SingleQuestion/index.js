@@ -58,7 +58,7 @@ return (
                 {
                     question.answers.map(answer => {
                         return (
-                            <div className='answer-box' key={answer.id}>
+                            <div className='answer-box s-q-answer-bottom' key={answer.id}>
                                 <hr />
                                 {answer.details}
                                 {/* See comments button */}
