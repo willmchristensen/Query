@@ -42,7 +42,7 @@ const SingleQuestion = () => {
     return (
         <div className="s-q-background">
             <div className="content-single-question">
-                <div className="s-q-content-container text s-q-question-top-bottom">
+                <div className="s-q-content-container text s-q-question-top-bottom border-radius3">
                     <h1 className='border-check s-q-width100 answer-formatter'>{question.details}</h1>
                     {user && user.id !== question.userId && <div className="s-q-answer-button">
                         <OpenModalButton
@@ -58,10 +58,12 @@ const SingleQuestion = () => {
                     {
                         question.answers.map(answer => {
                             return (
-                                <div className='answer-box s-q-answer-bottom' key={answer.id}>
+                                <div className='answer-box s-q-answer-bottom border-radius3' key={answer.id}>
 
                                     <div className="answer-formatter">
-                                        {answer.details}
+                                        <h4>
+                                            {answer.details}
+                                        </h4>
                                     </div>
                                     {/* See comments button */}
                                     <button className="circle-button s-q-right" onClick={() => setCommentVisible(!commentVisible)}>
@@ -88,7 +90,7 @@ const SingleQuestion = () => {
                                         {user && <CreateReviewForm answerId={answer.id} questionId={questionId} />}
                                         {answer.replies.map(reply => {
                                             return (
-                                                <div className="reply-formatter s-q-displayFlex-row">
+                                                <div className="reply-formatter s-q-displayFlex-row border-radius3">
                                                     <div>{reply.details}</div>
                                                     {user && user.id === reply.ownerId && <OpenModalButton
                                                         className="oval-button"

@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .answer-box{
@@ -37,15 +38,19 @@
     /* background-color: white; */
 }
 
+.border-radius3 {
+    border-radius: 3px;
+}
+
 .s-q-width100{
     width: 100%;
 }
 
 .s-q-comment-button{
+    padding: 2px;
     border-radius: 15px;
     background-color: white;
     border: 0.5px solid white;
-    padding: 2px;
 }
 
 .s-q-comment-button:hover{
