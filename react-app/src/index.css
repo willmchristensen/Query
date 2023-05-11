@@ -9,14 +9,16 @@
     margin: 0;
 }
 
-/* html{
+html{
     background-color: rgb(235, 235, 235);
 }
 
 .white-background {
     background-color: white;
-} */
-
+}
+.query{
+    color: #00fffa;
+}
 .quora-font {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
@@ -24,12 +26,11 @@
 .query-logo {
     font-weight: 1000;
     font-size: 300%;
-    /* color: #00ffff */
 }
 
 .no-underline {
     text-decoration: none;
-    color: #00fffa
+    /* color: #00fffa */
 }
 
 .oval-button{
@@ -44,6 +45,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 .oval-button:hover{
     background-color: blue;
