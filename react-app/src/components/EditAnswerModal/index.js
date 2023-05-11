@@ -9,9 +9,10 @@ function EditAnswerModal({answerId, questionId}) {
 	const dispatch = useDispatch();
 	const [details, setDetails] = useState("");
 	const currentUser = useSelector((state) => state.session.user)
-	const question = useSelector((state) => state.question[questionId])
+	const question = useSelector((state) => state.question.singleQuestion.question)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+	console.log('----------', question);
 
 
 	const handleSubmit = async (e) => {
@@ -38,8 +39,10 @@ function EditAnswerModal({answerId, questionId}) {
 	};
 
 	return (
-		<div className="create-answer-container">
-			<h1>Edit Answer</h1>
+		<div className="edit-answer-container">
+
+			<h1 className="answer-formatter">Edit Answer</h1>
+			<h4 className="answer-formatter">{question.details}</h4>
 			<form
 				//  onSubmit={() => handleSubmit()}
 				onSubmit={handleSubmit}
@@ -50,14 +53,17 @@ function EditAnswerModal({answerId, questionId}) {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<input
-					type="text"
+				<div className="text-area-modal">
+					<textarea
 					value={details}
 					onChange={(e) => setDetails(e.target.value)}
 					placeholder={`Start your answer.`}
-				/>
-				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Edit Answer</button>
+					/>
+					</div>
+				<div className="button-order">
+				<button className="oval-button" onClick={closeModal}>Cancel</button>
+				<button className="oval-button" type="submit">Post</button>
+			</div>
 			</form>
 		</div>
 	)

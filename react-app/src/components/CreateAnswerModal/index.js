@@ -65,8 +65,10 @@ function CreateAnswerModal({questionId}) {
 					onChange={(e) => setDetails(e.target.value)}
 					placeholder={`Start your answer.`}
 				/>
-				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Answer</button>
+				<div className="button-order">
+				<button className="oval-button" onClick={closeModal}>Cancel</button>
+				<button className="oval-button" type="submit">Add Answer</button>
+			</div>
 			</form>
 		</div>
 	)

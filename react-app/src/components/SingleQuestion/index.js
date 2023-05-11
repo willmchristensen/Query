@@ -89,6 +89,7 @@ return (
                                             <div>
                                                 <div>{reply.details}</div>
                                                 <OpenModalButton
+                                                    className="oval-button"
                                                     buttonText="Delete Comment"
                                                     modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
                                                 />
