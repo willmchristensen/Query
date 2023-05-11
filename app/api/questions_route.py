@@ -87,7 +87,7 @@ def delete_one_question(id):
     question = Question.query.get(id)
 
     # Current user id must == question owner id to delete
-    if current_user.id != question.user_id:
+    if current_user.id == question.user_id:
         db.session.delete(question)
         db.session.commit()
         return "Question Deleted"
