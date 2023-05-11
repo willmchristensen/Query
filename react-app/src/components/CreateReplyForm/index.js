@@ -33,7 +33,7 @@ function CreateReviewForm({ answerId, questionId }) {
     };
 
     return (
-        <div className="create-answer-container reply-form-background">
+        <div className="create-reply-container reply-form-background">
             <form
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
@@ -44,9 +44,8 @@ function CreateReviewForm({ answerId, questionId }) {
                     ))}
                 </ul>
                 <div className="reply-center">
-                    <input
+                    <textarea
                         className="reply-center-width"
-                        type="text"
                         value={details}
                         onChange={(e) => setDetails(e.target.value)}
                         placeholder={`Add a comment...`}
