@@ -9,6 +9,14 @@
     margin: 0;
 }
 
+/* html{
+    background-color: rgb(235, 235, 235);
+}
+
+.white-background {
+    background-color: white;
+} */
+
 .quora-font {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
