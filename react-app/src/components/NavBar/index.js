@@ -11,6 +11,10 @@ const NavBar = ({ isLoaded }) => {
 
     let index = 0;
 
+    const handleDeadLinks = () => {
+        window.alert('sup')
+    }
+
     return(
         <div className="nav-container">
             <nav className="nav">
@@ -34,6 +38,7 @@ const NavBar = ({ isLoaded }) => {
                         item={"Following"}
                         url={"/following"}
                         text={"Following"}
+                        onClick={handleDeadLinks}
                     >
                     </NavItem>
                     <NavItem 
