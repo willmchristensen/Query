@@ -8,7 +8,14 @@
     padding: 0;
     margin: 0;
 }
-
+/* ??????thoughts???????? */
+a {
+    color: blue;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
 html{
     background-color: rgb(235, 235, 235);
 }
@@ -19,20 +26,45 @@ html{
     background-color: white;
 }
 .query{
-    color: #00fffa;
+    color: #0FF;
 }
 .quora-font {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
 .query-logo {
+    margin-right: 3rem;
     font-weight: 1000;
     font-size: 300%;
+}
+
+.query-logo > a{
+    text-decoration: none;
+    color: #0FF;
 }
 
 .no-underline {
     text-decoration: none;
     /* color: #00fffa */
+}
+.negative-oval-button{
+    border: .1rem solid red;
+    color:red;
+    font-weight: 900;
+    font-size: 1.1rem;
+    background-color: white;
+    border-radius: 70rem;
+    padding: .5rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.negative-oval-button:hover{
+    background-color: red;
+    color: white;
+    cursor: pointer;
 }
 
 .oval-button{
@@ -90,6 +122,7 @@ html{
 }
 
 .reply-formatter{
+    max-width: 80%;
     margin-left: 25px;
     margin-right: 5px;
     margin-top: 5px;

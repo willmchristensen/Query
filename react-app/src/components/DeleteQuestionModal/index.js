@@ -4,7 +4,7 @@ import "./DeleteQuestionModal.css"
 import { deleteQuestion } from "../../store/question";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function DeleteQuestionModal({questionId}) {
+function DeleteQuestionModal({ questionId }) {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user)
 	const history = useHistory();
@@ -20,14 +20,17 @@ function DeleteQuestionModal({questionId}) {
 	return (
 		<div className="delete-question-container">
 			<h1>Delete Question</h1>
-            <button onClick={closeModal}>
-                Cancel
-            </button>
-            <button
-                onClick={handleSubmit}
-            >
-                Confirm
-            </button>
+			<div className="delete-question-display-flex">
+				<button className="oval-button" onClick={closeModal}>
+					Cancel
+				</button>
+				<button
+					className="oval-button"
+					onClick={handleSubmit}
+				>
+					Confirm
+				</button>
+			</div>
 		</div>
 	)
 

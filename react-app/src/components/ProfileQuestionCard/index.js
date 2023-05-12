@@ -66,6 +66,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                     <div className="edit-question-tooltip-container">
                         <div className={editQuestionTool}>
                             <OpenModalButton
+                                className="oval-button"
                                 buttonText="Edit question"
                                 modalComponent={
                                     <EditQuestionModal
@@ -74,6 +75,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                                 }
                             />
                             <OpenModalButton
+                                className="oval-button"
                                 buttonText="Delete question"
                                 modalComponent={
                                     <DeleteQuestionModal
