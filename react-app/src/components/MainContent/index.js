@@ -43,11 +43,11 @@ const MainContent = () => {
                     })
                 }
             </div>
-            <div className="main-content-area">
+            {/* <div className="main-content-area">
                 <h2>adds</h2>
                 <h2>adds</h2>
                 <h2>adds</h2>
-            </div>
+            </div> */}
         </div>
     )
 }
