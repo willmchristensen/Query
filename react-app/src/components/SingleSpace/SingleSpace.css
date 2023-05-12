@@ -27,6 +27,7 @@
 
 .edit-question-tooltip-container {
     position: absolute;
+    right: -2%;
 }
 
 .edit-question-tooltip {

@@ -56,12 +56,13 @@ const SingleSpace = () => {
                     <div className="edit-question-tooltip-container">
                         <div className={editQuestionTool}>
                             <button
-                            className='edit-space-placeholder'
+                            className='edit-space-placeholder oval-button'
                             onClick={() => window.alert("Feature Coming Soon")}
                             >
                                 Edit space
                             </button>
                             <OpenModalButton
+                                className="oval-button"
                                 buttonText="Delete space"
                                 modalComponent={
                                     <DeleteSpaceModal
