@@ -1,0 +1,59 @@
+.login-signup-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.login-splash-page{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.signup-splash-page{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.splash-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: 10% 25% 0px 25%; */
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
+.mission-statement{
+    font-size: medium;
+    text-align: center;
+    margin: 15px 10px;
+}
+.width-fifty{
+    width: 50%;
+}
+.right-side{
+    border-left: 2px solid  rgb(235, 235, 235);
+}
+
+/* .splash-background {
+    background-size: cover;
+    background-position: center;
+    background-image: url(${splashBackground});
+} */
+
+.splash-background {
+    background-image: url("../../assets/images/splash-page-background.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

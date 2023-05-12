@@ -6,9 +6,9 @@ const LOAD = "answers/load"
 const DELETE_ANSWER = "answers/delete"
 const EDIT_ANSWER = "answers/edit"
 
-const editLoad = (answer) => ({
+const editLoad = (details) => ({
     type: EDIT_ANSWER,
-    answer
+    details
 })
 
 const load = (data) => ({
@@ -28,7 +28,7 @@ const postAnswer = (details) => ({
 
 //Edit answer Thunk
 export const editAnswer = (data) => async (dispatch) => {
-    let { answerId, item } = data
+    let { answerId, item, questionId } = data
 
     const response = await fetch(`/api/answers/${answerId}`, {
         method: "PUT",
@@ -39,7 +39,7 @@ export const editAnswer = (data) => async (dispatch) => {
     })
     if (response.ok) {
         const editedAnswer = await response.json()
-        dispatch(editLoad(editedAnswer))
+        dispatch(getOneQuestion(questionId))
     } else if (response.status < 500) {
         const editedAnswer = await response.json();
         if (editedAnswer.errors) {
@@ -93,7 +93,8 @@ export const createAnswer = (details, questionId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         // dispatch(postAnswer(data));
-        dispatch(getOneQuestion(questionId))
+        dispatch(getOneQuestion(questionId));
+        return data;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -149,7 +150,7 @@ const answerReducer = (state = initialState, action) => {
 
         case EDIT_ANSWER:
             const newEditState = { ...state, answers:{ ...state.answers } };
-            newEditState.answers[action.answer.id] = action.answer
+            newEditState.answers[action.details.id] = action.details
             return newEditState
         default:
             return state;

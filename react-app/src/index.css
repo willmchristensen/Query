@@ -1,6 +1,6 @@
-/* TODO Add site wide styles *//* TODO: 
-    -Add site wide styles 
-    -GLOBAL COLORS: 
+/* TODO Add site wide styles *//* TODO:
+    -Add site wide styles
+    -GLOBAL COLORS:
         -backgrounds, font, border, boxshadow
 */
 *{
@@ -8,6 +8,31 @@
     padding: 0;
     margin: 0;
 }
+
+html{
+    background-color: rgb(235, 235, 235);
+}
+
+.white-background {
+    background-color: white;
+}
+.query{
+    color: #00fffa;
+}
+.quora-font {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.query-logo {
+    font-weight: 1000;
+    font-size: 300%;
+}
+
+.no-underline {
+    text-decoration: none;
+    /* color: #00fffa */
+}
+
 .oval-button{
     border: .1rem solid blue;
     color:blue;
@@ -20,9 +45,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 .oval-button:hover{
-    background-color: rgba(0, 0, 255, 0.014);
+    background-color: blue;
+    color: white;
     cursor: pointer;
 }
 .circle-button{
@@ -31,11 +58,35 @@
     font-weight: 900;
     font-size: 1.1rem;
     border-radius: 70rem;
-    background-color: white;
+    background-color: whitesmoke;
     padding: 1rem;
     margin: 1rem;
 }
 .circle-button:hover{
-    background-color: rgba(0, 0, 0, 0.027);
+    /* background-color: white; */
+    box-shadow: 0px 0px 2px 2px black;
     cursor: pointer;
+}
+.button-order{
+    display: flex;
+    justify-content: flex-end;
+}
+.text-area-modal textarea{
+    border: none;
+    outline: none;
+    width: 90%;
+    margin: 3px 10px 3px 10px;
+    resize: vertical;
+}
+.answer-formatter{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.reply-formatter{
+    margin-left: 25px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }

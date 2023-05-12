@@ -9,9 +9,6 @@
     grid-template-columns: repeat(4,1fr);
     width: 50vw;
 }
-.space-card-container > *{
-    max-width: 10rem;
-}
 .view-more{
     width: 40vw;
     padding: 1rem;
@@ -40,6 +37,7 @@
     justify-content: space-between;
     border-radius: .23rem;
     width: 40vw;
+    margin-top: 2vh;
 }
 .user-spaces {
     overflow: hidden;

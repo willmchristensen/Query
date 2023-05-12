@@ -64,6 +64,7 @@ def create_one_question():
         new_question = Question(
             details = data['details'],
             user_id = data['user_id'],
+            space_id = data['space_id']
         )
         # print('NEW QUESTION', new_question.to_dict())
         # ------------------------------
@@ -86,7 +87,7 @@ def delete_one_question(id):
     question = Question.query.get(id)
 
     # Current user id must == question owner id to delete
-    if current_user.id != question.user_id:
+    if current_user.id == question.user_id:
         db.session.delete(question)
         db.session.commit()
         return "Question Deleted"

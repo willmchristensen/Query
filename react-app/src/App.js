@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import SplashPage from "./components/SplashPage";
 import { authenticate } from "./store/session";
 import MainContent from "./components/MainContent";
 import SingleQuestion from "./components/SingleQuestion";
@@ -22,35 +21,43 @@ function App() {
 
   return (
     <>
-      <NavBar isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/questions/:questionId">
-            <SingleQuestion />
-          </Route>
-          <Route path="/users/:userId">
-            <ProfilePage />
-          </Route>
-          <Route path="/spaces/:spaceId">
-            <SingleSpace />
-          </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/spaces">
-            <SpacesPage />
-          </Route>
-          {/* <Route path="/following">
-            <Following />
-          </Route> */}
-          <Route path="/">
-            <MainContent />
-          </Route>
-        </Switch>
-      )}
+        {isLoaded && (
+          <Switch>
+            <Route path="/questions/:questionId">
+              <NavBar isLoaded={isLoaded} />
+              <SingleQuestion />
+            </Route>
+            <Route path="/users/:userId">
+              <NavBar isLoaded={isLoaded} />
+              <ProfilePage />
+            </Route>
+            <Route path="/spaces/:spaceId">
+              <NavBar isLoaded={isLoaded} />
+              <SingleSpace />
+            </Route>
+            {/* <Route path="/login" >
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route> */}
+            <Route path="/spaces">
+              <NavBar isLoaded={isLoaded} />
+              <SpacesPage />
+            </Route>
+            <Route path={["/following","/answer","/notifications"]}>
+              <NavBar isLoaded={isLoaded} />
+              <Following />
+            </Route>
+            <Route path="/home">
+              <NavBar isLoaded={isLoaded} />
+              <MainContent />
+            </Route>
+            <Route exact path={["/", "/login"]}>
+              <SplashPage />
+            </Route>
+          </Switch>
+        )}
     </>
   );
 }

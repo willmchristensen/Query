@@ -26,17 +26,18 @@ const ProfileQuestionCard = ({ question, user }) => {
     let editQuestionTool = isHidden ? 'hidden' : 'edit-question-tooltip';
 
     return (
-            <div className="question-card-container">
+        <div className='profile-question-card-container white-background'>
+            <div className="profile-question-card">
                 <NavLink
                     to={`/questions/${question.id}`}
                 >
-                    <div className="question-card">
-                        <div className="question-text">
-                            <h3>{question.details}</h3>
+                    <div className="profile-question-card">
+                        <div className="profile-question-text">
+                        {question.details}
                         </div>
                     </div>
                 </NavLink>
-                <div className="question-answers">
+                <div className="profile-question-answers">
                     {questionAnswers.length ?
                         (questionAnswers.length === 1 ?
                             (
@@ -53,6 +54,8 @@ const ProfileQuestionCard = ({ question, user }) => {
                         )
                     }
                 </div>
+            </div>
+            <div className='profile-question-card-edit-container'>
                 <div className="edit-question-button">
                     <button
                         className="circle-button"
@@ -65,7 +68,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                             <OpenModalButton
                                 buttonText="Edit question"
                                 modalComponent={
-                                    <EditQuestionModal 
+                                    <EditQuestionModal
                                         question={question}
                                     />
                                 }
@@ -73,7 +76,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                             <OpenModalButton
                                 buttonText="Delete question"
                                 modalComponent={
-                                    <DeleteQuestionModal 
+                                    <DeleteQuestionModal
                                         questionId={question.id}
                                     />
                                 }
@@ -82,6 +85,7 @@ const ProfileQuestionCard = ({ question, user }) => {
                     </div>
                 </div>
             </div>
+        </div>
     )
 
 }

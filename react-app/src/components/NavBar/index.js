@@ -1,51 +1,61 @@
 import './NavBar.css'
 import NavItem from './NavItem'
-// import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import items from '../../assets/navitems.json'
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import CreateQuestionModal from '../CreateQuestionModal';
 
-// dynamic icon provider, dont mind the repeat icon, it is to deal with index
-let icons = [
-    <i class="fas fa-home"></i>,
-    <i class="fas fa-home"></i>,
-    <i class="fab fa-wpforms"></i>,
-    <i class="fas fa-check-square"></i>,
-    <i class="fas fa-users"></i>,
-    <i class="fas fa-bell"></i>
-]
 const NavBar = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
 
-    let index = 0;
-
     return(
-        <div className="nav-container">
+        <div className="nav-container white-background">
             <nav className="nav">
                 <div className="nav-section">
-                    <div className="logo">
+                    <div className="logo quora-font query-logo">
                         <NavLink
-                            to='/'
+                            to='/home'
                         >
                             Query
                         </NavLink>
+
                     </div>
-                    {
-                        items.map(item => {
-                            return (
-                                index += 1,
-                                <NavItem key={item.id}
-                                    icon={icons[index]}
-                                    item={item}
-                                    url={item.url}
-                                >
-                                </NavItem>
-                            )
-                        })
-                    }
+                    <NavItem
+                        icon={<i class="fas fa-home"></i>}
+                        item={"Home"}
+                        url={"/home"}
+                        text={"Home"}
+                        >
+                    </NavItem>
+                     <NavItem
+                        icon={<i class="fab fa-wpforms"></i>}
+                        item={"Following"}
+                        url={"/following"}
+                        text={"Following"}
+                    >
+                    </NavItem>
+                    <NavItem
+                        icon={<i class="fas fa-check-square"></i>}
+                        item={"Answer"}
+                        url={"/answer"}
+                        text={"Answer"}
+                    >
+                    </NavItem>
+                    <NavItem
+                        icon={<i class="fas fa-users"></i>}
+                        item={"Spaces"}
+                        url={"/spaces"}
+                        text={"Spaces"}
+                    >
+                    </NavItem>
+                    <NavItem
+                        icon={<i class="fas fa-bell"></i>}
+                        item={"Notifications"}
+                        url={"/notifications"}
+                        text={"Notifications"}
+                    >
+                    </NavItem>
                 </div>
                 <div className="nav-section-two">
                     <div className="search-container">
@@ -53,15 +63,18 @@ const NavBar = ({ isLoaded }) => {
                         <input type="text" />
                     </div>
                     {isLoaded && (
-                        <ProfileButton user={sessionUser} />
+                        <ProfileButton
+                            user={sessionUser}
+                            className="circle-button"
+                        />
                     )}
                     {
-                        sessionUser ?
+                        sessionUser &&
                         <OpenModalButton
                             buttonText="Add question"
                             modalComponent={<CreateQuestionModal />}
-                        /> :
-                        <></>
+                            className="oval-button"
+                        />
                     }
                 </div>
             </nav>

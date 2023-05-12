@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 
 const ContentCard = ({question}) => {
     return(
-        <div className="content">
-            <div className="content-container">
+        <div className="content white-background">
+            {/* <div className="content-container">
                 <ProfileCard
                     profile={question.userId}
                 >
                 </ProfileCard>
-            </div>
+            </div> */}
             <div className="content-container text">
                 <NavLink
                     to={`/questions/${question.id}`}

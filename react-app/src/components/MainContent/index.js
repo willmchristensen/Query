@@ -4,6 +4,7 @@ import './MainContent.css'
 import ContentCard from './CardComponents/ContentCard'
 import SpaceCardArea from '../SpaceCardArea/'
 import { getAllQuestions } from '../../store/question';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 // import {getUsers} from '../../store/users'
 // import { useParams } from 'react-router-dom';
@@ -17,12 +18,15 @@ const MainContent = () => {
         dispatch(getAllQuestions())
     }, [dispatch])
 
-    if(!questionsArray.length) return null
+    if (!sessionUser) return <Redirect to="/" />
+
+    if(!questionsArray.length) return null;
+
 
     return(
         <div className="main-content-section">
             {
-                sessionUser ? 
+                sessionUser ?
                 <div className="main-content-area">
                     <SpaceCardArea user={sessionUser}></SpaceCardArea>
                 </div>

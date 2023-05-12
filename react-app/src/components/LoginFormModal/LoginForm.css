@@ -1,0 +1,19 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vw;
+    width: 40vw;
+}
+.email{
+    display: flex;
+    padding-bottom: 1rem;
+}
+.password{
+    display: flex;
+    padding-bottom: 1rem;
+}
+.login-title{
+    padding-bottom: 1rem;
+}

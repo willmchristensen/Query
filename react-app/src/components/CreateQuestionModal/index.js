@@ -5,7 +5,7 @@ import { createQuestion } from "../../store/question";
 import { useHistory } from "react-router-dom"
 import './CreateQuestionModal.css'
 
-function CreateQuestionModal({question}) {
+function CreateQuestionModal({spaceId}) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [details, setDetails] = useState("");
@@ -13,29 +13,16 @@ function CreateQuestionModal({question}) {
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// ---------- FORM DATA	-----------------
-		// const formData = new FormData();
-		// formData.append('details', details)
-		// formData.append('user_id', currentUser.id)
-		// console.log('formData::::::::::',formData)
-		// console.log([...formData.entries()])
-		// ------------------------------------------
-
 		if (details.length >= 10) {
 			const item = {
 				'details': details,
-				'user_id': currentUser.id
+				'user_id': currentUser.id,
+				'space_id': spaceId ? Number(spaceId) : 9
 			}
 			const data = await dispatch(createQuestion(item));
-
-			// if (data) {
-			// 	setErrors(data);
-			// } else {
-			// 	closeModal();
-			// }
+			console.log('------------------------------data', data);
 			if (data) {
 				closeModal();
 				history.push(`/questions/${data.question.id}`)

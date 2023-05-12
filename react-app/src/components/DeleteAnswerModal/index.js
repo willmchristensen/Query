@@ -17,9 +17,12 @@ function DeleteAnswerModal({answerId, questionId}) {
 	return (
 		<div className="create-answer-container">
 			<h1>Delete</h1>
-				<button onClick={closeModal}>Cancel</button>
-				<button onClick={deleter}>Delete Answer</button>
-		</div>
+			<h4>This answer cannot be restored.</h4>
+			<div className="button-order">
+				<button className="oval-button" onClick={closeModal}>Cancel</button>
+				<button className="oval-button" onClick={deleter}>Confirm</button>
+			</div>
+			</div>
 	)
 
 }
