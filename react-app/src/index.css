@@ -90,3 +90,6 @@ html{
     margin-top: 5px;
     margin-bottom: 10px;
 }
+.wrap-break{
+    word-wrap: break-word;
+}
