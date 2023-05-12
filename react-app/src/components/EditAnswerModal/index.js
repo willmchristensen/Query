@@ -48,7 +48,7 @@ function EditAnswerModal({ answerId, questionId }) {
 				onSubmit={handleSubmit}
 			//  encType="multipart/form-data"
 			>
-				<ul>
+				<ul className="modal-errors">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
