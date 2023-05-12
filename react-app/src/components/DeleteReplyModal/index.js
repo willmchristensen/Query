@@ -13,7 +13,7 @@ function DeleteReplyModal({ replyId, questionId }) {
 	}
 
 	return (
-		<div className="create-answer-container">
+		<div className="delete-reply-container">
 			<h1>Delete</h1>
 			<p>Are you sure you want to delete this comment?</p>
 			<div className="button-order">
