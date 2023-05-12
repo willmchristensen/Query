@@ -15,7 +15,7 @@ function DeleteAnswerModal({ answerId, questionId }) {
 	}
 
 	return (
-		<div className="create-answer-container">
+		<div className="delete-answer-container">
 			<h1>Delete</h1>
 			<h4>This answer cannot be restored.</h4>
 			<div className="button-order">
