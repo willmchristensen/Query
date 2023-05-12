@@ -36,19 +36,24 @@ const SingleQuestion = () => {
 
     }
 
+    let answerClass;
+    if (user && user.id !== question.userId) {
+        answerClass = "oval-button"
+    } else answerClass = "oval-button-gray"
+
 
     return (
         <div className="s-q-background">
             <div className="content-single-question">
                 <div className="s-q-content-container text s-q-question-top-bottom border-radius3">
                     <h1 className='border-check s-q-width100 answer-formatter wrap-break'>{question.details}</h1>
-                    {user && user.id !== question.userId && <div className="s-q-answer-button">
+                    <div className="s-q-answer-button">
                         <OpenModalButton
-                            className="oval-button"
+                            className={answerClass}
                             buttonText={<i class="fas fa-edit"> Answer</i>}
                             modalComponent={<CreateAnswerModal questionId={questionId} />}
                         />
-                    </div>}
+                    </div>
                 </div>
                 <hr />
 
