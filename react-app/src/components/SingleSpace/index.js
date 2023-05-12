@@ -46,33 +46,35 @@ const SingleSpace = () => {
                         <p className='single-space-support-text'>{space.description}</p>
                     </div>
                 </div>
-                <div className="edit-space-button">
-                    <button
-                        className="circle-button"
-                        onClick={handleClick}
-                    >
-                        <i className="fas fa-ellipsis-h"></i>
-                    </button>
-                    <div className="edit-question-tooltip-container">
-                        <div className={editQuestionTool}>
-                            <button
-                                className='edit-space-placeholder oval-button'
-                                onClick={() => window.alert("Feature Coming Soon")}
-                            >
-                                Edit space
-                            </button>
-                            <OpenModalButton
-                                className="negative-oval-button"
-                                buttonText="Delete space"
-                                modalComponent={
-                                    <DeleteSpaceModal
-                                        id={space.id}
-                                    />
-                                }
-                            />
-                        </div>
+                {sessionUser.id === space.ownerId &&
+                    <div className="edit-space-button">
+                        <button
+                            className="circle-button"
+                            onClick={handleClick}
+                        >
+                            <i className="fas fa-ellipsis-h"></i>
+                        </button>
+                            <div className="edit-question-tooltip-container">
+                            <div className={editQuestionTool}>
+                                <button
+                                    className='edit-space-placeholder oval-button'
+                                    onClick={() => window.alert("Feature Coming Soon")}
+                                >
+                                    Edit space
+                                </button>
+                                <OpenModalButton
+                                    className="negative-oval-button"
+                                    buttonText="Delete space"
+                                    modalComponent={
+                                        <DeleteSpaceModal
+                                            id={space.id}
+                                        />
+                                    }
+                                />
+                            </div>
+                        </div>  
                     </div>
-                </div>
+                }
             </div>
             <div className="add-space-question-button">
                 <OpenModalButton
