@@ -20,11 +20,11 @@ function DeleteSpaceModal({ id }) {
         <div className="delete-space-container">
             <h1>Delete Space</h1>
             <div className="delete-space-modal-display-flex">
-                <button className="oval-button">
+                <button className="oval-button" onClick={closeModal}>
                     Cancel
                 </button>
                 <button
-                    className="oval-button"
+                    className="negative-oval-button"
                     onClick={handleSubmit}
                 >
                     Confirm

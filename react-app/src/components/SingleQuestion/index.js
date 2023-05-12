@@ -72,7 +72,7 @@ const SingleQuestion = () => {
                                         <div className="s-q-right">
 
                                             {user && user.id === answer.ownerId && <OpenModalButton
-                                                className="oval-button"
+                                                className="negative-oval-button"
                                                 buttonText="Delete Answer"
                                                 modalComponent={<DeleteAnswerModal questionId={questionId} answerId={answer.id} />}
                                             />}
@@ -93,7 +93,7 @@ const SingleQuestion = () => {
                                                     <h6 className="wrap-break">{reply.details}</h6>
                                                     {
                                                         user && user.id === reply.ownerId && <OpenModalButton
-                                                            className="oval-button"
+                                                            className="negative-oval-button"
                                                             buttonText="Delete Comment"
                                                             modalComponent={<DeleteReplyModal replyId={reply.id} questionId={questionId} />}
                                                         />

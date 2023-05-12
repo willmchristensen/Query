@@ -20,7 +20,7 @@ function DeleteAnswerModal({answerId, questionId}) {
 			<h4>This answer cannot be restored.</h4>
 			<div className="button-order">
 				<button className="oval-button" onClick={closeModal}>Cancel</button>
-				<button className="oval-button" onClick={deleter}>Confirm</button>
+				<button className="negative-oval-button" onClick={deleter}>Confirm</button>
 			</div>
 			</div>
 	)
