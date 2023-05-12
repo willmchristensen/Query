@@ -89,8 +89,8 @@ const SingleQuestion = () => {
                                         {user && <CreateReviewForm answerId={answer.id} questionId={questionId} />}
                                         {answer.replies.map(reply => {
                                             return (
-                                                <div className="reply-formatter wrap-break s-q-displayFlex-row border-radius3" >
-                                                    <h6 className="wrap-break">{reply.details}</h6>
+                                                <div className="reply-formatter s-q-displayFlex-row border-radius3" >
+                                                    <div className="reply-formatter"> <h6 className="wrap-break">{reply.details}</h6></div>
                                                     {
                                                         user && user.id === reply.ownerId && <OpenModalButton
                                                             className="negative-oval-button"
