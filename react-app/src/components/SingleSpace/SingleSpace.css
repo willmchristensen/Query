@@ -9,6 +9,9 @@
     display: flex;
     justify-content: space-between;
 }
+.gradient-box{
+    margin: 10px;
+}
 
 .single-space-image-container > img{
     height: 20vh;
