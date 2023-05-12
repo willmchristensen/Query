@@ -12,7 +12,9 @@
 html{
     background-color: rgb(235, 235, 235);
 }
-
+.modal-errors {
+    color: red;
+}
 .white-background {
     background-color: white;
 }
@@ -61,6 +63,9 @@ html{
     background-color: whitesmoke;
     padding: 1rem;
     margin: 1rem;
+}
+.circle-button > i {
+    display: flex;
 }
 .circle-button:hover{
     /* background-color: white; */

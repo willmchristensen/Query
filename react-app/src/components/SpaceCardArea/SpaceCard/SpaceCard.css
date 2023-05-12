@@ -20,9 +20,8 @@
     filter: brightness(90%);
     cursor: pointer;
 }
-.space-image{
-    padding-left: 1rem;
-    padding-right:1rem;
+.space-image { 
+    display: flex;
 }
 .spce-img{
     width: 3rem;
