@@ -12,15 +12,16 @@ const NavBar = ({ isLoaded }) => {
     return(
         <div className="nav-container white-background">
             <nav className="nav">
-                <div className="nav-section">
+                <div className="nav-section-two">
                     <div className="logo quora-font query-logo">
                         <NavLink
                             to='/home'
                         >
                             Query
                         </NavLink>
-
                     </div>
+                </div>
+                <div className="nav-section">
                     <NavItem
                         icon={<i class="fas fa-home"></i>}
                         item={"Home"}
@@ -28,7 +29,7 @@ const NavBar = ({ isLoaded }) => {
                         text={"Home"}
                         >
                     </NavItem>
-                     <NavItem
+                    <NavItem
                         icon={<i class="fab fa-wpforms"></i>}
                         item={"Following"}
                         url={"/following"}
@@ -58,10 +59,6 @@ const NavBar = ({ isLoaded }) => {
                     </NavItem>
                 </div>
                 <div className="nav-section-two">
-                    <div className="search-container">
-                        <i class="fas fa-search"></i>
-                        <input type="text" />
-                    </div>
                     {isLoaded && (
                         <ProfileButton
                             user={sessionUser}
