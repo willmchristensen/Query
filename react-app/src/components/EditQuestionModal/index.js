@@ -4,7 +4,7 @@ import { useModal } from "../../context/Modal";
 import { editOneQuestion } from "../../store/question";
 import "./EditQuestionModal.css"
 
-function EditQuestionModal({question}) {
+function EditQuestionModal({ question }) {
 	const dispatch = useDispatch()
 	const [details, setDetails] = useState(question.details);
 	const [errors, setErrors] = useState([]);
@@ -22,9 +22,9 @@ function EditQuestionModal({question}) {
 			const data = await dispatch(editOneQuestion(res));
 			if (data) {
 				closeModal();
-			// 	setErrors(data);
-			// } else {
-			// 	closeModal();
+				// 	setErrors(data);
+				// } else {
+				// 	closeModal();
 			}
 		} else {
 			setErrors([
@@ -34,25 +34,28 @@ function EditQuestionModal({question}) {
 	};
 
 	return (
-		<div className="create-question-container">
-			<h1>Add Question</h1>
+		<div className="edit-question-container">
+			<h1>Edit Question</h1>
 			<form
-				 onSubmit={handleSubmit}
-				 encType="multipart/form-data"
+				className="edit-question-form"
+				onSubmit={handleSubmit}
+				encType="multipart/form-data"
 			>
-				<ul>
+				<ul className="modal-errors">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<input
-					type="text"
+				<textarea
+					className="textarea-border"
 					value={details}
 					onChange={(e) => setDetails(e.target.value)}
 					placeholder={`Start your question with "What", "How","Why", etc.`}
 				/>
-				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Save</button>
+				<div className="edit-question-display-flex">
+					<button className="oval-button" onClick={closeModal}>Cancel</button>
+					<button className="oval-button" type="submit">Save</button>
+				</div>
 			</form>
 		</div>
 	)

@@ -20,6 +20,7 @@ function CreateReviewForm({ answerId, questionId }) {
                 'owner_id': currentUser.id,
                 'answer_id': answerId
             }
+            setDetails("")
             console.log("item in handle submit for create reply", item);
             const data = await dispatch(createReply(item, questionId));
             if (data) {
@@ -38,7 +39,7 @@ function CreateReviewForm({ answerId, questionId }) {
                 onSubmit={handleSubmit}
                 encType="multipart/form-data"
             >
-                <ul>
+                <ul className="modal-errors">
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}

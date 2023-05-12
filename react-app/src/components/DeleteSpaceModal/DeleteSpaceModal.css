@@ -1,0 +1,11 @@
+.delete-space-modal-display-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-space-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}

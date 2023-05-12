@@ -36,40 +36,71 @@ function CreateSpaceModal() {
 	}
 
 	return (
-		<div className="create-space-container">
-			<h1>Create a Space</h1>
-			<p>Share your interests, curate content, host discussions, and more.</p>
+		<div className="modal-space-container">
+			<div className="modal-space-top">
+				<h1
+					className="modal-title"
+				>
+					Create a Space
+				</h1>
+				<p
+					className="modal-description"
+				>
+					Share your interests, curate content, host discussions, and more.
+				</p>
+			</div>
 			<form
 				 onSubmit={(e) => handleSubmit(e)}
 				 encType="multipart/form-data"
+				 className="modal-space-form"
 			>
-				<ul>
+				<div className="form-data">
+				<div
+					className="modal-error-container"
+				>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<div
+							className="modal-errors"
+						 	key={idx}
+						 >
+							{error}
+						</div>
 					))}
-				</ul>
-				<label>Name</label>
-				<input
-					type="text"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					placeholder={`Name your space`}
-				/>
-				<label>Brief Description</label>
-				<input
-					type="text"
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
-					placeholder={`Provide a description for your space`}
-				/>
-				<label>Space Image</label>
-				<input
-					type="text"
-					value={imageUrl}
-					onChange={(e) => setImageUrl(e.target.value)}
-					placeholder={`Provide an image url for your space`}
-				/>
-				<button type="submit">Create Space</button>
+				</div>
+					<div className="form-row">
+						<label>Name</label>
+						<input
+							type="text"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							placeholder={`Name your space`}
+						/>
+					</div>
+					<div className="form-row">
+						<label>Brief Description</label>
+						<input
+							type="text"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+							placeholder={`Provide a description for your space`}
+						/>
+					</div>
+					<div className="form-row">
+						<label>Space Image</label>
+						<input
+							type="text"
+							value={imageUrl}
+							onChange={(e) => setImageUrl(e.target.value)}
+							placeholder={`Provide an image url for your space`}
+						/>
+					</div>
+				</div>
+				<button 
+					type="submit"
+					className="modal-button oval-button"
+				>
+					Create Space
+				</button>
 			</form>
 		</div>
 	)

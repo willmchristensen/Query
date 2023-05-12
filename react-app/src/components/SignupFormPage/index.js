@@ -31,7 +31,7 @@ function SignupFormPage() {
     <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit} className="form-container">
-        <ul>
+        <ul className="modal-errors">
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label for="email">Email</label>
@@ -50,7 +50,7 @@ function SignupFormPage() {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Your Password"
+          placeholder="Your Username"
           required
         />
 

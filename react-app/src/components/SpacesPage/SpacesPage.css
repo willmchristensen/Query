@@ -7,11 +7,11 @@
 .square-space-card-container{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    width: 50vw;
 }
 .view-more{
-    width: 40vw;
+    margin: 1rem;
     padding: 1rem;
+    width: 30vw;
     background-color: white;
     border: none;
 }
