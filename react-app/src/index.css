@@ -8,7 +8,10 @@
     padding: 0;
     margin: 0;
 }
-
+/* ??????thoughts???????? */
+a { 
+    color: blue;
+}
 html{
     background-color: rgb(235, 235, 235);
 }
@@ -19,15 +22,21 @@ html{
     background-color: white;
 }
 .query{
-    color: #00fffa;
+    color: #0FF;
 }
 .quora-font {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
 .query-logo {
+    margin-right: 3rem;
     font-weight: 1000;
     font-size: 300%;
+}
+
+.query-logo > a{
+    text-decoration: none;
+    color: #0FF;
 }
 
 .no-underline {
