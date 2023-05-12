@@ -61,6 +61,7 @@ function ProfileButton({ user }) {
                 <NavLink
                   to={`/users/${user.id}`}
                   onClick={closeMenu}
+                  className="oval-button"
                 >
                   {user.username}
                 </NavLink>
