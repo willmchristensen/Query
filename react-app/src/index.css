@@ -11,6 +11,10 @@
 /* ??????thoughts???????? */
 a { 
     color: blue;
+    text-decoration: none;
+}
+a:hover { 
+    text-decoration: underline;
 }
 html{
     background-color: rgb(235, 235, 235);
@@ -42,6 +46,24 @@ html{
 .no-underline {
     text-decoration: none;
     /* color: #00fffa */
+}
+.negative-oval-button{
+    padding: 5px 50px;
+    border: .1rem solid red;
+    color:red;
+    font-weight: 900;
+    font-size: 1.1rem;
+    background-color: white;
+    border-radius: 70rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.negative-oval-button:hover{
+    background-color: red;
+    color: white;
+    cursor: pointer;
 }
 
 .oval-button{

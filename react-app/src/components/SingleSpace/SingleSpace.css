@@ -1,6 +1,7 @@
 .single-space-container {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
     /* border-bottom: .1rem solid black; */
 }
 .single-space-banner {
@@ -13,7 +14,7 @@
     height: 20vh;
     width: 50%;
     object-fit: cover;
-    border-radius: 3%;
+    border-radius: 10px;
 }
 
 .single-space-title{
@@ -24,19 +25,22 @@
 .single-space-description{
 }
 
+.edit-space-button{
+    position: relative;
+}
 
 .edit-question-tooltip-container {
     position: absolute;
-    right: -2%;
+    right: 3.5vw;
 }
 
 .edit-question-tooltip {
     background-color: rgb(255, 255, 255);
     border: .1rem solid black;
-    height: 3rem;
+    height: 100%;
     position: relative;
-    right: 3.5vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: .5rem;
@@ -48,8 +52,6 @@
     display: none;
 }
 
-.edit-space-button{
-}
 
 .add-space-question-button {
     display: inherit;
@@ -68,6 +70,7 @@
 .single-space-question-container{
     border:1px solid black;
     padding: 1rem;
+    margin-bottom: 2vh;
 }
 .single-space-support-text{
     font-size: 2vw;
