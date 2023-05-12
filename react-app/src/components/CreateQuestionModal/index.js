@@ -35,25 +35,46 @@ function CreateQuestionModal({spaceId}) {
 	};
 
 	return (
-		<div className="create-question-container">
-			<h1>Add Question</h1>
+		
+
+// form-row
+// form-row > label
+// form-row > input
+// 
+
+
+		<div className="modal-space-container">
+			<div className="modal-space-top">
+				<h1
+					className="modal-title"
+				>Add Question</h1>
+			</div>
 			<form
 				 onSubmit={handleSubmit}
 				 encType="multipart/form-data"
+				 className="modal-space-form"
 			>
-				<ul>
+				<div
+					className="modal-error-container"
+				>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<div 
+							key={idx}
+							className="modal-errors"
+						>{error}</div>
 					))}
-				</ul>
-				<input
-					type="text"
-					value={details}
-					onChange={(e) => setDetails(e.target.value)}
-					placeholder={`Start your question with "What", "How","Why", etc.`}
-				/>
+				</div>
+				<div className="form-data">
+					<input
+						type="text"
+						value={details}
+						onChange={(e) => setDetails(e.target.value)}
+						placeholder={`Start your question with "What", "How","Why", etc.`}
+					/>
+				</div>
 				<button onClick={closeModal}>Cancel</button>
-				<button type="submit">Add Question</button>
+				<button type="submit" className="modal-button"
+				>Add Question</button>
 			</form>
 		</div>
 	)
