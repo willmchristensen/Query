@@ -14,14 +14,14 @@ const SpaceCardArea = ({user}) => {
     useEffect(() => {
         dispatch(getAllSpaces())
     }, [dispatch])
-    
+
     return(
         <div className="space-cards-container">
             {
                 userSpaces.map(space => {
                     return (
                         <SpaceCard
-                            id={space.id} 
+                            id={space.id}
                             name={space.name}
                             image={space.imageUrl}
                         ></SpaceCard>

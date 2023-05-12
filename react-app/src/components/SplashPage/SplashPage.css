@@ -22,7 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10% 25% 0px 25%;
+    /* margin: 10% 25% 0px 25%; */
 }
 .form-container{
     display: flex;
@@ -46,8 +46,14 @@
     background-image: url(${splashBackground});
 } */
 
-/* .splash-background {
-    background-image: url("../assets/images/splash-page-background.jpg");
+.splash-background {
+    background-image: url("../../assets/images/splash-page-background.jpg");
     background-size: cover;
     background-position: center;
-  } */
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

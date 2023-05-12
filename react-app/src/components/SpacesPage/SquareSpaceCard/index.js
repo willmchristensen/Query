@@ -5,8 +5,8 @@ import {NavLink} from 'react-router-dom';
 const SquareSpaceCard = ({space}) => {
     // console.log("this is in space card", space)
 
-    return (  
-        <div className="space">
+    return (
+        <div className="space white-background">
             <NavLink
                 to={`/spaces/${space.id}`}
             >

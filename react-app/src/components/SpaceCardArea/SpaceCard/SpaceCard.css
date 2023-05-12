@@ -12,6 +12,7 @@
     margin: .5rem;
     width: 100%;
     overflow: hidden;
+    border-radius: 10px;
 }
 .space-card:hover{
     background-color: rgba(220, 220, 220, 0.205);

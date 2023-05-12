@@ -26,7 +26,7 @@ const ProfileQuestionCard = ({ question, user }) => {
     let editQuestionTool = isHidden ? 'hidden' : 'edit-question-tooltip';
 
     return (
-        <div className='profile-question-card-container'>
+        <div className='profile-question-card-container white-background'>
             <div className="profile-question-card">
                 <NavLink
                     to={`/questions/${question.id}`}

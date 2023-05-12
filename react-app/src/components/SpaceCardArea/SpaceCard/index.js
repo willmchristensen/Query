@@ -8,7 +8,7 @@ const SpaceCard = ({name,image,id}) => {
             to={`/spaces/${id}`}
         >
             <div className="space-card-container">
-                <div className="space-card">
+                <div className="space-card white-background">
                     <div className="space-image">
                         {/* <img className="spce-img" src={image} alt={name} /> */}
                         <img className="spce-img" src={image}  />
@@ -16,8 +16,8 @@ const SpaceCard = ({name,image,id}) => {
                     <div className="space-text">
                         <h3>{name}</h3>
                     </div>
-                </div>   
-            </div>    
+                </div>
+            </div>
         </NavLink>
     )
 

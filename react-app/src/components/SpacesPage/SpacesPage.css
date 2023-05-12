@@ -37,6 +37,7 @@
     justify-content: space-between;
     border-radius: .23rem;
     width: 40vw;
+    margin-top: 2vh;
 }
 .user-spaces {
     overflow: hidden;

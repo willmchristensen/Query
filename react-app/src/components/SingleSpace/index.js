@@ -81,7 +81,7 @@ const SingleSpace = () => {
                 {
                     space.questions.map(question => {
                         return (
-                            <div className="single-space-question-container">
+                            <div className="single-space-question-container white-background">
                                 <NavLink
                                     to={`/questions/${question.id}`}
                                     className="single-space-question-link"

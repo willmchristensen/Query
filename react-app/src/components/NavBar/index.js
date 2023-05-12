@@ -10,7 +10,7 @@ const NavBar = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session.user);
 
     return(
-        <div className="nav-container">
+        <div className="nav-container white-background">
             <nav className="nav">
                 <div className="nav-section">
                     <div className="logo quora-font query-logo">
