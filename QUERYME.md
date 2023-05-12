@@ -5,6 +5,8 @@ Welcome to Query, a web application that allows you to create, manage, and edit 
 # Technologies Used
   - Query uses a Flask/SQLAlchemy backend
   - React/Redux frontend
+  - Alembic
+  - Jinja2
 
 # Getting Started
 
