@@ -54,7 +54,7 @@ export const editAnswer = (data) => async (dispatch) => {
 
 export const getAllAnswers = () => async (dispatch) => {
     //This is the get all answers Thunk
-    console.log("inside gett all answers thunk")
+    // console.log("inside gett all answers thunk")
     const response = await fetch('/api/answers')
     if (response.ok) {
         const data = await response.json();
@@ -65,7 +65,7 @@ export const getAllAnswers = () => async (dispatch) => {
 }
 
 export const getUserAnswers = (userId) => async (dispatch) => {
-    console.log("inside get all answers thunk")
+    // console.log("inside get all answers thunk")
     const response = await fetch(`/api/answers/${userId}`)
     if (response.ok) {
         const data = await response.json();
@@ -78,7 +78,7 @@ export const getUserAnswers = (userId) => async (dispatch) => {
 //Create an answer Thunk
 export const createAnswer = (details, questionId) => async (dispatch) => {
     //This is the create an answer Thunk
-    console.log('details in create answer THUNK', details)
+    // console.log('details in create answer THUNK', details)
     const response = await fetch("/api/answers/new", {
         method: "POST",
         headers: {
@@ -89,7 +89,7 @@ export const createAnswer = (details, questionId) => async (dispatch) => {
             details
         ),
     });
-    console.log("create answer thunk response", response);
+    // console.log("create answer thunk response", response);
     if (response.ok) {
         const data = await response.json();
         // dispatch(postAnswer(data));

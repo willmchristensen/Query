@@ -14,7 +14,7 @@ function EditAnswerModal({ answerId, questionId }) {
 	let answer = answerArr.find(answer => answerId === answer.id)
 	const [details, setDetails] = useState(answer.details ? answer.details : "");
 
-	console.log('----------', question, answer);
+	// console.log('----------', question, answer);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (details.length >= 2) {
@@ -24,7 +24,7 @@ function EditAnswerModal({ answerId, questionId }) {
 				'question_id': Number(questionId)
 			}
 			const res = { item, answerId, questionId }
-			console.log("item in handle submit for edit answer modal", item);
+			// console.log("item in handle submit for edit answer modal", item);
 			const data = await dispatch(editAnswer(res));
 			if (data) {
 				setErrors(data);
