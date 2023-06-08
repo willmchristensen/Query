@@ -9,16 +9,26 @@
     padding: 10px;
 }
 
-.project-github-links-container{
+.project-github-links-container {
     display: flex;
     align-items: center;
 }
 
-.project-github-links{
+.project-github-links {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.project-github-links > *{
+.project-github-links>* {
     padding: 1rem;
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px red solid; */
+}
+
+.whole {
+    text-align: center;
 }
