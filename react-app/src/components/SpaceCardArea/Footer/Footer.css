@@ -26,8 +26,8 @@
 .links {
     display: flex;
     justify-content: space-around;
-    /* border: 1px red solid; */
 }
+
 .whole {
     text-align: center;
 }

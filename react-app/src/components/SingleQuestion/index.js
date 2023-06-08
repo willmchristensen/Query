@@ -11,6 +11,7 @@ import DeleteReplyModal from '../DeleteReplyModal';
 import CreateReviewForm from '../CreateReplyForm';
 import { useModal } from '../../context/Modal';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import NotFound from '../PageNotFound';
 
 const SingleQuestion = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const SingleQuestion = () => {
 
     if (!user) return <Redirect to="/login" />
 
-    if (!question) return null;
+    if (!question) return <NotFound />;
 
     const openDeleteModal = () => {
         // console.log("hi")
@@ -40,6 +41,7 @@ const SingleQuestion = () => {
     if (user && user.id !== question.userId) {
         answerClass = "oval-button"
     } else answerClass = "oval-button-gray"
+
 
 
     return (
