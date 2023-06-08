@@ -52,7 +52,7 @@ function CreateReviewForm({ answerId, questionId }) {
                         placeholder={`Add a comment...`}
                         required
                     />
-                    <button className="reply-add-comment" type="submit">Add Comment</button>
+                    <button className="oval-button" type="submit">Add Comment</button>
                 </div>
             </form>
         </div>
