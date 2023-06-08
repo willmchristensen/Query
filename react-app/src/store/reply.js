@@ -15,7 +15,7 @@ const deleteReplyAction = (replyId) => ({
 
 
 export const createReply = (details, questionId) => async (dispatch) => {
-    console.log("reply details in thunk", details);
+    // console.log("reply details in thunk", details);
     const response = await fetch("/api/replies/new", {
         method: "POST",
         headers: {
@@ -79,7 +79,7 @@ const ReplyReducer = (state = initialState, action) => {
         case DELETE_REPLY: {
             const newState = {...state}
             delete newState[action.replyId]
-            console.log("newState", newState)
+            // console.log("newState", newState)
             return {...newState}
             return newState
         }

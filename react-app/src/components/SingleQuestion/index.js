@@ -23,7 +23,7 @@ const SingleQuestion = () => {
     const [commentVisible, setCommentVisible] = useState(false)
 
     useEffect(() => {
-        console.log("IT IS RENDERING!");
+        // console.log("IT IS RENDERING!");
         dispatch(getOneQuestion(questionId))
     }, [dispatch, answer, questionId, closeModal])
 
@@ -32,7 +32,7 @@ const SingleQuestion = () => {
     if (!question) return null;
 
     const openDeleteModal = () => {
-        console.log("hi")
+        // console.log("hi")
 
     }
 
