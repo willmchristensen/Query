@@ -1,33 +1,40 @@
-/* TODO Add site wide styles *//* TODO:
+/* TODO Add site wide styles */
+/* TODO:
     -Add site wide styles
     -GLOBAL COLORS:
         -backgrounds, font, border, boxshadow
 */
-*{
+* {
     font-family: 'Courier Prime', monospace;
     padding: 0;
     margin: 0;
 }
-/* ??????thoughts???????? */
+
 a {
     color: blue;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
-html{
+
+html {
     background-color: rgb(235, 235, 235);
 }
+
 .modal-errors {
     color: red;
 }
+
 .white-background {
     background-color: white;
 }
-.query{
+
+.query {
     color: #0FF;
 }
+
 .quora-font {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
@@ -38,7 +45,7 @@ html{
     font-size: 300%;
 }
 
-.query-logo > a{
+.query-logo>a {
     text-decoration: none;
     color: #0FF;
 }
@@ -47,9 +54,10 @@ html{
     text-decoration: none;
     /* color: #00fffa */
 }
-.oval-button-gray{
+
+.oval-button-gray {
     border: .1rem solid gray;
-    color:gray;
+    color: gray;
     font-weight: 900;
     font-size: 1.1rem;
     background-color: white;
@@ -64,9 +72,10 @@ html{
     pointer-events: none;
     opacity: 0.6;
 }
-.negative-oval-button{
+
+.negative-oval-button {
     border: .1rem solid red;
-    color:red;
+    color: red;
     font-weight: 900;
     font-size: 1.1rem;
     background-color: white;
@@ -78,15 +87,16 @@ html{
     align-items: center;
     justify-content: center;
 }
-.negative-oval-button:hover{
+
+.negative-oval-button:hover {
     background-color: red;
     color: white;
     cursor: pointer;
 }
 
-.oval-button{
+.oval-button {
     border: .1rem solid blue;
-    color:blue;
+    color: blue;
     font-weight: 900;
     font-size: 1.1rem;
     background-color: white;
@@ -98,14 +108,16 @@ html{
     align-items: center;
     justify-content: center;
 }
-.oval-button:hover{
+
+.oval-button:hover {
     background-color: blue;
     color: white;
     cursor: pointer;
 }
-.circle-button{
+
+.circle-button {
     border: none;
-    color:black;
+    color: black;
     font-weight: 900;
     font-size: 1.1rem;
     border-radius: 70rem;
@@ -113,38 +125,65 @@ html{
     padding: 1rem;
     margin: 1rem;
 }
-.circle-button > i {
+
+.circle-button>i {
     display: flex;
 }
-.circle-button:hover{
-    /* background-color: white; */
+
+.circle-button:hover {
     box-shadow: 0px 0px 2px 2px black;
     cursor: pointer;
 }
-.button-order{
+
+.button-order {
     display: flex;
     justify-content: flex-end;
 }
-.text-area-modal textarea{
+
+.text-area-modal textarea {
     border: none;
     outline: none;
     width: 90%;
     margin: 3px 10px 3px 10px;
     resize: vertical;
 }
-.answer-formatter{
+
+.answer-formatter {
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 5px;
 }
 
-.reply-formatter{
+.reply-formatter {
     max-width: 80%;
     margin-left: 25px;
     margin-right: 5px;
     margin-top: 5px;
     margin-bottom: 10px;
 }
-.wrap-break{
+
+.wrap-break {
     word-wrap: break-word;
+}
+
+.other-oval-button {
+    border: .1rem solid blue;
+    color: blue;
+    font-weight: 900;
+    height: 38px;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 70rem;
+    padding: 5px;
+    margin: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.other-oval-button:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
 }
