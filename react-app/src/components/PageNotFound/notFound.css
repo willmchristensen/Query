@@ -1,0 +1,9 @@
+.unavailable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 10vh 0px 20vh 0px;
+    padding: 0px 10vh 0px 10vh;
+}

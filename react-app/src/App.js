@@ -10,6 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import SpacesPage from "./components/SpacesPage";
 import SingleSpace from "./components/SingleSpace";
 import Following from "./components/Following";
+import NotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,43 +22,40 @@ function App() {
 
   return (
     <>
-        {isLoaded && (
-          <Switch>
-            <Route path="/questions/:questionId">
-              <NavBar isLoaded={isLoaded} />
-              <SingleQuestion />
-            </Route>
-            <Route path="/users/:userId">
-              <NavBar isLoaded={isLoaded} />
-              <ProfilePage />
-            </Route>
-            <Route path="/spaces/:spaceId">
-              <NavBar isLoaded={isLoaded} />
-              <SingleSpace />
-            </Route>
-            {/* <Route path="/login" >
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route> */}
-            <Route path="/spaces">
-              <NavBar isLoaded={isLoaded} />
-              <SpacesPage />
-            </Route>
-            <Route path={["/following","/answer","/notifications"]}>
-              <NavBar isLoaded={isLoaded} />
-              <Following />
-            </Route>
-            <Route path="/home">
-              <NavBar isLoaded={isLoaded} />
-              <MainContent />
-            </Route>
-            <Route exact path={["/", "/login"]}>
-              <SplashPage />
-            </Route>
-          </Switch>
-        )}
+      {isLoaded && (
+        <Switch>
+          <Route path="/questions/:questionId">
+            <NavBar isLoaded={isLoaded} />
+            <SingleQuestion />
+          </Route>
+          <Route path="/users/:userId">
+            <NavBar isLoaded={isLoaded} />
+            <ProfilePage />
+          </Route>
+          <Route path="/spaces/:spaceId">
+            <NavBar isLoaded={isLoaded} />
+            <SingleSpace />
+          </Route>
+          <Route path="/spaces">
+            <NavBar isLoaded={isLoaded} />
+            <SpacesPage />
+          </Route>
+          <Route path={["/following", "/answer", "/notifications"]}>
+            <NavBar isLoaded={isLoaded} />
+            <Following />
+          </Route>
+          <Route path="/home">
+            <NavBar isLoaded={isLoaded} />
+            <MainContent />
+          </Route>
+          <Route exact path={["/", "/login"]}>
+            <SplashPage />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      )}
     </>
   );
 }

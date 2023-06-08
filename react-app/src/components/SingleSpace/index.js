@@ -8,6 +8,7 @@ import DeleteSpaceModal from '../DeleteSpaceModal';
 import { getAllAnswers } from '../../store/answer';
 import CreateQuestionModal from '../CreateQuestionModal';
 import './SingleSpace.css'
+import NotFound from '../PageNotFound';
 
 const SingleSpace = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const SingleSpace = () => {
 
     if (!sessionUser) return <Redirect to="/login" />
 
-    if (!space) return null;
+    if (!space) return <NotFound />;
 
     let editQuestionTool = isHidden ? 'hidden' : 'edit-question-tooltip';
 
@@ -54,7 +55,7 @@ const SingleSpace = () => {
                         >
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
-                            <div className="edit-question-tooltip-container">
+                        <div className="edit-question-tooltip-container">
                             <div className={editQuestionTool}>
                                 <button
                                     className='edit-space-placeholder oval-button'
@@ -72,7 +73,7 @@ const SingleSpace = () => {
                                     }
                                 />
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 }
             </div>
