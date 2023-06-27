@@ -7,12 +7,13 @@
 }
 
 .textarea-border {
-    border: none;
-    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
     resize: vertical;
     display: flex;
     justify-content: center;
 }
+
 
 .edit-question-display-flex {
     display: flex;

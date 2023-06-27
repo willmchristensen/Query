@@ -5,19 +5,22 @@
     /* align-items: center; */
     width: 40vw;
 }
-.modal-space-form{
+
+.modal-space-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0px 5% 5% 5%;
     /* align-items: center; */
 }
+
 .modal-space-top {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .modal-title {
     color: black;
     font-size: 30pt;
@@ -25,14 +28,17 @@
     margin-top: 3%;
     text-align: center;
 }
+
 .modal-description {
     margin-top: 3%;
     width: 90%;
     text-align: center;
 }
+
 .modal-error-container {
     margin-left: 2%;
 }
+
 .form-data {
     display: flex;
     flex-direction: column;
@@ -42,13 +48,14 @@
 }
 
 .form-data textarea {
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
     outline: none;
     resize: vertical;
 }
 
 
-.form-row{
+.form-row {
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -56,14 +63,17 @@
     margin-right: 10%;
     margin-left: 10%;
 }
-.form-row > label{
+
+.form-row>label {
     font-weight: 700;
     margin: 3%;
 }
-.form-row > input{
+
+.form-row>input {
     margin: 0;
 }
-.modal-button{
+
+.modal-button {
     margin-bottom: 5%;
 }
 
