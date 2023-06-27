@@ -140,13 +140,19 @@ html {
     justify-content: flex-end;
 }
 
+.text-area-modal {
+    display: flex;
+    justify-content: center;
+}
+
 .text-area-modal textarea {
-    border: none;
-    outline: none;
-    width: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    width: 95%;
     margin: 3px 10px 3px 10px;
     resize: vertical;
 }
+
 
 .answer-formatter {
     margin-left: 5px;
