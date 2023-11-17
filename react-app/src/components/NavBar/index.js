@@ -29,20 +29,20 @@ const NavBar = ({ isLoaded }) => {
                         text={"Home"}
                         >
                     </NavItem>
-                    <NavItem
+                    {/* <NavItem
                         icon={<i class="fab fa-wpforms"></i>}
                         item={"Following"}
                         url={"/following"}
                         text={"Following"}
                     >
-                    </NavItem>
-                    <NavItem
+                    </NavItem> */}
+                    {/* <NavItem
                         icon={<i class="fas fa-check-square"></i>}
                         item={"Answer"}
                         url={"/answer"}
                         text={"Answer"}
                     >
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem
                         icon={<i class="fas fa-users"></i>}
                         item={"Spaces"}
@@ -50,13 +50,13 @@ const NavBar = ({ isLoaded }) => {
                         text={"Spaces"}
                     >
                     </NavItem>
-                    <NavItem
+                    {/* <NavItem
                         icon={<i class="fas fa-bell"></i>}
                         item={"Notifications"}
                         url={"/notifications"}
                         text={"Notifications"}
                     >
-                    </NavItem>
+                    </NavItem> */}
                 </div>
                 <div className="nav-section-two">
                     {isLoaded && (
